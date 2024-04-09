@@ -10,15 +10,15 @@ public class TablePedido {
     private int id_pedido;
     private int usuario_FK;
     private int endereco_FK;
-    private Enum status;
-    private Enum metodo_pagamento;
+    private String status;
+    private String metodo_pagamento;
     private int valor_total;
     private Timestamp data_hora;
 
     public TablePedido() {
     }
 
-    public TablePedido(int id_pedido, int usuario_FK, int endereco_FK, Enum status, Enum metodo_pagamento, int valor_total, Timestamp data_hora) {
+    public TablePedido(int id_pedido, int usuario_FK, int endereco_FK, String status, String metodo_pagamento, int valor_total, Timestamp data_hora) {
         this.id_pedido = id_pedido;
         this.usuario_FK = usuario_FK;
         this.endereco_FK = endereco_FK;
@@ -52,19 +52,19 @@ public class TablePedido {
         this.endereco_FK = endereco_FK;
     }
 
-    public Enum getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Enum getMetodo_pagamento() {
+    public String getMetodo_pagamento() {
         return metodo_pagamento;
     }
 
-    public void setMetodo_pagamento(Enum metodo_pagamento) {
+    public void setMetodo_pagamento(String metodo_pagamento) {
         this.metodo_pagamento = metodo_pagamento;
     }
 
@@ -83,6 +83,5 @@ public class TablePedido {
     public void setData_hora(Timestamp data_hora) {
         this.data_hora = data_hora;
     }
-    
-    
+
 }
