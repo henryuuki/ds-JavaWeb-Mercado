@@ -93,7 +93,7 @@ public class EnderecoDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
             
-            stmt = conexao.prepareStatement("DELETE FROM usuario WHERE id_endereco = ?");
+            stmt = conexao.prepareStatement("DELETE FROM pedido WHERE id_endereco = ?");
             stmt.setInt(1, en.getId_endereco());
             
             stmt.executeUpdate();

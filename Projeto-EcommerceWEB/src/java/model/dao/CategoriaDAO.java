@@ -21,7 +21,7 @@ import model.bean.TableCategoria;
  */
 public class CategoriaDAO {
     public List<TableCategoria> read() {
-        List<TableCategoria> categorias = new ArrayList();
+      List<TableCategoria> categorias = new ArrayList();
 
         try {
             Connection conexao = Conexao.conectar();
@@ -75,7 +75,7 @@ public class CategoriaDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
             
-            stmt = conexao.prepareStatement("UPDATE endereço SET nome = ? WHERE id_categoria = ?");
+            stmt = conexao.prepareStatement("UPDATE produto SET nome = ? WHERE id_produto = ?");
             stmt.setString(1, c.getNome());
             
             stmt.executeUpdate();
@@ -88,13 +88,13 @@ public class CategoriaDAO {
         }
     }
     
-    public void delete(TableCategoria en){
+    public void delete(TableCategoria c){
         try{
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
             
             stmt = conexao.prepareStatement("DELETE FROM categoria WHERE id_categoria = ?");
-            stmt.setInt(1, en.getId_categoria());
+            stmt.setInt(1, c.getId_categoria());
             
             stmt.executeUpdate();
             
