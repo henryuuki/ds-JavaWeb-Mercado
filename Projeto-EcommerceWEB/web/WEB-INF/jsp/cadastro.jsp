@@ -3,9 +3,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/cadastro.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Tela Cadastro</h1>
+        <div class="contanier">
+            <div class="content">
+                
+            </div>
+        </div>
     </body>
 </html>

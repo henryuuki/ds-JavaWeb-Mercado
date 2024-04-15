@@ -7,8 +7,7 @@ servlet but should be the only JSP outside of WEB-INF.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% response.sendRedirect("index.htm"); %>
-<img src="assets/JBL_FLIP_ESSENTIAL_2_BACK_REFLECTIONS_36400_x3.png" alt=""/>
-<img src="assets/JBL_PARTYBOX_ENCORE_ESSENTIAL_HERO_1605x1605px.png" alt=""/>
-<img src="assets/JBL_XTREME_3_3_4_RIGHT_BLUE_0072_x1.png" alt=""/>
-<img src="assets/JBL_PULSE_5_3_4_LEFT_34343_x2.png" alt=""/>
-<a href="WEB-INF/jsp/Carrinho.jsp"></a>
+<link href="css/cadastro.css" rel="stylesheet" type="text/css"/>
+<link href="css/login.css" rel="stylesheet" type="text/css"/>
+<link href="css/header.css" rel="stylesheet" type="text/css"/>
+<a href="WEB-INF/jsp/produtos.jsp"></a>

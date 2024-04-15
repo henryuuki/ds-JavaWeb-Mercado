@@ -8,7 +8,7 @@
         <link href="css/header.css" rel="stylesheet" type="text/css"/>
         <link href="css/carousel.css" rel="stylesheet" type="text/css"/>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
-        <link href="css/flipcard.css" rel="stylesheet" type="text/css"/>
+        <link href="css/cards.css" rel="stylesheet" type="text/css"/>
         <title>Home - Page</title>
     </head>
 
@@ -18,10 +18,13 @@
                 <div class="logo-content">
                     <img class="logo" src="assets/Logo SoundSpace.png" alt=""/>
                     <img class="logo-sing" src="assets/Sound Space Sing.png" alt=""/>
-                    <a href="WEB-INF/jsp/Carrinho.jsp">a</a>
+                    <a href="./cadastrar">cadastro</a>
+                    <a href="./lista-produtos">produtos</a>
+                    <a href="./login">login</a>
+                    <a href="./produto-unico">produto unico</a>
                 </div>
 
-                <div class="h-content">
+                <div class="i-content">
                     <input class="input-style"  type="text" placeholder=" Buscar" />
                     <button class="btn-search" type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -78,16 +81,28 @@
                 </div>
             </section>
             <hr>
-            <div class="container">
-                <div class="flip">
-                    <div class="frente">
-                        <!-- <img src="assets/JBL_FLIP_ESSENTIAL_2_BACK_REFLECTIONS_36400_x3.png" alt=""/> -->
-                    </div>
-                    <div class="tras">
-                        <p>Leite</p>
-                    </div>
+
+            <h2>Produtos</h2>
+            <section class="cards">
+
+                <div class="card">
+
                 </div>
-            </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+
+                <div class="card">
+
+                </div>
+
+            </section>
         </main>
     </body>
     <script src="js/carousel.js" type="text/javascript"></script>
