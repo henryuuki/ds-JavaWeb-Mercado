@@ -6,7 +6,66 @@ body{
 
 header{
     width: auto;
-    height: 80px;
-    background-color: brown;
+    height: 140px;
+    background-color: rgb(34, 34, 34);
 }
 
+header nav{
+    display: flex;
+    align-items: center;
+}
+
+.logo-content{
+    width: 18%;
+    /* border: solid 1px black; */
+    display: flex;
+    align-items: center;
+    margin-left: 8%;
+    justify-content: space-around;
+}
+
+.logo{
+    width: 70px;
+    height: 70px;
+}
+
+.logo-sing{
+    width: 100px;
+    height: 100px;
+}
+
+.h-content{
+    /* border: solid 1px black; */
+    display: flex;
+    justify-content: right;
+    width: 60%;
+    margin-right: 5%;
+    align-items: center;
+}
+
+.btn-search {
+    position:absolute;
+    padding: 5px;
+    border: none;
+    background:transparent;
+    cursor: pointer;
+}
+
+.input-style{
+    width: 300px;
+    height: 20px;
+    border-radius: 8px;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.p-content{
+    /* border: solid 1px black; */
+}
+
+.categorias{
+    width: auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background-color:  rgb(54, 54, 54);
+}

@@ -1,0 +1,11 @@
+.fc-content{
+    display: flex;
+    justify-content: center;
+}
+
+.contanier{
+    position: relative;
+    width: 240px;
+    height: 380px;
+    background-color: brown;
+}
