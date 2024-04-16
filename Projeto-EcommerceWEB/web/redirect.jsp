@@ -7,7 +7,3 @@ servlet but should be the only JSP outside of WEB-INF.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% response.sendRedirect("index.htm"); %>
-<link href="css/cadastro.css" rel="stylesheet" type="text/css"/>
-<link href="css/login.css" rel="stylesheet" type="text/css"/>
-<link href="css/header.css" rel="stylesheet" type="text/css"/>
-<a href="WEB-INF/jsp/produtos.jsp"></a>

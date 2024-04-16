@@ -9,6 +9,7 @@
         <link href="css/carousel.css" rel="stylesheet" type="text/css"/>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/cards.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Home - Page</title>
     </head>
@@ -19,21 +20,29 @@
                 <div class="logo-content">
                     <img class="logo" src="assets/Logo SoundSpace.png" alt=""/>
                     <img class="logo-sing" src="assets/Sound Space Sing.png" alt=""/>
-                    <a href="./cadastrar">cadastro</a>
+                    <!-- <a href="./cadastrar">cadastro</a>
                     <a href="./lista-produtos">produtos</a>
                     <a href="./login">login</a>
-                    <a href="./produto-unico">produto unico</a>
+                    <a href="./produto-unico">produto unico</a> -->
                 </div>
 
-                <div class="i-content">
-                    <input class="input-style"  type="text" placeholder=" Buscar" />
-                    <button class="btn-search" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+                <div class="input-content">
+
+                    <div class="btn-search">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <div class="input-style">
+                        <input type="text" name="" placeholder="Procure o que deseja">
+                    </div>
+                    <div class="btn-close">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+
                 </div>
 
-                <div class="p-content">
-                    <img class="perfil" src="assets/user-black64px.png" alt=""/>
+                <div class="icons-content">
+                    <img class="icon" src="assets/cart-white64px.png" alt=""/>
+                    <img class="icon" src="assets/user-white64px.png" alt=""/>
                 </div>
             </nav>
             <div class="categorias">
@@ -153,7 +162,8 @@
 
         </footer>
     </body>
-    <script src="js/carousel.js" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>
+    <script src="js/carousel.js" type="text/javascript"></script>
+    <script src="js/searchBox.js" type="text/javascript"></script>
     <script src="js/card3D.js" type="text/javascript"></script>
 </html>

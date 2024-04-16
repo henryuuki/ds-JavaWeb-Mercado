@@ -1,0 +1,12 @@
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+footer{
+    width: auto;
+    height: 100px;
+    background-color: rgb(34, 34, 34);
+    margin-top: 10%;
+}

@@ -16,11 +16,10 @@ header nav{
 }
 
 .logo-content{
-    width: 18%;
+    width: 20%;
     /* border: solid 1px black; */
     display: flex;
     align-items: center;
-    margin-left: 8%;
     justify-content: space-around;
     gap: 10px;
 }
@@ -35,37 +34,66 @@ header nav{
     height: 100px;
 }
 
-.i-content{
-    /* border: solid 1px black; */
+.input-content{
+    position: relative;
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
     display: flex;
-    justify-content: right;
-    width: 60%;
-    margin-right: 5%;
-    align-items: center;
+    justify-content: space-between;
+    margin: 0 5% 0 5%;
+    transition: .5s;
 }
 
-.btn-search {
-    position:absolute;
-    padding: 5px;
-    border: none;
-    background:transparent;
-    cursor: pointer;
+.input-content.ativar{
+    width: 300px;
 }
 
 .input-style{
-    width: 300px;
-    height: 20px;
-    border-radius: 8px;
-    border: 1px solid rgb(0, 0, 0);
+    position: absolute;
+    left: 60px;
+    width: calc(100% - 120px);
+    height: 100%;
 }
 
-.p-content{
-    /* border: solid 1px black; */
+.input-style input{
+    line-height: 38px;
+    border: none;
+    outline: none;
+    font-size: 16px;
 }
 
-.perfil{
-    width: 50px;
-    height: 50px;
+.btn-search{
+    min-width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.btn-close{
+    min-width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.icons-content{
+    display: flex;
+    justify-content: right;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+    margin-right: 10%;
 }
 
 .categorias{
