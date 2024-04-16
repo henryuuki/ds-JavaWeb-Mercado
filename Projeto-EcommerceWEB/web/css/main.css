@@ -9,3 +9,42 @@
     height: 380px;
     background-color: brown;
 }
+
+h3{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 3%;
+}
+
+.banner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.ad{
+    width: 1000px;
+    height: 230px;
+}
+
+.verMais{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.verMais button{
+    padding: 10px 40px;
+    background-color: #00b938;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}

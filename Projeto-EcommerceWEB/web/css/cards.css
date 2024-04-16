@@ -1,24 +1,82 @@
-h2{
+h1{
     display: flex;
     justify-content: center;
-    font-size: 45px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cards{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 50px;
+    gap: 40px;
+    transform-style: preserve-3d;
 }
 
 .card{
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 240px;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 200px;
     height: 380px;
+    padding: 20px;
     border: solid 1px #c3c3c3;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
     border-radius: 10px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transform-style: preserve-3d;
+
+}
+
+.produto{
+    width: 240px;
+    height: 280px;
+    transform-style: preserve-3d;
+    transition: .5s;
+}
+
+.card:hover .produto, .card:hover button{
+    transform: translate3d(0, 0,100px);
+}
+
+.cards .button{
+    padding: 10px 40px;
+    background-color: #00b938;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.cards div.card1, div.card2, div.card3, div.card4{
+    background: linear-gradient(45deg, rgb(1, 1, 180), rgb(50, 0, 78));
+}
+
+
+.r-cards1, .r-cards2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 3%;
+}
+
+.r-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 190px;
+    height: 330px;
+    padding: 20px;
+    border: solid 1px #c3c3c3;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
+    border-radius: 10px;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

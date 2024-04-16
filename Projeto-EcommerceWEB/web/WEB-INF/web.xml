@@ -28,6 +28,10 @@
         <servlet-name>ProdutoUnicoController</servlet-name>
         <servlet-class>controller.ProdutoUnicoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TesteController</servlet-name>
+        <servlet-class>controller.TesteController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ProdutoUnicoController</servlet-name>
         <url-pattern>/produto-unico</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TesteController</servlet-name>
+        <url-pattern>/pagina-teste</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

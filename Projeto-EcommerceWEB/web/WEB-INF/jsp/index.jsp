@@ -9,6 +9,7 @@
         <link href="css/carousel.css" rel="stylesheet" type="text/css"/>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/cards.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Home - Page</title>
     </head>
 
@@ -82,29 +83,77 @@
             </section>
             <hr>
 
-            <h2>Produtos</h2>
+            <h1>Mais Vendidos!</h1>
             <section class="cards">
 
-                <div class="card">
-
+                <div class="card card1">
+                    <h2>JBL Flip Es 2</h2>
+                    <img class="produto" src="assets/JBL_FLIP_ESSENTIAL_2_BACK_REFLECTIONS_36400_x3.png" alt=""/>
+                    <button class="button">Comprar</button>
                 </div>
-                <div class="card">
-
+                <div class="card card2">
+                    <h2>JBL PartyBox</h2>
+                    <img class="produto" src="assets/JBL_PARTYBOX_ENCORE_ESSENTIAL_HERO_1605x1605px.png" alt=""/>
+                    <button class="button">Comprar</button>
                 </div>
-                <div class="card">
-
+                <div class="card card3">
+                    <h2>JBL Xtreme 3</h2>
+                    <img class="produto" src="assets/JBL_XTREME_3_3_4_RIGHT_BLUE_0072_x1.png" alt=""/>
+                    <button class="button">Comprar</button>
                 </div>
-                <div class="card">
-
-                </div>
-
-                <div class="card">
-
+                <div class="card card4">
+                    <h2>JBL Pulse 5</h2>
+                    <img class="produto" src="assets/JBL_PULSE_5_3_4_LEFT_34343_x2.png" alt=""/>
+                    <button class="button">Comprar</button>
                 </div>
 
             </section>
+
+            <div class="banner">
+                <div">
+                    <img class="ad" src="assets/Banner.png" alt=""/>
+                </div>
+            </div>
+
+            <hr>
+
+            <h3>Recomendações</h3>
+            <section class="r-cards1">
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+            </section>
+
+            <section class="r-cards2">
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+                <div class="r-card">
+                    <h2>Teste</h2>
+                </div>
+            </section>
+            <div class="verMais"><button>Ver Mais!  <i class="fa-solid fa-arrow-right"></i></button></div>
         </main>
+        <footer>
+
+        </footer>
     </body>
     <script src="js/carousel.js" type="text/javascript"></script>
     <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>
+    <script src="js/card3D.js" type="text/javascript"></script>
 </html>
