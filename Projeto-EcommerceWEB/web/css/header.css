@@ -16,12 +16,12 @@ header nav{
 }
 
 .logo-content{
-    width: 20%;
     /* border: solid 1px black; */
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 10px;
+    margin-left: 10%;
 }
 
 .logo{
@@ -34,21 +34,29 @@ header nav{
     height: 100px;
 }
 
+.input-contanier{
+    display: flex;
+    margin-left: 5%;
+    width: 30%;
+}
+
 .input-content{
     position: relative;
     width: 50px;
     height: 40px;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(34, 34, 34);
     overflow: hidden;
     display: flex;
     justify-content: space-between;
-    margin: 0 5% 0 5%;
     transition: .5s;
+    color: #fff;
 }
 
 .input-content.ativar{
     width: 300px;
+    background-color: #fff;
+    color: black;
 }
 
 .input-style{
@@ -82,18 +90,30 @@ header nav{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .icons-content{
     display: flex;
     justify-content: right;
+    margin-right: 2%;
+    gap: 30px;
 }
 
-.icon{
-    width: 40px;
-    height: 40px;
-    margin-right: 10%;
+.icon-btn{
+    background: none;
+    border: none;
+    cursor: pointer;    
+    color: white;
+}
+
+.icon-btn i{
+    font-size: 35px;
+    transition: .5s;
+}
+
+.icon-btn i:hover{
+    color: rgb(0, 79, 182);
 }
 
 .categorias{
@@ -103,3 +123,56 @@ header nav{
     align-items: center;
     background-color:  rgb(54, 54, 54);
 }
+
+.menu{
+    display: flex;
+    text-align: center;
+    gap: 20px;
+}
+
+.menu-links{
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.menu-links::after{
+    content:  " ";
+    width: 0%;
+    height: 3px;
+    background-color: rgb(0, 79, 182);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.menu-links:hover::after{
+    width: 100%;
+}
+
+.dropdown{
+    width: 18%;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.show {display:block;}
