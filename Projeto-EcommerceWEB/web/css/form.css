@@ -1,4 +1,4 @@
-/* .center{
+.center{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -15,31 +15,36 @@
     outline: none;
     cursor: pointer;
     border-radius: 5px;
-} */
+}
 
 .popup{
-    position: absolute;
+    position: fixed;
     top: -150%;
     left: 50%;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.25);
+    transform: translate(-50%, -50%) scale(1.20);
     width: 380px;
     padding: 20px 30px;
     background-color: white;
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.015);
     border-radius: 10px;
-    transition: top 0ms ease-in-out 200ms,
-        opacity 200ms ease-in-out 0ms,
-        transform 200ms ease-in-out 200ms;
+    transition: .5s;
+    z-index: 999;
 }
 
 .popup.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
     top: 50%;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    transition: top 0ms ease-in-out 200ms,
-        opacity 200ms ease-in-out 0ms,
-        transform 20ms ease-in-out 200ms;
+    width: 380px;
+    padding: 20px 30px;
+    background-color: white;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.015);
+    border-radius: 10px;
+    transform: translate(-50%, -50%) scale(1.20);
+    transition: .5s;
 }
 
 .popup .close-form{
@@ -61,45 +66,49 @@
     color: #222;
     margin: 10px 0px 20px;
     font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .popup .form .form-element{
     margin: 15px 0px;
 }
 
-.popup .form .form-element label{
+.title{
+    margin: 15px 0px;
     font-size: 14px;
     color: #222;
 }
 
-.popup .form .form-element input[type = "text"],
-.popup .form .form-element input[type = "password"] {
+.form-input{
+    margin: 15px 0px;
     margin-top: 5px;
     display: block;
-    width: 100%;
+    width: 91%;
     padding: 16px;
     outline: none;
     border: 1px solid #aaa;
     border-radius: 5px;
 }
 
-.popup .form .form-element input[type = "checkbox"]{
+.form-checkbox{
     margin-right: 5px;
 }
 
-.popup .form .form-element button{
+.form-btn-confirm{
+    margin-top: 15px;
     width: 100%;
     height: 40px;
     border: none;
     outline: none;
     font-size: 16px;
-    background: #222;
+    background: #00b938;
     color: #f5f5f5;
     border-radius: 10px;
     cursor: pointer;
 }
 
-.popup .form .form-element a{
+.form-link{
+    margin-top: 15px;
     display: block;
     text-align: center;
     font-size: 15px;

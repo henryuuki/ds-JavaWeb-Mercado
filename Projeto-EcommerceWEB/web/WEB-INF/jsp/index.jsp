@@ -55,6 +55,24 @@
                     <button class="icon-btn" type="submit" id="perfil-btn"><i class="bi bi-person-circle"></i></button>
                 </div>
 
+                <div class="popup">
+                    <div class="close-form"><i class="bi bi-x"></i></div>
+                    <form class="form" method="get" action="logar">
+                        <h2>Log in</h2>
+                            <label class="title" for="email">Username</label>
+
+                            <input class="form-input" type="text" name="user" id="user" placeholder="Enter username">
+
+                            <label class="title" for="password">Password</label>
+
+                            <input class="form-input" type="password" name="password" id="password" placeholder="Enter password">
+
+                            <input class="form-checkbox" type="checkbox" id="remember-me">
+                            <label class="title" for="remember-me">Lembrar de mim</label>
+                            <button class="form-btn-confirm" type="submit">Logar</button>
+                            <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
+                    </form>
+                </div>
                 <!-- <div class="dropdown">
                     <div class="icons-content">
                         <button class="icon-btn"><i class="bi bi-cart"></i></button>
@@ -74,29 +92,6 @@
         </header>
 
         <main>
-
-            <div class="popup">
-                <div class="close-form"&times;></div>
-                <div class="form">
-                    <h2>Log in</h2>
-                    <div class="form-element">
-                        <label for="email">Email</label>
-                        <input type="text" id="email" placeholder="Enter email">
-                    </div>
-                    <div class="form-element">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter password">
-                    </div>
-                    <div class="form-element">
-                        <input type="checkbox" id="remember-me">
-                        <label for="remember-me">Lembrar de mim</label>
-                    </div>
-                    <div class="form-element">
-                        <a href="#">Não tem conta? Crie uma</a>
-                    </div>
-                </div>
-            </div>
-
             <section class="slider">
                 <div class="slider-content">
 
@@ -166,7 +161,7 @@
             </section>
 
             <div class="banner">
-                <div">
+                <div>
                     <img class="ad" src="assets/Banner.png" alt=""/>
                 </div>
             </div>
@@ -203,9 +198,15 @@
             </section>
             <div class="verMais"><button>Ver Mais!  <i class="fa-solid fa-arrow-right"></i></button></div>
         </main>
-
         <footer>
-    
+            <div class="text">
+                <span>© 2024</span>
+            </div>
+            <div class="social-icons">
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-discord"></i>
+                <i class="bi bi-whatsapp"></i>
+            </div>
         </footer>
     </body>
     <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>

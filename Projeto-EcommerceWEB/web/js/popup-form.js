@@ -1,7 +1,11 @@
-document.querySelector("perfil-btn").addEventListener("click",function(){
-    document.querySelector(".popup").classList.add("active");
-});
+let popup = document.querySelector(".popup");
+let formOpen = document.querySelector("#perfil-btn");
+let formClose = document.querySelector(".close-form");
 
-document.querySelector(".popup .close-form").addEventListener("click", function(){
-    document.querySelector(".popup").classList.remove("active");
-});
+formOpen.addEventListener("click", ()=> {
+    popup.classList.add("active")
+})
+
+formClose.addEventListener("click", ()=> {
+    popup.classList.remove("active")
+})

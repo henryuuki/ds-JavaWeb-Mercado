@@ -3,7 +3,8 @@
     width: 100%;
     height: auto;
     padding: 0;
-    /* overflow: hidden; */
+    overflow: hidden;
+    z-index: 1000;
 }
 
 .slider-content{

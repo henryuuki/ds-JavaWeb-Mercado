@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.TableUsuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -48,17 +50,43 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        
+        if(url.equals("/logar")){
+            String nextPage = "/WEB-INF/jsp/index.jsp";
+            TableUsuario u = new TableUsuario();
+            UsuarioDAO dao =  new UsuarioDAO();
+            
+            u.setUsuario(request.getParameter("user"));
+            u.setSenha(request.getParameter("password"));
+            try{
+                TableUsuario userAuthentic = dao.login(u);
+                
+                if(userAuthentic != null && !userAuthentic.getUsuario().isEmpty()){
+                    response.sendRedirect("./cadastrar");
+                }
+                else {
+                    nextPage = "/WEB-INF/jsp/login.jsp";
+                    request.setAttribute("errorMessage", "Usuário ou senha inválidos");
+                    RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
+                    d.forward(request, response);
+                }
+                
+            }catch (Exception e){
+                nextPage = "/WEB-INF/jsp/index.jsp";
+                request.setAttribute("errorMessage", "Usuário ou senha inválidos");
+                RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
+                d.forward(request, response);
+            }
+            
+        }
+        else{
+            processRequest(request, response);
+        }
+        
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
