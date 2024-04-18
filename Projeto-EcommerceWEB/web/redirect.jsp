@@ -9,3 +9,4 @@ servlet but should be the only JSP outside of WEB-INF.
 <% response.sendRedirect("index.htm"); %>
 <img src="assets/cart-white64px.png" alt=""/>
 <link href="css/footer.css" rel="stylesheet" type="text/css"/>
+<script src="js/dropdown.js" type="text/javascript"></script>

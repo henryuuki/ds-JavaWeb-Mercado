@@ -10,6 +10,7 @@
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/cards.css" rel="stylesheet" type="text/css"/>
         <link href="css/footer.css" rel="stylesheet" type="text/css"/>
+        <link href="css/form.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Home - Page</title>
@@ -49,24 +50,53 @@
                     <a class="menu-links" href="">Sobre</a>               
                 </div>
 
-                <div class="dropdown">
+                <div class="icons-content">
+                    <button class="icon-btn"><i class="bi bi-cart"></i></button>
+                    <button class="icon-btn" type="submit" id="perfil-btn"><i class="bi bi-person-circle"></i></button>
+                </div>
+
+                <!-- <div class="dropdown">
                     <div class="icons-content">
                         <button class="icon-btn"><i class="bi bi-cart"></i></button>
-                        <button id="perfilDropdown" class="icon-btn dropbtn"><i class="bi bi-person-circle"></i></button>
-                        <div class="dropdown-content">
+                        <button onclick="myFunction()" class="icon-btn dropbtn" type="submit"><i class="bi bi-person-circle"></i></button>
+                        <div id="perfilDropdown" class="dropdown-content">
                             <a href="">1</a>
                             <a href="">2</a>
                             <a href="">3</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </nav>
             <div class="categorias">
 
             </div>
+            
         </header>
 
         <main>
+
+            <div class="popup">
+                <div class="close-form"&times;></div>
+                <div class="form">
+                    <h2>Log in</h2>
+                    <div class="form-element">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" placeholder="Enter email">
+                    </div>
+                    <div class="form-element">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password">
+                    </div>
+                    <div class="form-element">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Lembrar de mim</label>
+                    </div>
+                    <div class="form-element">
+                        <a href="#">Não tem conta? Crie uma</a>
+                    </div>
+                </div>
+            </div>
+
             <section class="slider">
                 <div class="slider-content">
 
@@ -106,6 +136,7 @@
 
                 </div>
             </section>
+            
             <hr>
     
             <h1>Mais Vendidos!</h1>
@@ -182,4 +213,5 @@
     <script src="js/searchBox.js" type="text/javascript"></script>
     <script src="js/card3D.js" type="text/javascript"></script>
     <script src="js/dropdown.js" type="text/javascript"></script>
+    <script src="js/popup-form.js" type="text/javascript"></script>
 </html>
