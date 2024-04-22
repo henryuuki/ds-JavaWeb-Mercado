@@ -60,11 +60,9 @@
                     <form class="form" method="get" action="logar">
                         <h2>Log in</h2>
                             <label class="title" for="email">Username</label>
-
                             <input class="form-input" type="text" name="user" id="user" placeholder="Enter username">
 
                             <label class="title" for="password">Password</label>
-
                             <input class="form-input" type="password" name="password" id="password" placeholder="Enter password">
 
                             <input class="form-checkbox" type="checkbox" id="remember-me">

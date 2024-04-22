@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.TableUsuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -62,7 +64,35 @@ public class CadastroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        
+        if(url.equals("/cadastrar")){
+            String nextPage = "/WEB-INF/jsp/index.jsp";
+            
+            TableUsuario ub = new TableUsuario();
+            UsuarioDAO ud = new UsuarioDAO();
+            
+            ub.setNome(request.getParameter("nome"));
+            ub.setUsuario(request.getParameter("user"));
+            ub.setSenha(request.getParameter("password"));
+            ub.setCpf(request.getParameter("cpf"));
+            ub.setTelefone(request.getParameter("telefone"));
+            
+            try{
+                ud.create(ub);
+                RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
+                d.forward(request, response);
+                
+            }catch (Exception e) {
+                nextPage = "/WEB-INF/jsp/cadastro.jsp";
+                request.setAttribute("errorMessage", "Cadastro invalido");
+                RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
+                d.forward(request, response);
+            }
+        }
+        else{
+            processRequest(request, response);
+        }
     }
 
     /**

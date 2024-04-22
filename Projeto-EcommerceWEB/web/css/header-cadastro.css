@@ -1,0 +1,23 @@
+header{
+    width: auto;
+    height: 100px;
+    background-color: rgb(34, 34, 34);
+}
+
+.logo-content{
+    /* border: solid 1px black; */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10%;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+}
+
+.logo-sing{
+    width: 100px;
+    height: 100px;
+}

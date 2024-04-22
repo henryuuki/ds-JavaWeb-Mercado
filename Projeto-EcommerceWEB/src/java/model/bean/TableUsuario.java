@@ -12,14 +12,14 @@ public class TableUsuario {
     private String nome;
     private String usuario;
     private String senha;
-    private int cpf;
-    private int telefone;
+    private String cpf;
+    private String telefone;
     private Date data_nascimento; 
 
     public TableUsuario() {
     }
 
-    public TableUsuario(int id_usuario, String nome, String usuario, String senha, int cpf, int telefone, Date data_nascimento) {
+    public TableUsuario(int id_usuario, String nome, String usuario, String senha, String cpf, String telefone, Date data_nascimento) {
         this.id_usuario = id_usuario;
         this.nome = nome;
         this.usuario = usuario;
@@ -61,19 +61,19 @@ public class TableUsuario {
         this.senha = senha;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -84,6 +84,6 @@ public class TableUsuario {
     public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
-    
+
     
 }

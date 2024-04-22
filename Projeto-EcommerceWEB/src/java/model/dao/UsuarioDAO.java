@@ -37,8 +37,8 @@ public class UsuarioDAO {
                 user.setNome(rs.getString("nome"));
                 user.setUsuario(rs.getString("usuario"));
                 user.setSenha(rs.getString("senha"));
-                user.setCpf(rs.getInt("cpf"));
-                user.setTelefone(rs.getInt("telefone"));
+                user.setCpf(rs.getString("cpf"));
+                user.setTelefone(rs.getString("telefone"));
                 user.setData_nascimento(rs.getDate("data_nascimento"));
                 usuarios.add(user);
             }
@@ -59,13 +59,12 @@ public class UsuarioDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, usuario, senha, cpf, telefone, data_nascimento) VALUES (?,?,?,?,?,?)");
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, usuario, senha, cpf, telefone) VALUES (?,?,?,?,?)");
             stmt.setString(1, user.getNome());
             stmt.setString(2, user.getUsuario());
             stmt.setString(3, user.getSenha());
-            stmt.setInt(4, user.getCpf());
-            stmt.setInt(5, user.getTelefone());
-            stmt.setDate(6, user.getData_nascimento());
+            stmt.setString(4, user.getCpf());
+            stmt.setString(5, user.getTelefone());
 
             stmt.executeUpdate();
 
@@ -88,8 +87,8 @@ public class UsuarioDAO {
             stmt.setString(1, user.getNome());
             stmt.setString(2, user.getUsuario());
             stmt.setString(3, user.getSenha());
-            stmt.setInt(4, user.getCpf());
-            stmt.setInt(5, user.getTelefone());
+            stmt.setString(4, user.getCpf());
+            stmt.setString(5, user.getTelefone());
             stmt.setDate(6, user.getData_nascimento());
             stmt.setInt(7, user.getId_usuario());
             
