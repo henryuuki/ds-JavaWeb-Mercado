@@ -43,7 +43,7 @@ h1{
 
 .title{
     margin: 15px 0px;
-    font-size: 14px;
+    font-size: 16px;
     color: #222;
 }
 
@@ -55,7 +55,7 @@ h1{
     padding: 16px;
     outline: none;
     border: 1px solid #aaa;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .form-checkbox{
@@ -83,4 +83,13 @@ h1{
     color: #1a79ca;
     text-decoration: none;
     font-weight: 600;
+}
+
+.input-box{
+    position: relative;
+}
+
+.input-box i{
+    z-index: 1000;
+    position: absolute;
 }

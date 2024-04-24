@@ -10,7 +10,7 @@ import java.sql.Date;
 public class TableUsuario {
     private int id_usuario;
     private String nome;
-    private String usuario;
+    private String email;
     private String senha;
     private String cpf;
     private String telefone;
@@ -19,10 +19,10 @@ public class TableUsuario {
     public TableUsuario() {
     }
 
-    public TableUsuario(int id_usuario, String nome, String usuario, String senha, String cpf, String telefone, Date data_nascimento) {
+    public TableUsuario(int id_usuario, String nome, String email, String senha, String cpf, String telefone, Date data_nascimento) {
         this.id_usuario = id_usuario;
         this.nome = nome;
-        this.usuario = usuario;
+        this.email = email;
         this.senha = senha;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -45,12 +45,12 @@ public class TableUsuario {
         this.nome = nome;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {

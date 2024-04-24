@@ -22,25 +22,36 @@
                     <form class="form" method="post" action="cadastrar">
                         <h2>Sign in</h2>
 
-                            <label class="title" for="nome">Nome</label>
-                            <input class="form-input" type="text" name="nome" id="nome">
+                            <div class="input-box">
+                                <label class="title" for="nome">Nome</label>
+                                <input class="form-input" type="text" name="nome" id="nome">
+                                <i class="bi bi-lock-fill"></i>
+                            </div>
 
-                            <label class="title" for="user">Usuario</label>
-                            <input class="form-input" type="text" name="user" id="user">
+                            <div>
+                                <label class="title" for="email">Email</label>
+                                <input class="form-input" type="email" name="email" id="email">
+                            </div>
 
-                            <label class="title" for="password">Senha</label>
-                            <input class="form-input" type="password" name="password" id="password">
+                            <div>
+                                <label class="title" for="password">Senha</label>
+                                <input class="form-input" type="password" name="password" id="password">
+                            </div>
 
                             <!-- <label class="title" for="password">Confirmar senha</label>
                             <input class="form-input" type="password" name="confirm-password" id="confirm-password"> -->
+                            <div>
+                                <label class="title" for="cpf">CPF</label>
+                                <input class="form-input" type="text" name="cpf" id="cpf">
+                            </div>
 
-                            <label class="title" for="cpf">CPF</label>
-                            <input class="form-input" type="text" name="cpf" id="cpf">
-
-                            <label class="title" for="phone">Telefone</label>
-                            <input class="form-input" type="text" name="telefone" id="telefone">
+                            <div>
+                                <label class="title" for="phone">Telefone</label>
+                                <input class="form-input" type="tel" name="telefone" id="telefone">
+                            </div>
 
                             <button class="form-btn-confirm" type="submit">Cadastrar</button>
+                            <a class="form-link" href="./index.htm">Ja possui conta? Login</a>
                             
                     </form>
                 </div>

@@ -35,7 +35,7 @@ public class UsuarioDAO {
                 TableUsuario user = new TableUsuario();
                 user.setId_usuario(rs.getInt("id_usuario"));
                 user.setNome(rs.getString("nome"));
-                user.setUsuario(rs.getString("usuario"));
+                user.setEmail(rs.getString("email"));
                 user.setSenha(rs.getString("senha"));
                 user.setCpf(rs.getString("cpf"));
                 user.setTelefone(rs.getString("telefone"));
@@ -59,9 +59,9 @@ public class UsuarioDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, usuario, senha, cpf, telefone) VALUES (?,?,?,?,?)");
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, email, senha, cpf, telefone) VALUES (?,?,?,?,?)");
             stmt.setString(1, user.getNome());
-            stmt.setString(2, user.getUsuario());
+            stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getSenha());
             stmt.setString(4, user.getCpf());
             stmt.setString(5, user.getTelefone());
@@ -83,9 +83,9 @@ public class UsuarioDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
             
-            stmt = conexao.prepareStatement("UPDATE usuario SET nome = ?, usuario = ?, senha = ?, cpf = ?, telefone = ?, data_nascimento = ?, WHERE id_usuario = ?");
+            stmt = conexao.prepareStatement("UPDATE usuario SET nome = ?, email = ?, senha = ?, cpf = ?, telefone = ?, data_nascimento = ?, WHERE id_usuario = ?");
             stmt.setString(1, user.getNome());
-            stmt.setString(2, user.getUsuario());
+            stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getSenha());
             stmt.setString(4, user.getCpf());
             stmt.setString(5, user.getTelefone());
@@ -127,14 +127,14 @@ public class UsuarioDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE usuario = ? AND senha = ?");
-            stmt.setString(1, user.getUsuario());
+            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getSenha());
             rs = stmt.executeQuery();
             
             if(rs.next()) {
                 userLogin.setId_usuario(rs.getInt("id_usuario"));
-                userLogin.setUsuario(rs.getString("usuario"));
+                userLogin.setEmail(rs.getString("email"));
                 userLogin.setSenha(rs.getString("senha"));
             }
             
@@ -145,7 +145,7 @@ public class UsuarioDAO {
         } catch (SQLException e){
             e.printStackTrace();
             userLogin.setId_usuario(0);
-            userLogin.setUsuario("");
+            userLogin.setEmail("");
             userLogin.setSenha("");
         }
         

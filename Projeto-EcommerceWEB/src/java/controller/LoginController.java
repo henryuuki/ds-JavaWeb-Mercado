@@ -57,12 +57,12 @@ public class LoginController extends HttpServlet {
             TableUsuario u = new TableUsuario();
             UsuarioDAO dao =  new UsuarioDAO();
             
-            u.setUsuario(request.getParameter("user"));
+            u.setEmail(request.getParameter("email"));
             u.setSenha(request.getParameter("password"));
             try{
                 TableUsuario userAuthentic = dao.login(u);
                 
-                if(userAuthentic != null && !userAuthentic.getUsuario().isEmpty()){
+                if(userAuthentic != null && !userAuthentic.getEmail().isEmpty()){
                     response.sendRedirect("./cadastrar");
                 }
                 else {
@@ -73,7 +73,7 @@ public class LoginController extends HttpServlet {
                 }
                 
             }catch (Exception e){
-                nextPage = "/WEB-INF/jsp/index.jsp";
+                nextPage = "/WEB-INF/jsp/login.jsp";
                 request.setAttribute("errorMessage", "Usuário ou senha inválidos");
                 RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
                 d.forward(request, response);

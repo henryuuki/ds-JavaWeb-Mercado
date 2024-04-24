@@ -73,7 +73,7 @@ public class CadastroController extends HttpServlet {
             UsuarioDAO ud = new UsuarioDAO();
             
             ub.setNome(request.getParameter("nome"));
-            ub.setUsuario(request.getParameter("user"));
+            ub.setEmail(request.getParameter("email"));
             ub.setSenha(request.getParameter("password"));
             ub.setCpf(request.getParameter("cpf"));
             ub.setTelefone(request.getParameter("telefone"));

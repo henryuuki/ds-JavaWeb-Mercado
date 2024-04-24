@@ -59,10 +59,13 @@
                     <div class="close-form"><i class="bi bi-x"></i></div>
                     <form class="form" method="get" action="logar">
                         <h2>Log in</h2>
-                            <label class="title" for="email">Username</label>
-                            <input class="form-input" type="text" name="user" id="user" placeholder="Enter username">
+                            
+                            <i class="bi bi-person-fill"></i>
+                            <label class="title" for="email">Email</label>
+                            <input class="form-input" type="email" name="email" id="email" placeholder="Enter email">
 
-                            <label class="title" for="password">Password</label>
+                            <i class="bi bi-lock-fill"></i>
+                            <label class="title" for="password">Senha</label>
                             <input class="form-input" type="password" name="password" id="password" placeholder="Enter password">
 
                             <input class="form-checkbox" type="checkbox" id="remember-me">
