@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="menu">              
-                    <a class="menu-links" href="">Home</a>
+                    <a class="menu-links" href="./index.htm">Home</a>
                     <a class="menu-links" href="">Contato</a>               
                     <a class="menu-links" href="">Sobre</a>               
                 </div>

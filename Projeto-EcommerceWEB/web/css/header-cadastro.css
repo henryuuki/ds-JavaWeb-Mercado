@@ -2,6 +2,8 @@ header{
     width: auto;
     height: 100px;
     background-color: rgb(34, 34, 34);
+    display: flex;
+    align-items: center;
 }
 
 .logo-content{
@@ -20,4 +22,92 @@ header{
 .logo-sing{
     width: 100px;
     height: 100px;
+}
+
+.input-contanier{
+    display: flex;
+    margin-left: 5%;
+    width: 30%;
+}
+
+.input-content{
+    position: relative;
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(34, 34, 34);
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    transition: .5s;
+    color: #fff;
+}
+
+.input-content.ativar{
+    width: 300px;
+    background-color: #fff;
+    color: black;
+}
+
+.input-style{
+    position: absolute;
+    left: 60px;
+    width: calc(100% - 120px);
+    height: 100%;
+}
+
+.input-style input{
+    line-height: 38px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.btn-search{
+    min-width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.btn-close{
+    min-width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.menu{
+    display: flex;
+    text-align: center;
+    gap: 20px;
+}
+
+.menu-links{
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.menu-links::after{
+    content:  " ";
+    width: 0%;
+    height: 3px;
+    background-color: rgb(0, 79, 182);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.menu-links:hover::after{
+    width: 100%;
 }

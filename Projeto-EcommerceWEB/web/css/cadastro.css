@@ -20,7 +20,7 @@ h1{
 }
 
 .content{
-    border: solid 1px #000000;
+    /* border: solid 1px #000000; */
     border-radius: 20px;
     width: 900px;
     height: 700px;
@@ -87,9 +87,15 @@ h1{
 
 .input-box{
     position: relative;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .input-box i{
     z-index: 1000;
     position: absolute;
+    top: 34px;
+    right: 0;
+    margin-right: 15px;
+    font-size: 24px;
+    color: #c8c8c8;
 }
