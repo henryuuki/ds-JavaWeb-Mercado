@@ -22,10 +22,11 @@
                 <div class="logo-content">
                     <img class="logo" src="assets/Logo SoundSpace.png" alt=""/>
                     <img class="logo-sing" src="assets/Sound Space Sing.png" alt=""/>
-                    <!-- <a href="./cadastrar">cadastro</a>
+                    <a href="./cadastrar">cadastro</a>
                     <a href="./lista-produtos">produtos</a>
                     <a href="./login">login</a>
-                    <a href="./produto-unico">produto unico</a> -->
+                    <a href="./produto-unico">produto unico</a>
+                    <a href="./admin-panel">admin</a>
                 </div>
 
                 <div class="input-contanier">
@@ -57,7 +58,7 @@
 
                 <div class="popup">
                     <div class="close-form"><i class="bi bi-x"></i></div>
-                    <form class="form" method="get" action="logar">
+                    <form class="form" method="post" action="logar">
                         <h2>Log in</h2>
                             
                             <i class="bi bi-person-fill"></i>

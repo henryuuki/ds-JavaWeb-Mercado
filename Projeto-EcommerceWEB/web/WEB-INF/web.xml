@@ -32,6 +32,10 @@
         <servlet-name>TesteController</servlet-name>
         <servlet-class>controller.TesteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>controller.AdminController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>TesteController</servlet-name>
         <url-pattern>/pagina-teste</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/admin-panel</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

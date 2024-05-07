@@ -39,7 +39,6 @@ public class UsuarioDAO {
                 user.setSenha(rs.getString("senha"));
                 user.setCpf(rs.getString("cpf"));
                 user.setTelefone(rs.getString("telefone"));
-                user.setData_nascimento(rs.getDate("data_nascimento"));
                 usuarios.add(user);
             }
 
@@ -83,14 +82,13 @@ public class UsuarioDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
             
-            stmt = conexao.prepareStatement("UPDATE usuario SET nome = ?, email = ?, senha = ?, cpf = ?, telefone = ?, data_nascimento = ?, WHERE id_usuario = ?");
+            stmt = conexao.prepareStatement("UPDATE usuario SET nome = ?, email = ?, senha = ?, cpf = ?, telefone = ?, WHERE id_usuario = ?");
             stmt.setString(1, user.getNome());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getSenha());
             stmt.setString(4, user.getCpf());
             stmt.setString(5, user.getTelefone());
-            stmt.setDate(6, user.getData_nascimento());
-            stmt.setInt(7, user.getId_usuario());
+            stmt.setInt(6, user.getId_usuario());
             
             stmt.executeUpdate();
             
@@ -150,5 +148,61 @@ public class UsuarioDAO {
         }
         
         return userLogin;
+    }
+    
+    public void validlogin (TableUsuario user){
+        int login = 0;
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            stmt.setString(1, user.getEmail());
+            stmt.setString(2, user.getSenha());
+            rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                if(rs.getString("acesso").equals("cliente")){
+                    TableUsuario.setAcessoStatic(2);
+                }
+                else if(rs.getString("acesso").equals("admin")){
+                    TableUsuario.setAcessoStatic(1);
+                }
+                else{
+                    TableUsuario.setAcessoStatic(0);
+                }
+                TableUsuario.setId_usuarioStatic(rs.getInt("id_usuario"));
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();
+            
+        } catch (SQLException e){
+       
+        }
+    }
+    
+    public int getId(String user){
+        int id = 0;
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("SELECT * FROM usuario WHERE email = ?");
+            stmt.setString(1, user);
+            rs = stmt.executeQuery();
+            if (rs.next()){
+                id = rs.getInt("id_usuario");
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 }
