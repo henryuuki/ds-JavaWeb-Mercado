@@ -9,7 +9,6 @@
         <link href="css/carousel.css" rel="stylesheet" type="text/css"/>
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <link href="css/cards.css" rel="stylesheet" type="text/css"/>
-        <link href="css/footer.css" rel="stylesheet" type="text/css"/>
         <link href="css/form.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -71,7 +70,9 @@
 
                             <input class="form-checkbox" type="checkbox" id="remember-me">
                             <label class="title" for="remember-me">Lembrar de mim</label>
+                            
                             <button class="form-btn-confirm" type="submit">Logar</button>
+                            
                             <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
                     </form>
                 </div>
@@ -88,7 +89,7 @@
                 </div> -->
             </nav>
             <div class="categorias">
-
+                <p>aaaaaaaaaaaaaaaaaaa</p>
             </div>
             
         </header>
@@ -200,16 +201,7 @@
             </section>
             <div class="verMais"><button>Ver Mais!  <i class="fa-solid fa-arrow-right"></i></button></div>
         </main>
-        <footer>
-            <div class="text">
-                <span>© 2024</span>
-            </div>
-            <div class="social-icons">
-                <i class="bi bi-instagram"></i>
-                <i class="bi bi-discord"></i>
-                <i class="bi bi-whatsapp"></i>
-            </div>
-        </footer>
+        <jsp:include page="footer.jsp"></jsp:include>
     </body>
     <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>
     <script src="js/carousel.js" type="text/javascript"></script>

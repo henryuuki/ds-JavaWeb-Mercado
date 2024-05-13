@@ -150,39 +150,47 @@ public class UsuarioDAO {
         return userLogin;
     }
     
-    public void validlogin (TableUsuario user){
-        int login = 0;
-        try{
-            Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-            
-            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
-            stmt.setString(1, user.getEmail());
-            stmt.setString(2, user.getSenha());
-            rs = stmt.executeQuery();
-            
-            if(rs.next()) {
-                if(rs.getString("acesso").equals("cliente")){
-                    TableUsuario.setAcessoStatic(2);
-                }
-                else if(rs.getString("acesso").equals("admin")){
-                    TableUsuario.setAcessoStatic(1);
-                }
-                else{
-                    TableUsuario.setAcessoStatic(0);
-                }
-                TableUsuario.setId_usuarioStatic(rs.getInt("id_usuario"));
+   public int validlogin(String email, String senha) {
+    int login = 0;
+    Connection conexao = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    
+    try {
+        conexao = Conexao.conectar();
+        stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+        stmt.setString(1, email);
+        stmt.setString(2, senha);
+        rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            System.out.println("Status: " + rs.getString("acesso"));
+            if (rs.getString("acesso").equals("cliente")) {
+                TableUsuario.setAcessoStatic(2);
+                login = 2;
+            } else if (rs.getString("acesso").equals("admin")) {
+                TableUsuario.setAcessoStatic(1);
+                login = 1;
+            } else {
+                TableUsuario.setAcessoStatic(0);
+                login = 0;
             }
-            
-            rs.close();
-            stmt.close();
-            conexao.close();
-            
-        } catch (SQLException e){
-       
+            TableUsuario.setId_usuarioStatic(rs.getInt("id_usuario"));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (stmt != null) stmt.close();
+            if (conexao != null) conexao.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+    return login;
+}
+
     
     public int getId(String user){
         int id = 0;

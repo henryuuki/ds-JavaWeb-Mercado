@@ -67,30 +67,37 @@ public class LoginController extends HttpServlet {
             u.setEmail(request.getParameter("email"));
             u.setSenha(request.getParameter("password"));
             try{
-                dao.validlogin(u);
+                int login = dao.validlogin(request.getParameter("email"),request.getParameter("password") );
                 
-                if(TableUsuario.getAcessoStatic() != 0){
-                    if(TableUsuario.getAcessoStatic() == 1){
+                if(login != 0){
+                    System.out.println("Login: " +login);
+                    if(login == 1){
                         int idUsuario = dao.getId(request.getParameter("email"));
+                        System.out.println("Entra aquis");
                         response.sendRedirect(request.getContextPath() + "/admin-panel");
                         return;
                     }
-                    else if(TableUsuario.getAcessoStatic() == 2){
+                    else if(login == 2){
                         int idUsuario = dao.getId(request.getParameter("email"));
                         response.sendRedirect(request.getContextPath() + "/index.htm");
                         return;
                     }
                     else{
-                        
+                        response.sendRedirect(request.getContextPath() + "/cadastro.jsp");
+                        return;
                     }
                 }
+                
                 else {
+                    
                     request.setAttribute("errorMessage", "Usuário ou senha inválidos");
+                    response.sendRedirect(request.getContextPath() + "/cadastrar");
+                    return;
                 }
                 
             }catch (Exception e){
                 request.setAttribute("errorMessage", "Usuário ou senha inválidos");
-
+                System.out.println("Catch");
             }
             
         }
