@@ -5,24 +5,46 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/header.css" rel="stylesheet" type="text/css"/>
         <link href="css/produtos.css" rel="stylesheet" type="text/css"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
-        <header>
-            <div class="logo-content">
-                    <img class="logo" src="assets/Logo SoundSpace.png" alt=""/>
-                    <img class="logo-sing" src="assets/Sound Space Sing.png" alt=""/>
-                    <a href="./cadastrar">cadastro</a>
-                    <a href="./lista-produtos">produtos</a>
-                    <a href="./login">login</a>
-                    <a href="./produto-unico">produto unico</a>
-                </div>
-            <div class="categorias">
+        <jsp:include page="header.jsp"></jsp:include>
 
-            </div>
-        </header>
         <main>
-            <h1>Tela Produtos</h1>
+            <div class="caminho">
+                <p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+            </div>
+            <div class="content-products">
+                <div class="categoria-lista">
+                    <div class="cat-lis-links">
+                        <h1>Categorias</h1>
+                        <a href="">Caixas de Som</a>
+                        <a href="">SoundBars</a>
+                        <a href="">Para TVs</a>
+                        <a href="">Para Computadores</a>
+                    </div>
+                </div>
+                <div class="cards-categorias">
+                    <section class="products-cards">
+                        <div class="p-cards">
+                            <div class="p-card-item">
+
+                            </div>
+                        </div>
+                        <div class="p-cards"></div>
+                        <div class="p-cards"></div>
+                        <div class="p-cards"></div>
+                        <div class="p-cards"></div>
+                        <div class="p-cards"></div>
+                        <div class="p-cards"></div>
+                        <div class="p-cards"></div>
+                        <div class="p-cards"></div>
+                    </section>
+                </div>
+            </div>
         </main>
+
+        <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>

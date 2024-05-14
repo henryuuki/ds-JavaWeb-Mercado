@@ -125,6 +125,22 @@ header nav{
     background-color:  rgb(54, 54, 54);
 }
 
+.categorias a{
+    text-decoration: none;
+}
+
+.categorias p{
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 15px;
+    text-decoration: none;
+}
+
+.space{
+    width: 12%;
+}
+
 .menu{
     display: flex;
     text-align: center;

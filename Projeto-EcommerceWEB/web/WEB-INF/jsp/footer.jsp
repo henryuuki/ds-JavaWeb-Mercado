@@ -1,9 +1,3 @@
-<%-- 
-    Document   : footer
-    Created on : 13/05/2024, 14:28:19
-    Author     : Senai
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,7 +7,7 @@
         <title>Footer</title>
     </head>
     <body>
-        <footer>
+        <footer id="under">
             <div class="content-ft">
                 <div class="contato">
                     <h3 class="title-ft">Contato</h3>
@@ -30,7 +24,7 @@
                 </div>
                 <div class="social">
                     <h3 class="title-ft">Social</h3>
-                    <i class="bi bi-instagram"><a href="#top"></a></i>
+                    <i class="bi bi-instagram"></i>
                     <i class="bi bi-whatsapp"></i>
                     <i class="bi bi-linkedin"></i>
                     <i class="bi bi-github"></i>
