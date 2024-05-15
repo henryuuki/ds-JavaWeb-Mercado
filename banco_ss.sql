@@ -65,7 +65,7 @@ FOREIGN KEY (produto_FK2) REFERENCES produto(id_produto)
 
 insert into usuario(nome, email, senha, cpf, telefone)
 values
-('Henry','yuuki@email.com','1234','123456789','43988884444');
+('Henry','yuuki@gmail.com','1234','123456789','43988884444');
 
 insert into usuario(nome, email, senha, cpf, telefone, acesso)
 values
