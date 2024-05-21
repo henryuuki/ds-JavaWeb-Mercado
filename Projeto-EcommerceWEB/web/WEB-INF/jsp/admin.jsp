@@ -9,21 +9,21 @@
     </head>
     <body>
         <div class="contanier">
-            <form class="formulario">
+            <form class="formulario" method="post" action="cadastrar-produto">
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Nome</label>
-                  <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                  <input class="form-control" type="text" placeholder="Nome Produto" name="nome" id="nome">
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Descrição</label>
-                  <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                  <input class="form-control" type="text" placeholder="Descrição" name="descricao" id="descricao">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                    <label for="exampleFormControlInput1" class="form-label">Valor</label>
+                    <input class="form-control" type="text" placeholder="Valor Unitario" name="valor" id="valor">
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Default file input example</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <label for="formFile" class="form-label">Imagem</label>
+                    <input class="form-control" type="file" name="imagem" id="imagem">
                 </div>
                 <select class="form-select" aria-label="Default select example">
                     <option selected>Open this select menu</option>

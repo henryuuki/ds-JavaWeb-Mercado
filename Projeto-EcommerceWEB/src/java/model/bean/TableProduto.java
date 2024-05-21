@@ -10,17 +10,21 @@ public class TableProduto {
     private int id_produto;
     private int categoria_FK;
     private String nome;
-    private Blob imagem;
+    private String descricao;
+    private byte[] imagemBytes;
+    private String imagemBase64;
     private float valor;
 
     public TableProduto() {
     }
 
-    public TableProduto(int id_produto, int categoria_FK, String nome, Blob imagem, float valor) {
+    public TableProduto(int id_produto, int categoria_FK, String nome, String descricao, byte[] imagemBytes, String imagemBase64, float valor) {
         this.id_produto = id_produto;
         this.categoria_FK = categoria_FK;
         this.nome = nome;
-        this.imagem = imagem;
+        this.descricao = descricao;
+        this.imagemBytes = imagemBytes;
+        this.imagemBase64 = imagemBase64;
         this.valor = valor;
     }
 
@@ -48,12 +52,28 @@ public class TableProduto {
         this.nome = nome;
     }
 
-    public Blob getImagem() {
-        return imagem;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setImagem(Blob imagem) {
-        this.imagem = imagem;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public byte[] getImagemBytes() {
+        return imagemBytes;
+    }
+
+    public void setImagemBytes(byte[] imagemBytes) {
+        this.imagemBytes = imagemBytes;
+    }
+
+    public String getImagemBase64() {
+        return imagemBase64;
+    }
+
+    public void setImagemBase64(String imagemBase64) {
+        this.imagemBase64 = imagemBase64;
     }
 
     public float getValor() {
@@ -63,6 +83,7 @@ public class TableProduto {
     public void setValor(float valor) {
         this.valor = valor;
     }
+
     
     
 }

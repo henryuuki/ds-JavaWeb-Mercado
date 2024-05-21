@@ -65,17 +65,12 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
-    margin-top: 3%;
+    margin-top: 5%;
 }
 
 .content-products .cards-categorias .products-cards .p-cards{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 250px;
-    height: 350px;
-    padding: 20px;
+    width: 300px;
+    height: 400px;
     border: solid 1px #c3c3c3;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
     color: black;
@@ -84,6 +79,11 @@ main{
 
 .content-products .cards-categorias .products-cards .p-cards .p-card-item{
     border-bottom: 3px solid blue;
-    width: 290px;
-    height: 230px;
+    width: 300px;
+    height: 260px;
+}
+
+.p-card-infos{
+    width: auto;   
+    height: auto;
 }

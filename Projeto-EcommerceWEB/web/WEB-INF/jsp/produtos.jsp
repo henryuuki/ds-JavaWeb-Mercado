@@ -29,7 +29,11 @@
                     <section class="products-cards">
                         <div class="p-cards">
                             <div class="p-card-item">
-
+                                
+                            </div>
+                            <div class="p-card-infos">
+                                <span>Produto</span>
+                                <p>Preço</p>
                             </div>
                         </div>
                         <div class="p-cards"></div>

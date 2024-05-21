@@ -20,7 +20,6 @@
                     <a href="./lista-produtos">produtos</a>
                     <a href="./login">login</a>
                     <a href="./produto-unico">produto unico</a>
-                    <a href="./lista-produtos">produtos</a>
                     <a href="./admin-panel">admin</a>
                 </div>
 

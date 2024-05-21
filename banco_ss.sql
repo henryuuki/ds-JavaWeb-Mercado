@@ -41,7 +41,8 @@ create table produto(
 id_produto INT auto_increment primary key,
 categoria_FK INT,
 nome VARCHAR(255) NOT NULL,
-imagem BLOB,
+descricao VARCHAR(255) NOT NULL,
+imagem LONGBLOB,
 valor FLOAT(8,2),
 FOREIGN KEY (categoria_FK) REFERENCES categoria(id_categoria)
 );

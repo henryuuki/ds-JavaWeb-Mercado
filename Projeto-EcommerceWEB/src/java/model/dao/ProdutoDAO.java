@@ -36,6 +36,7 @@ public class ProdutoDAO {
                 p.setId_produto(rs.getInt("id_produto"));
                 p.setCategoria_FK(rs.getInt("categoria_FK"));
                 p.setNome(rs.getString("nome"));
+                p.setNome(rs.getString("descricao"));
                 p.setImagem(rs.getBlob("imagem"));
                 p.setValor(rs.getFloat("valor"));
                 produtos.add(p);
@@ -57,10 +58,11 @@ public class ProdutoDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
 
-            stmt = conexao.prepareStatement("INSERT INTO produto (nome, imagem, valor) VALUES (?,?,?)");
+            stmt = conexao.prepareStatement("INSERT INTO produto (nome, descricao, imagem, valor) VALUES (?,?,?)");
             stmt.setString(1, p.getNome());
-            stmt.setBlob(2, p.getImagem());
-            stmt.setFloat(3, p.getValor());
+            stmt.setString(2, p.getDescricao());
+            stmt.setBlob(3, p.getImagem());
+            stmt.setFloat(4, p.getValor());
           
             stmt.executeUpdate();
 
@@ -79,10 +81,11 @@ public class ProdutoDAO {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
             
-            stmt = conexao.prepareStatement("UPDATE produto SET nome = ?, SET imagem = ?, SET valor = ?, WHERE id_produto = ?");
+            stmt = conexao.prepareStatement("UPDATE produto SET nome = ?, SET descricao = ?, SET imagem = ?, SET valor = ?, WHERE id_produto = ?");
             stmt.setString(1, p.getNome());
-            stmt.setBlob(2, p.getImagem());
-            stmt.setFloat(3, p.getValor());
+            stmt.setString(2, p.getDescricao());
+            stmt.setBlob(3, p.getImagem());
+            stmt.setFloat(4, p.getValor());
             
             stmt.executeUpdate();
             
