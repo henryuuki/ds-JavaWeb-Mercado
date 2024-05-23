@@ -37,7 +37,7 @@ public class ProdutoDAO {
                 p.setCategoria_FK(rs.getInt("categoria_FK"));
                 p.setNome(rs.getString("nome"));
                 p.setNome(rs.getString("descricao"));
-                p.setImagem(rs.getBlob("imagem"));
+                p.setImagemBytes(rs.getBytes("imagem"));
                 p.setValor(rs.getFloat("valor"));
                 produtos.add(p);
             }
@@ -61,7 +61,7 @@ public class ProdutoDAO {
             stmt = conexao.prepareStatement("INSERT INTO produto (nome, descricao, imagem, valor) VALUES (?,?,?)");
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getDescricao());
-            stmt.setBlob(3, p.getImagem());
+            stmt.setBytes(3, p.getImagemBytes());
             stmt.setFloat(4, p.getValor());
           
             stmt.executeUpdate();
@@ -75,6 +75,28 @@ public class ProdutoDAO {
         }      
     }
     
+    public boolean inserirProduto(TableProduto produto) {
+        try (Connection conexao = Conexao.conectar();
+                PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, categoria_FK, imagem, descricao) VALUES (?, ?, ?, ?, ?)")) {
+
+            ps.setString(1, produto.getNome());
+            ps.setFloat(2, produto.getValor());
+            ps.setInt(3, produto.getCategoria_FK());
+            ps.setBytes(4, produto.getImagemBytes());
+            ps.setString(5, produto.getDescricao());
+
+            int linhasAfetadas = ps.executeUpdate();
+            ps.close();
+            conexao.close();
+
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
     public void update(TableProduto p) {
         
         try {
@@ -84,7 +106,7 @@ public class ProdutoDAO {
             stmt = conexao.prepareStatement("UPDATE produto SET nome = ?, SET descricao = ?, SET imagem = ?, SET valor = ?, WHERE id_produto = ?");
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getDescricao());
-            stmt.setBlob(3, p.getImagem());
+            stmt.setBytes(3, p.getImagemBytes());
             stmt.setFloat(4, p.getValor());
             
             stmt.executeUpdate();

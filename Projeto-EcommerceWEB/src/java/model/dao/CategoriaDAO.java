@@ -28,7 +28,7 @@ public class CategoriaDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            stmt = conexao.prepareStatement("SELECT * FROM endereço");
+            stmt = conexao.prepareStatement("SELECT * FROM categoria");
 
             rs = stmt.executeQuery();
 
@@ -47,6 +47,34 @@ public class CategoriaDAO {
             e.printStackTrace();
         }
 
+        return categorias;
+    }
+    
+    public List<TableCategoria> listarTodos() {
+        List<TableCategoria> categorias = new ArrayList();
+        try {
+            java.sql.Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            stmt = conexao.prepareStatement("SELECT * FROM categoria");
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TableCategoria c = new TableCategoria();
+                c.setId_categoria(rs.getInt("id_categoria"));
+                c.setNome(rs.getString("nome"));
+                categorias.add(c);
+            }
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
         return categorias;
     }
     

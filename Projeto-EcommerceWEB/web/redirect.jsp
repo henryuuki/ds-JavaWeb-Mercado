@@ -9,3 +9,4 @@ servlet but should be the only JSP outside of WEB-INF.
 <% response.sendRedirect("./home"); %>
 
 <link href="css/admin.css" rel="stylesheet" type="text/css"/>
+<script src="js/insertImg.js" type="text/javascript"></script>

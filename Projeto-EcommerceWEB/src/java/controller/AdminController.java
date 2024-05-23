@@ -15,8 +15,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.TableCategoria;
 import model.bean.TableProduto;
+import model.dao.CategoriaDAO;
 import model.dao.ProdutoDAO;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -36,6 +42,11 @@ public class AdminController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/admin.jsp";
+        
+        CategoriaDAO dao = new CategoriaDAO();
+        List<TableCategoria> listaCategorias = dao.listarTodos();
+        System.out.println("Lista: "+ listaCategorias);
+        request.setAttribute("categorias", listaCategorias);
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);  
@@ -69,7 +80,7 @@ public class AdminController extends HttpServlet {
             throws ServletException, IOException {
         // Verifica se a requisição é do tipo multipart (upload de arquivo)
         String url = request.getServletPath();
-        if (url.equals("/admin-panel")) {
+        if (url.equals("/cadastrar-produto")) {
             try {
                 // Parseia a requisição para obter os itens do formulário
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -91,7 +102,7 @@ public class AdminController extends HttpServlet {
                                 produto.setDescricao(item.getString());
                                 break;
                             case "categoria":
-                                produto.setCategoria(Integer.parseInt(item.getString()));
+                                produto.setCategoria_FK(Integer.parseInt(item.getString()));
                                 break;
                         }
                     } else {
@@ -129,6 +140,20 @@ public class AdminController extends HttpServlet {
             // Se a requisição não for multipart, redireciona para a página inicial
             redirectToIndexPage(request, response);
         }
+    }
+    private void redirectToSuccessPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Redireciona para a página de produtos
+        response.sendRedirect(request.getContextPath() + "/admin-panel");
+    }
+
+    private void redirectToErrorPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Redireciona para a página de erro
+        response.sendRedirect(request.getContextPath() + "/admin-panel");
+    }
+
+    private void redirectToIndexPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Redireciona para a página inicial
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 
     /**
