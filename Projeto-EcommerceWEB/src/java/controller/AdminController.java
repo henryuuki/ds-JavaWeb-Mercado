@@ -45,7 +45,7 @@ public class AdminController extends HttpServlet {
         
         CategoriaDAO dao = new CategoriaDAO();
         List<TableCategoria> listaCategorias = dao.listarTodos();
-        System.out.println("Lista: "+ listaCategorias);
+
         request.setAttribute("categorias", listaCategorias);
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
