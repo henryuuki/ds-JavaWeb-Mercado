@@ -73,12 +73,13 @@ public class LoginController extends HttpServlet {
                     System.out.println("Login: " +login);
                     if(login == 1){
                         int idUsuario = dao.getId(request.getParameter("email"));
-                        System.out.println("Entra aquis");
+                        System.out.println("Entra admin");
                         response.sendRedirect(request.getContextPath() + "/admin-panel");
                         return;
                     }
                     else if(login == 2){
                         int idUsuario = dao.getId(request.getParameter("email"));
+                        System.out.println("Entra usuario");
                         response.sendRedirect(request.getContextPath() + "/index.htm");
                         return;
                     }
