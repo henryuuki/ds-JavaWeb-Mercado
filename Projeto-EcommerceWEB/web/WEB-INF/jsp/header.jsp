@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@
                 </div>
 
                 <div class="menu">              
-                    <a class="menu-links" href="./index.htm">Home</a>
+                    <a class="menu-links" href="./home">Home</a>
                     <a class="menu-links" href="#under">Contato</a>               
                     <a class="menu-links" href="#under">Sobre</a>               
                 </div>
@@ -85,15 +86,13 @@
             </nav>
             <div class="categorias">
                 <div class="space"></div>
-                <a href="./lista-produtos"><p>Categorias</p></a>
-                <p> | </p>
-                <p>Caixas de Som</p>
-                <p> | </p>
-                <p>SoundBars</p>
-                <p> | </p>
-                <p>Para TVs</p>
-                <p> | </p>
-                <p>Para Computadores</p>
+                <ul class="nav-cat">
+                    <a href="#"><p>Categorias</p></a>
+                    <p> | </p>
+                    <c:forEach items="${categorias}" var="categoria">
+                    <li ><a href="./lista-produtos?cat=${categoria.id_categoria}">${categoria.nome}</a></li>
+                    </c:forEach>
+                </ul>
             </div>
             
         </header>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,23 +28,17 @@
                 </div>
                 <div class="cards-categorias">
                     <section class="products-cards">
-                        <div class="p-cards">
-                            <div class="p-card-item">
-                                
+                        <c:forEach items="${produtos}" var="produto">
+                            <div class="p-cards">
+                                <div class="p-card-item">
+                                    <img class="img-card" src="data:image/jpeg;base64,${produto.imagemBase64}" alt="${produto.nome}">
+                                </div>
+                                <div class="p-card-infos">
+                                    <span><a href="#">${produto.nome}</a></span>
+                                    <p>$${produto.valor}</p>
+                                </div>
                             </div>
-                            <div class="p-card-infos">
-                                <span>Produto</span>
-                                <p>Preço</p>
-                            </div>
-                        </div>
-                        <div class="p-cards"></div>
-                        <div class="p-cards"></div>
-                        <div class="p-cards"></div>
-                        <div class="p-cards"></div>
-                        <div class="p-cards"></div>
-                        <div class="p-cards"></div>
-                        <div class="p-cards"></div>
-                        <div class="p-cards"></div>
+                        </c:forEach>
                     </section>
                 </div>
             </div>

@@ -9,7 +9,7 @@
                 integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
                 crossorigin="anonymous">
             <link href="css/admin.css" rel="stylesheet" type="text/css" />
-            <title>JSP Page</title>
+            <title>Admin Page</title>
         </head>
 
         <body>
@@ -39,15 +39,16 @@
                                 </div>
                             </div>
                         </div>
-                        <select id="categoria" name="categoria" class="form-select form-select-lg">
-                            <option value="">Selecione uma categoria</option>
+                    </div>
+                    <select id="categoria" name="categoria" class="form-select form-select-lg">
+                        <option value="">Selecione uma categoria</option>
 
-                            <c:forEach items="${categorias}" var="c">
-                                <option value="${c.id_categoria}">${c.nome}</option>
-                            </c:forEach>
+                        <c:forEach items="${categorias}" var="c">
+                            <option value="${c.id_categoria}">${c.nome}</option>
+                        </c:forEach>
 
-                        </select>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
 

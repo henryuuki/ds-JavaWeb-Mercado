@@ -73,6 +73,10 @@
         <url-pattern>/admin-panel</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/cadastrar-produto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>

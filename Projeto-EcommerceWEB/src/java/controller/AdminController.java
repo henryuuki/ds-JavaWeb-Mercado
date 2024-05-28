@@ -44,8 +44,7 @@ public class AdminController extends HttpServlet {
         String nextPage = "/WEB-INF/jsp/admin.jsp";
         
         CategoriaDAO dao = new CategoriaDAO();
-        List<TableCategoria> listaCategorias = dao.listarTodos();
-
+        List<TableCategoria> listaCategorias = dao.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
@@ -81,6 +80,7 @@ public class AdminController extends HttpServlet {
         // Verifica se a requisição é do tipo multipart (upload de arquivo)
         String url = request.getServletPath();
         if (url.equals("/cadastrar-produto")) {
+            System.out.println("E");
             try {
                 // Parseia a requisição para obter os itens do formulário
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -95,10 +95,10 @@ public class AdminController extends HttpServlet {
                             case "nome":
                                 produto.setNome(item.getString());
                                 break;
-                            case "descricao":
+                            case "valor":
                                 produto.setValor(Float.parseFloat(item.getString()));
                                 break;
-                            case "valor":
+                            case "descricao":
                                 produto.setDescricao(item.getString());
                                 break;
                             case "categoria":

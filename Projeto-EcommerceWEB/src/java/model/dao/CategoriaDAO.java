@@ -50,7 +50,7 @@ public class CategoriaDAO {
         return categorias;
     }
     
-    public List<TableCategoria> listarTodos() {
+    public List<TableCategoria> listarTodosC() {
         List<TableCategoria> categorias = new ArrayList();
         try {
             java.sql.Connection conexao = Conexao.conectar();

@@ -6,6 +6,7 @@
 package model.dao;
 
 import conexao.Conexao;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -95,6 +96,80 @@ public class ProdutoDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    public List<TableProduto> listarPorCategoria(int c) {
+        List<TableProduto> produtos = new ArrayList<>();
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            String query = "SELECT * FROM produto WHERE categoria_FK = ?";
+
+            stmt = conexao.prepareStatement(query);
+            stmt.setInt(1, c);
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TableProduto p = new TableProduto();
+                p.setId_produto(rs.getInt("id_roduto"));
+                p.setNome(rs.getString("nome"));
+                p.setCategoria_FK(rs.getInt("categoria_FK"));
+                p.setValor(rs.getFloat("valor"));
+
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+                produtos.add(p);
+            }
+            rs.close();
+            stmt.close();
+            conexao.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return produtos;
+    }
+    
+    public List<TableProduto> listarTodosP() {
+        List<TableProduto> produtos = new ArrayList<>();
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            stmt = conexao.prepareStatement("SELECT * FROM produto");
+
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TableProduto p = new TableProduto();
+                p.setId_produto(rs.getInt("id_produto"));
+                p.setNome(rs.getString("nome"));
+                p.setCategoria_FK(rs.getInt("categoria_FK"));
+                p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
+
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+                produtos.add(p);
+            }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return produtos;
     }
     
     public void update(TableProduto p) {

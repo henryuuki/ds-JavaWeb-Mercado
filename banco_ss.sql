@@ -71,3 +71,8 @@ values
 insert into usuario(nome, email, senha, cpf, telefone, acesso)
 values
 ('Admin','admin@gmail.com','admin','987654321','43999998888','admin');
+
+insert into categoria(nome)
+values
+('Caixas de Som'),
+('Soundbar');
