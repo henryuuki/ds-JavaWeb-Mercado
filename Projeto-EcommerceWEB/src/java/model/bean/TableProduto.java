@@ -8,6 +8,7 @@ import java.sql.Blob;
  */
 public class TableProduto {
     private int id_produto;
+    private static int idStaticProduto;
     private int categoria_FK;
     private String nome;
     private String descricao;
@@ -34,6 +35,14 @@ public class TableProduto {
 
     public void setId_produto(int id_produto) {
         this.id_produto = id_produto;
+    }
+
+    public static int getIdStaticProduto() {
+        return idStaticProduto;
+    }
+
+    public static void setIdStaticProduto(int idStaticProduto) {
+        TableProduto.idStaticProduto = idStaticProduto;
     }
 
     public int getCategoria_FK() {

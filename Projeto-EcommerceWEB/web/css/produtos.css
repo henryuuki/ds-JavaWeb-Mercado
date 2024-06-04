@@ -70,7 +70,7 @@ main{
 
 .content-products .cards-categorias .products-cards .p-cards{
     width: 300px;
-    height: 400px;
+    height: 440px;
     border: solid 1px #c3c3c3;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
     color: black;
@@ -80,10 +80,40 @@ main{
 .content-products .cards-categorias .products-cards .p-cards .p-card-item{
     border-bottom: 3px solid blue;
     width: 300px;
-    height: 260px;
+    height: 280px;
+    overflow: hidden;
 }
 
 .p-card-infos{
+    display: flex;
+    flex-direction: column;
     width: auto;   
     height: auto;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 3%;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.p-card-infos span a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.p-card-infos .p-descricao{
+    font-size: 15px;
+    color: #c3c3c3;
+}
+
+.content-products .cards-categorias .products-cards .p-cards .p-card-item .img-card{
+    width: 100%;
+    height: 100%;
+}
+
+.btn-cat-product{
+    border: none;
+    cursor: pointer;
+    background: none;
 }

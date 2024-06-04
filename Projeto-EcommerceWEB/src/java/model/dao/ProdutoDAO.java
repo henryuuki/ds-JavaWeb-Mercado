@@ -113,10 +113,11 @@ public class ProdutoDAO {
 
             while (rs.next()) {
                 TableProduto p = new TableProduto();
-                p.setId_produto(rs.getInt("id_roduto"));
+                p.setId_produto(rs.getInt("id_produto"));
                 p.setNome(rs.getString("nome"));
                 p.setCategoria_FK(rs.getInt("categoria_FK"));
                 p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
 
                 Blob imagemBlob = rs.getBlob("imagem");
                 if (imagemBlob != null) {

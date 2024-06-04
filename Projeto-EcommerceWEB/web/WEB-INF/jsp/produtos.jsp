@@ -14,7 +14,7 @@
 
         <main>
             <div class="caminho">
-                <p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+                <p>caminho</p>
             </div>
             <div class="content-products">
                 <div class="categoria-lista">
@@ -28,17 +28,27 @@
                 </div>
                 <div class="cards-categorias">
                     <section class="products-cards">
-                        <c:forEach items="${produtos}" var="produto">
-                            <div class="p-cards">
-                                <div class="p-card-item">
-                                    <img class="img-card" src="data:image/jpeg;base64,${produto.imagemBase64}" alt="${produto.nome}">
-                                </div>
-                                <div class="p-card-infos">
-                                    <span><a href="#">${produto.nome}</a></span>
-                                    <p>$${produto.valor}</p>
-                                </div>
-                            </div>
-                        </c:forEach>
+
+                   
+                            <c:forEach items="${produtos}" var="produto">
+                                <form action="toUniqueProduct" method="post">
+                                    <input type="hidden" id="idProduto" name="idProduto" value="${produto.id_produto}">
+                                    <button class="btn-cat-product" type="submit">
+                                        <div class="p-cards">
+                                            <div class="p-card-item">
+                                                <img class="img-card" src="data:image/jpeg;base64,${produto.imagemBase64}" alt="${produto.nome}">
+                                            </div>
+                                            <div class="p-card-infos">
+                                                <span><a href="#">${produto.nome}</a></span>
+                                                <span class="p-descricao">${produto.descricao}</span>
+                                                <p>$${produto.valor}</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </form>
+                            </c:forEach>
+                        
+                        
                     </section>
                 </div>
             </div>

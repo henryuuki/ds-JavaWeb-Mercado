@@ -80,7 +80,7 @@ public class LoginController extends HttpServlet {
                     else if(login == 2){
                         int idUsuario = dao.getId(request.getParameter("email"));
                         System.out.println("Entra usuario");
-                        response.sendRedirect(request.getContextPath() + "/index.htm");
+                        response.sendRedirect(request.getContextPath() + "/home");
                         return;
                     }
                     else{

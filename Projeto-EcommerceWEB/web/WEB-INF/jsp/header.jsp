@@ -19,7 +19,6 @@
                     <img class="logo-sing" src="assets/Sound Space Sing.png" alt=""/>
                     <a href="./cadastrar">cadastro</a>
                     <a href="./lista-produtos">produtos</a>
-                    <a href="./login">login</a>
                     <a href="./produto-unico">produto unico</a>
                     <a href="./admin-panel">admin</a>
                 </div>
@@ -47,7 +46,7 @@
                 </div>
 
                 <div class="icons-content">
-                    <button class="icon-btn"><i class="bi bi-cart"></i></button>
+                    <button class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></button>
                     <button class="icon-btn" type="submit" id="perfil-btn"><i class="bi bi-person-circle"></i></button>
                 </div>
 

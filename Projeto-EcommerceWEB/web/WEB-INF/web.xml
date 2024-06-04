@@ -49,6 +49,10 @@
         <url-pattern>/lista-produtos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ProdutoController</servlet-name>
+        <url-pattern>/toUniqueProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CadastroController</servlet-name>
         <url-pattern>/cadastrar</url-pattern>
     </servlet-mapping>

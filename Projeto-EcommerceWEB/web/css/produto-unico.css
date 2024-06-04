@@ -1,0 +1,16 @@
+main{
+    height: auto;
+}
+
+.contanier-pu{
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.teste{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+}
