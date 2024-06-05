@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.TableCategoria;
 import model.bean.TableProduto;
 import model.dao.CategoriaDAO;
+import model.dao.ProdutoDAO;
 
 /**
  *
@@ -36,9 +38,16 @@ public class ProdutoUnicoController extends HttpServlet {
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/produtoUnico.jsp";
         
-        CategoriaDAO daoC = new CategoriaDAO();
-        List<TableCategoria> listaCategorias = daoC.listarTodosC();
-        request.setAttribute("categorias", listaCategorias);
+       ProdutoDAO daoP = new ProdutoDAO();
+        List<TableProduto> produtos = daoP.listarTodosP();
+
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImagemBytes());
+                produtos.get(i).setImagemBase64(imagemBase64);
+            }
+        }
+        request.setAttribute("produtos", produtos);
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
