@@ -70,7 +70,6 @@ public class LoginController extends HttpServlet {
                 int login = dao.validlogin(request.getParameter("email"),request.getParameter("password") );
                 
                 if(login != 0){
-                    System.out.println("Login: " +login);
                     if(login == 1){
                         int idUsuario = dao.getId(request.getParameter("email"));
                         System.out.println("Entra admin");

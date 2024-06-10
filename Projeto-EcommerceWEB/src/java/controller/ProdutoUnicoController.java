@@ -37,23 +37,26 @@ public class ProdutoUnicoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/produtoUnico.jsp";
-        
-       ProdutoDAO daoP = new ProdutoDAO();
-        List<TableProduto> produtos = daoP.listarTodosP();
 
-        for (int i = 0; i < produtos.size(); i++) {
-            if (produtos.get(i).getImagemBytes() != null) {
-                String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImagemBytes());
-                produtos.get(i).setImagemBase64(imagemBase64);
-            }
+        CategoriaDAO daoC = new CategoriaDAO();
+        List<TableCategoria> listaCategorias = daoC.listarTodosC();
+        request.setAttribute("categorias", listaCategorias);
+
+        ProdutoDAO daoP = new ProdutoDAO();
+        TableProduto produtos = daoP.readById(TableProduto.getIdStaticProduto());
+
+        if (produtos.getImagemBytes() != null) {
+            String imagemBase64 = Base64.getEncoder().encodeToString(produtos.getImagemBytes());
+            produtos.setImagemBase64(imagemBase64);
+
         }
-        request.setAttribute("produtos", produtos);
         
+        request.setAttribute("produto", produtos);
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
     }
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,9 +74,9 @@ public class ProdutoUnicoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-            processRequest(request, response);
-        
+
+        processRequest(request, response);
+
     }
 
     /**

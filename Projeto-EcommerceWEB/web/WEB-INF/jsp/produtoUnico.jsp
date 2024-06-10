@@ -15,20 +15,20 @@
 
             <main>
                 <div class="contanier-pu">
-                    <div class="teste">
-                        <c:forEach items="${produtos}" var="produto">
+                    <div class="box">
 
-                                    <div class="p-cards">
-                                        <div class="p-card-item">
-                                            <img class="img-card" src="data:image/jpeg;base64,${produto.imagemBase64}" alt="${produto.nome}">
-                                        </div>
-                                        <div class="p-card-infos">
-                                            <span><a href="#">${produto.nome}</a></span>
-                                            <span class="p-descricao">${produto.descricao}</span>
-                                            <p>$${produto.valor}</p>
-                                        </div>
-                                    </div>
-                        </c:forEach>
+                        <div class="p-cards">
+                            <div class="p-card-item">
+                                <img class="img-card" src="data:image/jpeg;base64,${produto.imagemBase64}"
+                                    alt="${produto.nome}">
+                            </div>
+                        </div>
+                        <div class="p-card-infos">
+                            <span><a href="#">${produto.nome}</a></span>
+                            <span class="p-descricao">${produto.descricao}</span>
+                            <p>$${produto.valor}</p>
+                        </div>
+
                     </div>
                 </div>
             </main>

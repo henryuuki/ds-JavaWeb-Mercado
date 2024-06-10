@@ -20,6 +20,7 @@ import model.bean.TableProduto;
  * @author Senai
  */
 public class ProdutoDAO {
+
     public List<TableProduto> read() {
         List<TableProduto> produtos = new ArrayList();
 
@@ -53,7 +54,7 @@ public class ProdutoDAO {
 
         return produtos;
     }
-    
+
     public boolean create(TableProduto p) {
         try {
             Connection conexao = Conexao.conectar();
@@ -64,7 +65,7 @@ public class ProdutoDAO {
             stmt.setString(2, p.getDescricao());
             stmt.setBytes(3, p.getImagemBytes());
             stmt.setFloat(4, p.getValor());
-          
+
             stmt.executeUpdate();
 
             stmt.close();
@@ -73,9 +74,9 @@ public class ProdutoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }      
+        }
     }
-    
+
     public boolean inserirProduto(TableProduto produto) {
         try (Connection conexao = Conexao.conectar();
                 PreparedStatement ps = conexao.prepareStatement("INSERT INTO produto (nome, valor, categoria_FK, imagem, descricao) VALUES (?, ?, ?, ?, ?)")) {
@@ -97,7 +98,7 @@ public class ProdutoDAO {
             return false;
         }
     }
-    
+
     public List<TableProduto> listarPorCategoria(int c) {
         List<TableProduto> produtos = new ArrayList<>();
         try {
@@ -134,7 +135,7 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-    
+
     public List<TableProduto> listarTodosP() {
         List<TableProduto> produtos = new ArrayList<>();
 
@@ -172,42 +173,71 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-    
+
+    public TableProduto readById(int id) {
+        TableProduto p = null;
+
+        try (Connection conexao = Conexao.conectar();
+                PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM produto WHERE id_Produto = ?")) {
+
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    p = new TableProduto();
+                    p.setId_produto(rs.getInt("id_produto"));
+                    p.setNome(rs.getString("nome"));
+                    p.setCategoria_FK(rs.getInt("categoria_FK"));
+                    p.setValor(rs.getFloat("valor"));
+                    p.setDescricao(rs.getString("descricao"));
+
+                    Blob imagemBlob = rs.getBlob("imagem");
+                    if (imagemBlob != null) {
+                        byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                        p.setImagemBytes(imagemBytes);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return p;
+    }
+
     public void update(TableProduto p) {
-        
+
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
-            
+
             stmt = conexao.prepareStatement("UPDATE produto SET nome = ?, SET descricao = ?, SET imagem = ?, SET valor = ?, WHERE id_produto = ?");
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getDescricao());
             stmt.setBytes(3, p.getImagemBytes());
             stmt.setFloat(4, p.getValor());
-            
+
             stmt.executeUpdate();
-            
+
             stmt.close();
-            conexao.close();            
-            
+            conexao.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-    public void delete(TableProduto p){
-        try{
+
+    public void delete(TableProduto p) {
+        try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
-            
+
             stmt = conexao.prepareStatement("DELETE FROM produto WHERE id_produto = ?");
             stmt.setInt(1, p.getId_produto());
-            
+
             stmt.executeUpdate();
-            
+
             stmt.close();
             conexao.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,5 @@
 main{
-    height: auto;
+    
 }
 
 .contanier-pu{
@@ -8,9 +8,19 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 6%;
 }
-.teste{
+.box{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
     border: 1px solid black;
-    width: 500px;
-    height: 500px;
+    width: 1400px;
+    height: 650px;
+}
+
+.p-cards{
+    border: 1px solid deeppink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

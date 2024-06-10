@@ -46,6 +46,9 @@ public class ProdutoController extends HttpServlet {
         
         ProdutoDAO daoP = new ProdutoDAO();
         List<TableProduto> produtos = daoP.listarPorCategoria(idCat);
+        
+        ProdutoDAO dao = new ProdutoDAO();
+
 
         for (int i = 0; i < produtos.size(); i++) {
             if (produtos.get(i).getImagemBytes() != null) {

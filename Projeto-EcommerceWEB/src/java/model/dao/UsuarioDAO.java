@@ -151,6 +151,7 @@ public class UsuarioDAO {
     }
     
    public int validlogin(String email, String senha) {
+       
     int login = 0;
     Connection conexao = null;
     PreparedStatement stmt = null;
@@ -168,7 +169,7 @@ public class UsuarioDAO {
             if (rs.getString("acesso").equals("cliente")) {
                 TableUsuario.setAcessoStatic(2);
                 login = 2;
-            } else if (rs.getString("acesso").equals("admin")) {
+            } else if (rs.getString("acesso").equals("admin")) {    
                 TableUsuario.setAcessoStatic(1);
                 login = 1;
             } else {
