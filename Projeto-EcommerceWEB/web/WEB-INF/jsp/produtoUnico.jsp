@@ -27,6 +27,7 @@
                             <span><a href="#">${produto.nome}</a></span>
                             <span class="p-descricao">${produto.descricao}</span>
                             <p>$${produto.valor}</p>
+                            <button class="button">Comprar</button>
                         </div>
 
                     </div>
