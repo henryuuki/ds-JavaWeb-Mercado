@@ -202,6 +202,115 @@ public class ProdutoDAO {
         }
         return p;
     }
+    
+    public List<TableProduto> buscaProdutos(String busca) {
+        List<TableProduto> resultadoBusca = new ArrayList();
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ? OR descricao LIKE ?");
+            stmt.setString(1, busca);
+            stmt.setString(2, busca);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                TableProduto p = new TableProduto();
+                p.setId_produto(rs.getInt("id_produto"));
+                p.setNome(rs.getString("nome"));
+                p.setCategoria_FK(rs.getInt("categoria_FK"));
+                p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
+
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+                
+                resultadoBusca.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultadoBusca;
+    }
+    
+    public List<TableProduto> buscaCategoria (int categoria) {
+        List<TableProduto> resultadoBusca = new ArrayList();
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE categoria = ?");
+            stmt.setInt(1, categoria);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                TableProduto p = new TableProduto();
+                p.setId_produto(rs.getInt("id_produto"));
+                p.setNome(rs.getString("nome"));
+                p.setCategoria_FK(rs.getInt("categoria_FK"));
+                p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
+
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+                
+                resultadoBusca.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultadoBusca;
+    }
+    
+    public List<TableProduto> listarProdutos() {
+        List<TableProduto> produtos = new ArrayList<>();
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conexao = Conexao.conectar();
+            stmt = conexao.prepareStatement("SELECT * FROM produtos LIMIT 10");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TableProduto p = new TableProduto();
+                p.setId_produto(rs.getInt("id_produto"));
+                p.setNome(rs.getString("nome"));
+                p.setCategoria_FK(rs.getInt("categoria_FK"));
+                p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
+
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+                
+                produtos.add(p);
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return produtos;
+    }
 
     public void update(TableProduto p) {
 

@@ -34,9 +34,16 @@
                             <div class="btn-search">
                                 <i class="bi bi-search"></i>
                             </div>
+                            
                             <div class="input-style">
-                                <input type="text" name="" placeholder="Procure o que deseja">
+                                <form action="buscar-produtos" method="get">
+                                    <input name="busca" placeholder="Procure o que deseja" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">
+                                        <i class="bi bi-check-lg"></i>
+                                    </button>
+                                </form>
                             </div>
+
                             <div class="btn-close">
                                 <i class="bi bi-x-lg"></i>
                             </div>

@@ -36,7 +36,8 @@ public class ProdutoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/produtos.jsp";
+        String nextPag = "/WEB-INF/jsp/produtos.jsp";
+        String url = request.getServletPath();
         
         int idCat = Integer.parseInt(request.getParameter("cat"));
         
@@ -46,10 +47,29 @@ public class ProdutoController extends HttpServlet {
         
         ProdutoDAO daoP = new ProdutoDAO();
         List<TableProduto> produtos = daoP.listarPorCategoria(idCat);
+
+        if(url.equals("/home")){
+            List<TableProduto> produtosInput = daoP.listarProdutos();
+            request.setAttribute("produtos", produtosInput);
+            String nextPage = "/WEB-INF/jsp/index.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        } else if (url.equals("/buscar-produtos")) {
+            String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
+            if(busca.equals("")) {
+                String categoria = request.getParameter("cat");
+                List<TableProduto> produtosInput = daoP.buscaCategoria(Integer.parseInt(categoria));
+                request.setAttribute("produtos", produtosInput);
+            } else {
+                busca = "%"+busca+"%";
+                List<TableProduto> produtosInput = daoP.buscaProdutos(busca);
+                request.setAttribute("produtos", produtosInput);
+            }
+            String nextPage = "/WEB-INF/jsp/produtos.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        }
         
-        ProdutoDAO dao = new ProdutoDAO();
-
-
         for (int i = 0; i < produtos.size(); i++) {
             if (produtos.get(i).getImagemBytes() != null) {
                 String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImagemBytes());
@@ -58,7 +78,7 @@ public class ProdutoController extends HttpServlet {
         }
         request.setAttribute("produtos", produtos);
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPag);
         dispatcher.forward(request, response);
         }
     
