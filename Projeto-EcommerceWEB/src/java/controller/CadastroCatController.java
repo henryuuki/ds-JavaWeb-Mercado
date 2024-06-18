@@ -12,14 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.bean.TableUsuario;
-import model.dao.UsuarioDAO;
 
 /**
  *
- * @author Senai
+ * @author Usuário
  */
-public class CadastroController extends HttpServlet {
+public class CadastroCatController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,8 +30,8 @@ public class CadastroController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/cadastro.jsp";
-
+        String nextPage = "/WEB-INF/jsp/cadastroCategoria.jsp";
+        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
     }
@@ -64,49 +62,7 @@ public class CadastroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/cadastro.jsp";
-
-        UsuarioDAO dao = new UsuarioDAO();
-
-        String errorMessage = "";
-        System.out.println("Entra");
-
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("password");
-        String confirmarSenha = request.getParameter("confirm-password");
-        String telefone = request.getParameter("telefone");
-        String cpf = request.getParameter("cpf");
-
-        if (nome == null || nome.trim().isEmpty()
-                || email == null || email.trim().isEmpty()
-                || senha == null || senha.trim().isEmpty()
-                || confirmarSenha == null || confirmarSenha.trim().isEmpty()
-                || telefone == null || telefone.trim().isEmpty()
-                || cpf == null || cpf.trim().isEmpty()) {
-            errorMessage = "Todos os campos são obrigatórios.";
-        } else {
-            if (senha.equals(confirmarSenha)) {
-                telefone = telefone.replaceAll("[^0-9]", "");
-                cpf = cpf.replaceAll("[^0-9]", "");
-
-                TableUsuario usuario = new TableUsuario();
-                usuario.setNome(nome);
-                usuario.setEmail(email);
-                usuario.setSenha(senha);
-                usuario.setTelefone(telefone);
-                usuario.setCpf(cpf);
-
-                dao.create(usuario);
-
-                nextPage = "/home";
-            }
-        }
-        request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
-
-        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
-        d.forward(request, response);
-
+        processRequest(request, response);
     }
 
     /**

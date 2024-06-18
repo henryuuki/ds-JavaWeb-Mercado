@@ -40,6 +40,10 @@
         <servlet-name>IndexController</servlet-name>
         <servlet-class>controller.IndexController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastroCatController</servlet-name>
+        <servlet-class>controller.CadastroCatController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroCatController</servlet-name>
+        <url-pattern>/cadastro-categoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
