@@ -14,29 +14,60 @@
 
         <body>
             <header>
-                <div>
-                    <a href="./cadastro-categoria">Cat</a>
+                <div class="logo-content">
+                    <img class="logo" src="assets/Logo SoundSpace.png" alt="" />
+                    <img class="logo-sing" src="assets/Sound Space Sing V2.png" alt="" />
+                    <!-- <a href="./cadastrar">cadastro</a>
+                    <a href="./lista-produtos">produtos</a>
+                    <a href="./produto-unico">produto unico</a> -->
+                </div>
+                <div class="menu">
+                    <a class="menu-links" href="#under">Lista Produtos</a>
+                    <a class="menu-links" href="./admin-panel"> Cadastro Produtos</a>
+                    <a class="menu-links" href="./cadastro-categoria"> Cadastro Categorias</a>
+                </div>
+                <div class="icone-content">
+                    <button class="icone-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
                 </div>
             </header>
 
             <main>
-                <div class="contanier">
+                <div class="contanier-admin">
                     <form action="cadastrar-produto" class="row g-3" method="post" name="frmCadastro"
                         enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Nome</label>
-                            <input class="form-control" type="text" placeholder="Nome Produto" name="nome" id="nome">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Descrição</label>
-                            <input class="form-control" type="text" placeholder="Descrição" name="descricao"
-                                id="descricao">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Valor</label>
-                            <input class="form-control" type="text" placeholder="Valor Unitario" name="valor"
-                                id="valor">
-                            <div>
+
+                        <div>
+                            <h1>Cadastro de Produtos</h1>
+                        </div>  
+
+                        <div class="grid-prod-form">
+                            <div class="inputs-cad-prod">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Nome</label>
+                                    <input class="form-control" type="text" placeholder="Nome Produto" name="nome"
+                                        id="nome">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Descrição</label>
+                                    <input class="form-control" type="text" placeholder="Descrição" name="descricao"
+                                        id="descricao">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Valor</label>
+                                    <input class="form-control" type="text" placeholder="Valor Unitario" name="valor"
+                                        id="valor">
+                                </div>
+                                <select id="categoria" name="categoria" class="form-select form-select-lg">
+                                    <option value="">Selecione uma categoria</option>
+    
+                                    <c:forEach items="${categorias}" var="c">
+                                        <option value="${c.id_categoria}">${c.nome}</option>
+                                    </c:forEach>
+    
+                                </select>
+                            </div>
+
+                            <div class="img-cad-prod">
                                 <div class="mb-4 d-flex justify-content-center">
                                     <img id="selectedImage"
                                         src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
@@ -51,16 +82,9 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-                        <select id="categoria" name="categoria" class="form-select form-select-lg">
-                            <option value="">Selecione uma categoria</option>
-
-                            <c:forEach items="${categorias}" var="c">
-                                <option value="${c.id_categoria}">${c.nome}</option>
-                            </c:forEach>
-
-                        </select>
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </main>

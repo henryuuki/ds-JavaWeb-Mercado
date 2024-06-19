@@ -11,16 +11,14 @@ h1{
     justify-content: center;
 }
 
-.contanier{
+.contanier-inputs-ss{
     width: auto;
-    margin-top: 4%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.content{
-    /* border: solid 1px #000000; */
+.content-inputs-ss{
     border-radius: 20px;
     width: 900px;
     height: 700px;
@@ -29,11 +27,11 @@ h1{
     justify-content: center;
 }
 
-.form{
+.form-cadastro{
     width: 50%;
 }
 
-.form h2{
+.form-cadastro h2{
     text-align: center;
     color: #222;
     margin: 10px 0px 20px;
@@ -42,20 +40,20 @@ h1{
 }
 
 .title{
-    margin: 15px 0px;
+    margin: 5px 0px;
     font-size: 16px;
     color: #222;
 }
 
-.form-input{
-    width: 92%;
-    margin: 15px 0px;
-    margin-top: 5px;
+.form-cadastro .input-caixa .form-input-ss{
+    width: 100%;
+    /* margin: 15px 0px; */
     display: block;
     padding: 16px;
     outline: none;
     border: 1px solid #aaa;
     border-radius: 10px;
+    height: 40px;
 }
 
 .form-checkbox{
@@ -85,12 +83,12 @@ h1{
     font-weight: 600;
 }
 
-.input-box{
+.input-caixa{
     position: relative;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.input-box i{
+.input-caixa i{
     z-index: 1000;
     position: absolute;
     top: 34px;

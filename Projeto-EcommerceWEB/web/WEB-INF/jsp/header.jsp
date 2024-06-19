@@ -23,9 +23,9 @@
                         <img class="logo" src="assets/Logo SoundSpace.png" alt="" />
                         <img class="logo-sing" src="assets/Sound Space Sing.png" alt="" />
                         <!-- <a href="./cadastrar">cadastro</a>
-                    <a href="./lista-produtos">produtos</a>
-                    <a href="./produto-unico">produto unico</a>
-                    <a href="./admin-panel">admin</a> -->
+                        <a href="./lista-produtos">produtos</a>
+                        <a href="./produto-unico">produto unico</a> -->
+                        <a href="./admin-panel">admin</a>
                     </div>
 
                     <div class="input-contanier">
@@ -34,13 +34,13 @@
                             <div class="btn-search">
                                 <i class="bi bi-search"></i>
                             </div>
-                            
+
                             <div class="input-style">
                                 <form action="buscar-produtos" method="get">
                                     <input name="busca" placeholder="Procure o que deseja" aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">
+                                    <!-- <button class="btn btn-outline-success" type="submit">
                                         <i class="bi bi-check-lg"></i>
-                                    </button>
+                                    </button> -->
                                 </form>
                             </div>
 
@@ -59,8 +59,7 @@
 
                     <div class="icons-content">
                         <button class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></button>
-                        <button class="icon-btn" type="submit" id="perfil-btn"><i
-                                class="bi bi-person-circle"></i></button>
+                        <button class="icon-btn" type="submit" id="perfil-btn"><i class="bi bi-person-circle"></i></button>
                     </div>
 
                     <div class="popup">

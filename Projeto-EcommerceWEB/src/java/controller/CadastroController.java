@@ -64,12 +64,11 @@ public class CadastroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/cadastro.jsp";
+        String nextPag = "/WEB-INF/jsp/cadastro.jsp";
 
         UsuarioDAO dao = new UsuarioDAO();
 
         String errorMessage = "";
-        System.out.println("Entra");
 
         String nome = request.getParameter("nome");
         String email = request.getParameter("email");
@@ -85,26 +84,36 @@ public class CadastroController extends HttpServlet {
                 || telefone == null || telefone.trim().isEmpty()
                 || cpf == null || cpf.trim().isEmpty()) {
             errorMessage = "Todos os campos são obrigatórios.";
+
+        } else if (!senha.equals(confirmarSenha)) {
+            errorMessage = "As senhas devem ser iguais";
+
+        } else if (cpf.length() != 14) {
+            errorMessage = "Digite o CPF corretamente";
+
+        } else if (telefone.length() != 14) {
+            errorMessage = "Digite o telefone corretamente";
+
         } else {
-            if (senha.equals(confirmarSenha)) {
-                telefone = telefone.replaceAll("[^0-9]", "");
-                cpf = cpf.replaceAll("[^0-9]", "");
 
-                TableUsuario usuario = new TableUsuario();
-                usuario.setNome(nome);
-                usuario.setEmail(email);
-                usuario.setSenha(senha);
-                usuario.setTelefone(telefone);
-                usuario.setCpf(cpf);
+            TableUsuario usuario = new TableUsuario();
+            usuario.setNome(nome);
+            usuario.setEmail(email);
+            usuario.setSenha(senha);
+            usuario.setTelefone(telefone);
+            usuario.setCpf(cpf);
 
-                dao.create(usuario);
+            dao.create(usuario);
 
-                nextPage = "/home";
-            }
+            request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
+            nextPag = "/home";
         }
-        request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
 
-        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
+        if (!errorMessage.isEmpty()) {
+            request.setAttribute("errorMessage", errorMessage);
+        }
+
+        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPag);
         d.forward(request, response);
 
     }
