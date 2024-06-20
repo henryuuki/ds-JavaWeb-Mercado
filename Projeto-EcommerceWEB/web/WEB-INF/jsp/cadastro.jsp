@@ -18,13 +18,13 @@
             <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
             <script type="text/javascript"
                 src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
-            <title>JSP Page</title>
+            <title>Cadastrar</title>
         </head>
 
         <body>
             <header>
                 <div class="logo-content">
-                    <img class="logo" src="assets/Logo SoundSpace.png" alt="" />
+                    <a href="./home"><img class="logo" src="assets/Logo SoundSpace.png" alt="" /></a>
                     <img class="logo-sing" src="assets/Sound Space Sing.png" alt="" />
                 </div>
 

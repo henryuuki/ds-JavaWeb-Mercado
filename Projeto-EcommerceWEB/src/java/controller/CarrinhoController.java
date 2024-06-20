@@ -20,9 +20,9 @@ import model.dao.UsuarioDAO;
 
 /**
  *
- * @author Senai
+ * @author Usuário
  */
-public class IndexController extends HttpServlet {
+public class CarrinhoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +35,7 @@ public class IndexController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/index.jsp";
+        String nextPag = "/WEB-INF/jsp/carrinho.jsp";
         
         if (TableUsuario.getId_usuarioStatic() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
@@ -47,8 +47,8 @@ public class IndexController extends HttpServlet {
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-        dispatcher.forward(request, response);
+        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPag);
+        d.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,14 +64,6 @@ public class IndexController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        String url = request.getServletPath();
-        
-        if(url.equals("/sair")){
-          TableUsuario.setId_usuarioStatic(0);
-            response.sendRedirect(request.getContextPath() + "/home");
-
-        }
     }
 
     /**
@@ -85,14 +77,7 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String url = request.getServletPath();
-        
-        if(url.equals("/sair")){
-          TableUsuario.setId_usuarioStatic(0);
-            response.sendRedirect(request.getContextPath() + "/home");
-
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -16,8 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.bean.TableCategoria;
 import model.bean.TableProduto;
+import model.bean.TableUsuario;
 import model.dao.CategoriaDAO;
 import model.dao.ProdutoDAO;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -38,38 +41,22 @@ public class ProdutoController extends HttpServlet {
             throws ServletException, IOException {
         String nextPag = "/WEB-INF/jsp/produtos.jsp";
         String url = request.getServletPath();
-        
+
+        if (TableUsuario.getId_usuarioStatic() != 0) {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
+            request.setAttribute("usuario", usuarios);
+        }
+
         int idCat = Integer.parseInt(request.getParameter("cat"));
-        
+
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
-        
+
         ProdutoDAO daoP = new ProdutoDAO();
         List<TableProduto> produtos = daoP.listarPorCategoria(idCat);
 
-        if(url.equals("/home")){
-            List<TableProduto> produtosInput = daoP.listarProdutos();
-            request.setAttribute("produtos", produtosInput);
-            String nextPage = "/WEB-INF/jsp/index.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        } else if (url.equals("/buscar-produtos")) {
-            String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
-            if(busca.equals("")) {
-                String categoria = request.getParameter("cat");
-                List<TableProduto> produtosInput = daoP.buscaCategoria(Integer.parseInt(categoria));
-                request.setAttribute("produtos", produtosInput);
-            } else {
-                busca = "%"+busca+"%";
-                List<TableProduto> produtosInput = daoP.buscaProdutos(busca);
-                request.setAttribute("produtos", produtosInput);
-            }
-            String nextPage = "/WEB-INF/jsp/produtos.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        }
-        
         for (int i = 0; i < produtos.size(); i++) {
             if (produtos.get(i).getImagemBytes() != null) {
                 String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImagemBytes());
@@ -77,12 +64,11 @@ public class ProdutoController extends HttpServlet {
             }
         }
         request.setAttribute("produtos", produtos);
-        
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPag);
         dispatcher.forward(request, response);
-        }
-    
-        
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -95,7 +81,43 @@ public class ProdutoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String url = request.getServletPath();
+
+        if (url.equals("/buscar-produtos")) {
+
+            CategoriaDAO daoC = new CategoriaDAO();
+            List<TableCategoria> listaCategorias = daoC.listarTodosC();
+            request.setAttribute("categorias", listaCategorias);
+
+            ProdutoDAO daoP = new ProdutoDAO();
+            
+            List<TableProduto> produtosInput = new ArrayList<>();
+            
+            String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
+            if (busca.equals("")) {
+                String categoria = request.getParameter("cat");
+                produtosInput = daoP.buscaCategoria(Integer.parseInt(categoria));
+            } else {
+                busca = "%" + busca + "%";
+                produtosInput = daoP.buscaProdutos(busca);
+            }
+            String nextPage = "/WEB-INF/jsp/produtos.jsp";
+
+            for (int i = 0; i < produtosInput.size(); i++) {
+                if (produtosInput.get(i).getImagemBytes() != null) {
+                    String imagemBase64 = Base64.getEncoder().encodeToString(produtosInput.get(i).getImagemBytes());
+                    produtosInput.get(i).setImagemBase64(imagemBase64);
+                }
+            }
+            request.setAttribute("produtos", produtosInput);
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        } else {
+            processRequest(request, response);
+        }
+
     }
 
     /**
@@ -113,11 +135,10 @@ public class ProdutoController extends HttpServlet {
         if (url.equals("/toUniqueProduct")) {
             TableProduto.setIdStaticProduto(Integer.parseInt(request.getParameter("idProduto")));
             response.sendRedirect(request.getContextPath() + "/produto-unico");
-        } else{
-             processRequest(request, response);
+        } else {
+            processRequest(request, response);
         }
-       
-       
+
     }
 
     /**

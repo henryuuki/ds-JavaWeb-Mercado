@@ -1,5 +1,20 @@
+body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #c5c5c5;
+}
+
 main{
-    
+    background-color: white;
+}
+
+.box{
+    display: grid;
+    grid-template-columns: 2fr 1.8fr;
+    border: 1px solid rgb(77, 77, 77);
+    width: 1400px;
+    height: 650px;
 }
 
 .contanier-pu{
@@ -10,19 +25,56 @@ main{
     align-items: center;
     margin-top: 6%;
 }
-.box{
+
+.contanier-pu .p-card-infos{
     display: grid;
-    grid-template-columns: 1.5fr 2fr;
-    border: 1px solid black;
-    width: 1400px;
-    height: 650px;
+    grid-template-rows: 2.5fr 1fr;
+}
+
+.contanier-pu .p-card-infos h6{
+    color: #a7a7a7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    font-size: 18px;
+    text-align: start;
+    margin-left: 5%;
+}
+
+.contanier-pu .p-card-infos .p-descricao{
+    margin-left: 10%;
+    color: #a7a7a7;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contanier-pu .p-card-infos .p-preco{
+    margin-left: 10%;
+    color: #239606;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contanier-pu .p-card-infos .box-info-baixo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .p-cards{
-    border: 1px solid deeppink;
+    border-right: 1px solid rgb(77, 77, 77);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.contanier-pu .p-card-infos span{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 36px;
+    font-weight: 600;   
+    margin-left: 10%;
 }
 
 .button{

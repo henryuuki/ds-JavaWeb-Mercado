@@ -19,6 +19,7 @@ import model.bean.TableUsuario;
  * @author Senai
  */
 public class UsuarioDAO {
+
     public List<TableUsuario> read() {
         List<TableUsuario> usuarios = new ArrayList();
 
@@ -52,7 +53,7 @@ public class UsuarioDAO {
 
         return usuarios;
     }
-    
+
     public boolean create(TableUsuario user) {
         try {
             Connection conexao = Conexao.conectar();
@@ -73,15 +74,15 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }      
+        }
     }
-    
+
     public void update(TableUsuario user) {
-        
+
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
-            
+
             stmt = conexao.prepareStatement("UPDATE usuario SET nome = ?, email = ?, senha = ?, cpf = ?, telefone = ?, WHERE id_usuario = ?");
             stmt.setString(1, user.getNome());
             stmt.setString(2, user.getEmail());
@@ -89,121 +90,156 @@ public class UsuarioDAO {
             stmt.setString(4, user.getCpf());
             stmt.setString(5, user.getTelefone());
             stmt.setInt(6, user.getId_usuario());
-            
+
             stmt.executeUpdate();
-            
+
             stmt.close();
-            conexao.close();            
-            
+            conexao.close();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     public void delete(TableUsuario user) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt;
-            
+
             stmt = conexao.prepareStatement("DELETE FROM usuario WHERE id_usuario = ?");
             stmt.setInt(1, user.getId_usuario());
-            
+
             stmt.executeUpdate();
-            
+
             stmt.close();
             conexao.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
-    public TableUsuario login (TableUsuario user){
+
+    public TableUsuario login(TableUsuario user) {
         TableUsuario userLogin = new TableUsuario();
-        try{
+        try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
-            
+
             stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
             stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getSenha());
             rs = stmt.executeQuery();
-            
-            if(rs.next()) {
+
+            if (rs.next()) {
                 userLogin.setId_usuario(rs.getInt("id_usuario"));
                 userLogin.setEmail(rs.getString("email"));
                 userLogin.setSenha(rs.getString("senha"));
             }
-            
+
             rs.close();
             stmt.close();
             conexao.close();
-            
-        } catch (SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
             userLogin.setId_usuario(0);
             userLogin.setEmail("");
             userLogin.setSenha("");
         }
-        
+
         return userLogin;
     }
-    
-   public int validlogin(String email, String senha) {
-       
-    int login = 0;
-    Connection conexao = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
-    
-    try {
-        conexao = Conexao.conectar();
-        stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
-        stmt.setString(1, email);
-        stmt.setString(2, senha);
-        rs = stmt.executeQuery();
 
-        if (rs.next()) {
-            System.out.println("Status: " + rs.getString("acesso"));
-            if (rs.getString("acesso").equals("cliente")) {
-                TableUsuario.setAcessoStatic(2);
-                login = 2;
-            } else if (rs.getString("acesso").equals("admin")) {    
-                TableUsuario.setAcessoStatic(1);
-                login = 1;
-            } else {
-                TableUsuario.setAcessoStatic(0);
-                login = 0;
-            }
-            TableUsuario.setId_usuarioStatic(rs.getInt("id_usuario"));
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } finally {
+    public int validlogin(String email, String senha) {
+
+        int login = 0;
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         try {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (conexao != null) conexao.close();
+            conexao = Conexao.conectar();
+            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                System.out.println("Status: " + rs.getString("acesso"));
+                if (rs.getString("acesso").equals("cliente")) {
+                    TableUsuario.setAcessoStatic(2);
+                    login = 2;
+                } else if (rs.getString("acesso").equals("admin")) {
+                    TableUsuario.setAcessoStatic(1);
+                    login = 1;
+                } else {
+                    TableUsuario.setAcessoStatic(0);
+                    login = 0;
+                }
+                TableUsuario.setId_usuarioStatic(rs.getInt("id_usuario"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return login;
+    }
+    
+    public List<TableUsuario> getUsuarioById(int idUsuario) {
+
+        List<TableUsuario> usuarios = new ArrayList<>();
+        try {
+            Connection conn = null;
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            TableUsuario usuario = null;
+            conn = Conexao.conectar();
+            String sql = "SELECT * FROM usuario WHERE id_usuario = ?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idUsuario);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                usuario = new TableUsuario();
+                usuario.setId_usuario(rs.getInt("id_usuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuarios.add(usuario);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    return login;
-}
 
-    
-    public int getId(String user){
+        return usuarios;
+    }
+
+    public int getId(String user) {
         int id = 0;
-        try{
+        try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
-            
+
             stmt = conn.prepareStatement("SELECT * FROM usuario WHERE email = ?");
             stmt.setString(1, user);
             rs = stmt.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 id = rs.getInt("id_usuario");
             }
             rs.close();

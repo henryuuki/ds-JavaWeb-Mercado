@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +34,12 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/login.jsp";
+        
+        if (TableUsuario.getId_usuarioStatic() != 0) {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
+            request.setAttribute("usuario", usuarios);
+        }
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);  
@@ -72,13 +79,11 @@ public class LoginController extends HttpServlet {
                 if(login != 0){
                     if(login == 1){
                         int idUsuario = dao.getId(request.getParameter("email"));
-                        System.out.println("Entra admin");
                         response.sendRedirect(request.getContextPath() + "/admin-panel");
                         return;
                     }
                     else if(login == 2){
                         int idUsuario = dao.getId(request.getParameter("email"));
-                        System.out.println("Entra usuario");
                         response.sendRedirect(request.getContextPath() + "/home");
                         return;
                     }

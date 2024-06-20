@@ -5,9 +5,8 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <link href="css/produtos.css" rel="stylesheet" type="text/css" />
             <link href="css/produto-unico.css" rel="stylesheet" type="text/css" />
-            <title>JSP Page</title>
+            <title>Produto Page</title>
         </head>
 
         <body>
@@ -24,10 +23,15 @@
                             </div>
                         </div>
                         <div class="p-card-infos">
-                            <span><a href="#">${produto.nome}</a></span>
-                            <span class="p-descricao">${produto.descricao}</span>
-                            <p>$${produto.valor}</p>
-                            <button class="button">Comprar</button>
+                            <div>
+                                <h6>Novo | +10mil vendidos</h6>
+                                <span>${produto.nome}</span>
+                                <p class="p-descricao">${produto.descricao}</p>
+                                <p class="p-preco">$${produto.valor}</p>
+                            </div>
+                            <div class="box-info-baixo">
+                                <button class="button">Comprar</button>
+                            </div>
                         </div>
 
                     </div>

@@ -26,9 +26,11 @@
                     <a class="menu-links" href="./admin-panel"> Cadastro Produtos</a>
                     <a class="menu-links" href="./cadastro-categoria"> Cadastro Categorias</a>
                 </div>
-                <div class="icone-content">
-                    <button class="icone-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
-                </div>
+                <form class="form-logout" method="post" action="sair">
+                    <div class="icone-content">
+                        <button class="icone-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    </div>
+                </form>
             </header>
 
             <main>
@@ -38,7 +40,7 @@
 
                         <div>
                             <h1>Cadastro de Produtos</h1>
-                        </div>  
+                        </div>
 
                         <div class="grid-prod-form">
                             <div class="inputs-cad-prod">
@@ -59,12 +61,13 @@
                                 </div>
                                 <select id="categoria" name="categoria" class="form-select form-select-lg">
                                     <option value="">Selecione uma categoria</option>
-    
+
                                     <c:forEach items="${categorias}" var="c">
                                         <option value="${c.id_categoria}">${c.nome}</option>
                                     </c:forEach>
-    
+
                                 </select>
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
 
                             <div class="img-cad-prod">
@@ -83,13 +86,13 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
             </main>
 
         </body>
+        <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>
         <script src="js/insertImg.js" type="text/javascript"></script>
 
         </html>

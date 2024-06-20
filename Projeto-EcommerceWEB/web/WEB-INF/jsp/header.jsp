@@ -13,18 +13,16 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"
                 integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <title>JSP Page</title>
+            <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>
+            <title>Header</title>
         </head>
 
         <body>
             <header>
                 <nav>
                     <div class="logo-content">
-                        <img class="logo" src="assets/Logo SoundSpace.png" alt="" />
+                        <a href="./home"><img class="logo" src="assets/Logo SoundSpace.png" alt="" /></a>
                         <img class="logo-sing" src="assets/Sound Space Sing.png" alt="" />
-                        <!-- <a href="./cadastrar">cadastro</a>
-                        <a href="./lista-produtos">produtos</a>
-                        <a href="./produto-unico">produto unico</a> -->
                         <a href="./admin-panel">admin</a>
                     </div>
 
@@ -38,9 +36,6 @@
                             <div class="input-style">
                                 <form action="buscar-produtos" method="get">
                                     <input name="busca" placeholder="Procure o que deseja" aria-label="Search">
-                                    <!-- <button class="btn btn-outline-success" type="submit">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button> -->
                                 </form>
                             </div>
 
@@ -57,44 +52,65 @@
                         <a class="menu-links" href="#under">Sobre</a>
                     </div>
 
-                    <div class="icons-content">
-                        <button class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></button>
-                        <button class="icon-btn" type="submit" id="perfil-btn"><i class="bi bi-person-circle"></i></button>
+                    <c:choose>
+                        <c:when test="${empty usuario}">
+
+                            <div class="icons-content">
+                                <a href="./cadastrar"><button class="icon-btn"><i
+                                            class="fa-solid fa-cart-shopping"></i></button></a>
+                                <button class="icon-btn" type="submit" id="perfil-btn"><i
+                                        class="bi bi-person-circle"></i></button>
+
+                            </div>
+
+                            <div class="popup">
+
+
+                                <div class="close-form"><i class="bi bi-x"></i></div>
+                                <form class="form" method="post" action="logar">
+                                    <h2>Log in</h2>
+
+                                    <i class="bi bi-person-fill"></i>
+                                    <label class="title" for="email">Email</label>
+                                    <input class="form-input" type="email" name="email" id="email"
+                                        placeholder="Enter email">
+
+                                    <i class="bi bi-lock-fill"></i>
+                                    <label class="title" for="password">Senha</label>
+                                    <input class="form-input" type="password" name="password" id="password"
+                                        placeholder="Enter password">
+
+                                    <input class="form-checkbox" type="checkbox" id="remember-me">
+                                    <label class="title" for="remember-me">Lembrar de mim</label>
+
+                                    <button class="form-btn-confirm" type="submit">Logar</button>
+
+                                    <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
+                                </form>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="icons-content">
+                                <a href="./carrinho"><button class="icon-btn"><i
+                                            class="fa-solid fa-cart-shopping"></i></button></a>
+                                <button class="icon-btn" type="submit" id="perfil-btn"><i
+                                        class="bi bi-person-circle"></i></button>
+                                <form class="form-logout" method="post" action="sair">
+                                    <button class="icon-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                                </form>
+                            </div>
+
+                            <div class="popup">
+                                <div class="close-form"><i class="bi bi-x"></i></div>
+                                <form class="form" method="post" action="logar">
+                                    <h2>Log out</h2>
+
+                                    <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
+                                </form>
+                        </c:otherwise>
+                    </c:choose>
+
+
                     </div>
-
-                    <div class="popup">
-                        <div class="close-form"><i class="bi bi-x"></i></div>
-                        <form class="form" method="post" action="logar">
-                            <h2>Log in</h2>
-
-                            <i class="bi bi-person-fill"></i>
-                            <label class="title" for="email">Email</label>
-                            <input class="form-input" type="email" name="email" id="email" placeholder="Enter email">
-
-                            <i class="bi bi-lock-fill"></i>
-                            <label class="title" for="password">Senha</label>
-                            <input class="form-input" type="password" name="password" id="password"
-                                placeholder="Enter password">
-
-                            <input class="form-checkbox" type="checkbox" id="remember-me">
-                            <label class="title" for="remember-me">Lembrar de mim</label>
-
-                            <button class="form-btn-confirm" type="submit">Logar</button>
-
-                            <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
-                        </form>
-                    </div>
-                    <!-- <div class="dropdown">
-                    <div class="icons-content">
-                        <button class="icon-btn"><i class="bi bi-cart"></i></button>
-                        <button onclick="myFunction()" class="icon-btn dropbtn" type="submit"><i class="bi bi-person-circle"></i></button>
-                        <div id="perfilDropdown" class="dropdown-content">
-                            <a href="">1</a>
-                            <a href="">2</a>
-                            <a href="">3</a>
-                        </div>
-                    </div>
-                </div> -->
                 </nav>
                 <div class="categorias">
                     <div class="space"></div>
@@ -111,7 +127,6 @@
 
             </header>
         </body>
-        <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>
         <script src="js/searchBox.js" type="text/javascript"></script>
         <script src="js/popup-form.js" type="text/javascript"></script>
 

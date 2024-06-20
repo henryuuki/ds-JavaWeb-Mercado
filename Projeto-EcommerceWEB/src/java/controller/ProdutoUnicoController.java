@@ -16,8 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.bean.TableCategoria;
 import model.bean.TableProduto;
+import model.bean.TableUsuario;
 import model.dao.CategoriaDAO;
 import model.dao.ProdutoDAO;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -37,6 +39,12 @@ public class ProdutoUnicoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/produtoUnico.jsp";
+        
+        if (TableUsuario.getId_usuarioStatic() != 0) {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
+            request.setAttribute("usuario", usuarios);
+        }
 
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();

@@ -17,8 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.bean.TableCategoria;
 import model.bean.TableProduto;
+import model.bean.TableUsuario;
 import model.dao.CategoriaDAO;
 import model.dao.ProdutoDAO;
+import model.dao.UsuarioDAO;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -42,6 +44,12 @@ public class AdminController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/admin.jsp";
+        
+        if (TableUsuario.getId_usuarioStatic() != 0) {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
+            request.setAttribute("usuario", usuarios);
+        }
         
         CategoriaDAO dao = new CategoriaDAO();
         List<TableCategoria> listaCategorias = dao.listarTodosC();
@@ -139,6 +147,12 @@ public class AdminController extends HttpServlet {
         } else {
             // Se a requisição não for multipart, redireciona para a página inicial
             redirectToIndexPage(request, response);
+        }
+        
+        if(url.equals("/sair")){
+          TableUsuario.setId_usuarioStatic(0);
+            response.sendRedirect(request.getContextPath() + "/home");
+
         }
     }
     private void redirectToSuccessPage(HttpServletRequest request, HttpServletResponse response) throws IOException {

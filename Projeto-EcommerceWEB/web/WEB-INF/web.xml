@@ -44,6 +44,10 @@
         <servlet-name>CadastroCatController</servlet-name>
         <servlet-class>controller.CadastroCatController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CarrinhoController</servlet-name>
+        <servlet-class>controller.CarrinhoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -51,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>ProdutoController</servlet-name>
         <url-pattern>/lista-produtos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProdutoController</servlet-name>
+        <url-pattern>/buscar-produtos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProdutoController</servlet-name>
@@ -89,8 +97,16 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>IndexController</servlet-name>
+        <url-pattern>/sair</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CadastroCatController</servlet-name>
         <url-pattern>/cadastro-categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CarrinhoController</servlet-name>
+        <url-pattern>/carrinho</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
