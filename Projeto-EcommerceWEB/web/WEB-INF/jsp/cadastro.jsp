@@ -107,7 +107,7 @@
                             </div>
 
                             <button class="form-btn-confirm" type="submit">Cadastrar</button>
-                            <a class="form-link" href="./index.htm">Ja possui conta? Login</a>
+                            <a class="form-link" href="./home">Ja possui conta? Login</a>
 
                         </form>
                     </div>

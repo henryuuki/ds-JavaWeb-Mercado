@@ -14,7 +14,7 @@
 
         <main>
 
-            <h2>Carrinho de compra</h2>
+            <!-- <h2>Carrinho de compra</h2> -->
             <section class="contanier-carrinho-ss">
                 <div class="content-carrinho-ss">
                     <div class="infos-carrinho">
@@ -26,15 +26,24 @@
                             <p>Quantidade</p>
                         </div>
                         <div class="c-info-img">
+
                             <div class="c-card-item">
 
                             </div>
                             <div class="c-text">
                                 <p>${produto.nome}</p>
+                                <p class="c-descricao">${produto.descricao}</p>
                             </div>
+                            <div class="c-preco">
+                                <p class="p-preco">$${produto.valor}</p>
+                            </div>
+                            <div class="c-qtd-items">
+
+                            </div>
+
                         </div>
                         <div class="c-info-total">
-
+                            <p>Total</p>
                         </div>
 
                     </div>
@@ -42,7 +51,12 @@
                     <div class="separador"> </div>
 
                     <div class="info-frete">
+                        <div class="frete-text">
+                            <span>Calculo Frete</span>
+                        </div>
+                        <div class="preco-frete">
 
+                        </div>
                     </div>
                 </div>
 

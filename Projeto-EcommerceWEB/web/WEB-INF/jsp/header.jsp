@@ -56,15 +56,13 @@
                         <c:when test="${empty usuario}">
 
                             <div class="icons-content">
-                                <a href="./cadastrar"><button class="icon-btn"><i
-                                            class="fa-solid fa-cart-shopping"></i></button></a>
-                                <button class="icon-btn" type="submit" id="perfil-btn"><i
+                                <button class="icon-btn" type="submit" id="perfil-btn2"><i
+                                        class="fa-solid fa-cart-shopping"></i></button>
+                                <button class="icon-btn" type="submit" id="perfil-btn1"><i
                                         class="bi bi-person-circle"></i></button>
-
                             </div>
 
                             <div class="popup">
-
 
                                 <div class="close-form"><i class="bi bi-x"></i></div>
                                 <form class="form" method="post" action="logar">
@@ -87,12 +85,13 @@
 
                                     <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
                                 </form>
+                            </div>
                         </c:when>
                         <c:otherwise>
                             <div class="icons-content">
                                 <a href="./carrinho"><button class="icon-btn"><i
                                             class="fa-solid fa-cart-shopping"></i></button></a>
-                                <button class="icon-btn" type="submit" id="perfil-btn"><i
+                                <button class="icon-btn" type="submit" id="perfil-btn1"><i
                                         class="bi bi-person-circle"></i></button>
                                 <form class="form-logout" method="post" action="sair">
                                     <button class="icon-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
@@ -100,12 +99,13 @@
                             </div>
 
                             <div class="popup">
+
                                 <div class="close-form"><i class="bi bi-x"></i></div>
                                 <form class="form" method="post" action="logar">
-                                    <h2>Log out</h2>
-
+                                    <h2>Log in</h2>
                                     <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
                                 </form>
+                            </div>
                         </c:otherwise>
                     </c:choose>
 

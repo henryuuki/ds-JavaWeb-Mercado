@@ -1,8 +1,13 @@
 let popup = document.querySelector(".popup");
-let formOpen = document.querySelector("#perfil-btn");
+let formOpen1 = document.querySelector("#perfil-btn1");
+let formOpen2 = document.querySelector("#perfil-btn2");
 let formClose = document.querySelector(".close-form");
 
-formOpen.addEventListener("click", ()=> {
+formOpen1.addEventListener("click", ()=> {
+    popup.classList.add("active")
+})
+
+formOpen2.addEventListener("click", ()=> {
     popup.classList.add("active")
 })
 
