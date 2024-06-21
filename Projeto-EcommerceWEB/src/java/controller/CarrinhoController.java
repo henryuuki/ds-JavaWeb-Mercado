@@ -7,15 +7,20 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.TableCarrinho;
 import model.bean.TableCategoria;
+import model.bean.TableProduto;
 import model.bean.TableUsuario;
+import model.dao.CarrinhoDAO;
 import model.dao.CategoriaDAO;
+import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
 
 /**
@@ -47,6 +52,23 @@ public class CarrinhoController extends HttpServlet {
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
         
+        CarrinhoDAO daoP = new CarrinhoDAO();
+        List<TableCarrinho> produtos = daoP.visualizarCarrinho();
+        System.out.println("Carrinho: " + produtos);
+        
+        float total =  0;
+        
+        for (int i = 0; i < produtos.size(); i++) {
+            total += produtos.get(i).getValorProduto()* produtos.get(i).getQuantidade();
+            if (produtos.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImagemBytes());
+                produtos.get(i).setImagemBase64(imagemBase64);
+            }
+        }
+        request.setAttribute("produtos", produtos);
+        request.setAttribute("total", total);
+        
+        
         RequestDispatcher d = getServletContext().getRequestDispatcher(nextPag);
         d.forward(request, response);
     }
@@ -77,7 +99,18 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        
+        if(url.equals("/aumentarQTD")){
+            int idCarrinho = Integer.parseInt(request.getParameter("idCarrinho"));
+            System.out.println("o id do carrinho é: "+idCarrinho);
+            
+            int qtd = Integer.parseInt(request.getParameter("quantidade"));
+            System.out.println("Sua quantidade é: "+qtd);
+            
+            CarrinhoDAO cdd = new CarrinhoDAO();
+            cdd.mudarQuantidade(qtd, idCarrinho);
+        }
     }
 
     /**

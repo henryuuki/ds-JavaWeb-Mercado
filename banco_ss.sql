@@ -55,10 +55,17 @@ FOREIGN KEY (categoria_FK) REFERENCES categoria(id_categoria),
 FOREIGN KEY (setor_FK) REFERENCES setor(id_setor)
 );
 
+create table carrinho(
+id_carrinho INT auto_increment primary key,
+usuario_FK INT,
+produto_FK INT,
+quantidade INT NOT NULL
+);
+
 insert into usuario(nome, email, senha, cpf, telefone)
 values
 ('Henry','yuuki@gmail.com','1234','123456789','43988884444');
-
+    
 insert into usuario(nome, email, senha, cpf, telefone, acesso)
 values
 ('Admin','admin@gmail.com','admin','987654321','43999998888','admin');

@@ -14,9 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.TableCarrinho;
 import model.bean.TableCategoria;
 import model.bean.TableProduto;
 import model.bean.TableUsuario;
+import model.dao.CarrinhoDAO;
 import model.dao.CategoriaDAO;
 import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
@@ -82,8 +84,24 @@ public class ProdutoUnicoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        processRequest(request, response);
+        String url = request.getServletPath();
+        if(url.equals("/addCarrinho")){
+            
+            int idProduto = Integer.parseInt(request.getParameter("idProduto"));
+            int quantidade = 1;
+            
+            
+            
+            CarrinhoDAO dao = new CarrinhoDAO();
+            TableCarrinho c = new TableCarrinho();
+            c.setNomeProduto(url);
+            
+            response.sendRedirect("./home");
+            
+        } else {
+            processRequest(request, response);
+        }
+        
 
     }
 

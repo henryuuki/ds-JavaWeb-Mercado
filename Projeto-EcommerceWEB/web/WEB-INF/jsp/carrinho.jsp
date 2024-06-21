@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="en">
@@ -14,7 +15,6 @@
 
         <main>
 
-            <!-- <h2>Carrinho de compra</h2> -->
             <section class="contanier-carrinho-ss">
                 <div class="content-carrinho-ss">
                     <div class="infos-carrinho">
@@ -23,27 +23,46 @@
                             <p>Item</p>
                             <p>Descrições</p>
                             <p>Preço</p>
-                            <p>Quantidade</p>
+                            <p>Quantidade</p>                         
                         </div>
+                    <c:forEach items="${carrinhos}" var="carrinho">
+                        
                         <div class="c-info-img">
-
+                            <input type="hidden" id="idUsuario" name="idUsuario" value="carrinho.idCarrinho">
                             <div class="c-card-item">
-
+                                <img class="img-card" src="data:image/jpeg;base64,${carrinho.imagemBase64}" alt="${carrinho.nome}">
                             </div>
                             <div class="c-text">
-                                <p>${produto.nome}</p>
+                                <p>${carrinho.nome}</p>
                                 <p class="c-descricao">${produto.descricao}</p>
                             </div>
                             <div class="c-preco">
-                                <p class="p-preco">$${produto.valor}</p>
+                                <p>$${produto.valor}</p>
                             </div>
                             <div class="c-qtd-items">
-
+                                
+                            
+                                <div class="buttons">
+                                    <form action="aumentarQTD" method="post"></form>                                                                            
+                                        <button id="aumentar">+</button>
+                                        <input type="hidden" name="idCarrinho" id="idCarrinho" value="${carrinho.idCarrinho}">
+                                        <input type="hidden" name="quantidade" id="quantidade" value="${carrinho.quantidade + 1}">
+                                    </form>
+                                    <p>${carrinho.quantidade}</p>
+                                    <form action="diminuirQTD" method="post">
+                                        <button id="aumentar">-</button>
+                                        <input type="hidden" name="idCarrinho" id="idCarrinho" value="${carrinho.idCarrinho}">
+                                        <input type="hidden" name="quantidade" id="quantidade" value="${carrinho.quantidade - 1}">
+                                    </form>  
+                                </div>
+                            
                             </div>
 
                         </div>
+                    </c:forEach>
+                            
                         <div class="c-info-total">
-                            <p>Total: </p>
+                            <p>Total:${total} </p>
                         </div>
 
                     </div>

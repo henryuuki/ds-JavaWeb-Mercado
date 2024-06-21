@@ -29,9 +29,10 @@
                                 <p class="p-descricao">${produto.descricao}</p>
                                 <p class="p-preco">$${produto.valor}</p>
                             </div>
-                            <div class="box-info-baixo">
+                            <form action="addCarrinho" method="post" class="box-info-baixo">
+                                <input type="hidden" value="${produto.id_produto}" id="idProduto" name="idProduto">
                                 <button class="button-ss">Comprar</button>
-                            </div>
+                            </form>
                         </div>
 
                     </div>

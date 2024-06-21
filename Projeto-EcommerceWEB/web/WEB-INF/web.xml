@@ -81,6 +81,10 @@
         <url-pattern>/produto-unico</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ProdutoUnicoController</servlet-name>
+        <url-pattern>/addCarrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>TesteController</servlet-name>
         <url-pattern>/pagina-teste</url-pattern>
     </servlet-mapping>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>CarrinhoController</servlet-name>
         <url-pattern>/carrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CarrinhoController</servlet-name>
+        <url-pattern>/aumentarQTD</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import com.mysql.cj.xdevapi.Table;
 import conexao.Conexao;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.bean.TableCarrinho;
+import model.bean.TableProduto;
 import model.bean.TableUsuario;
 
 /**
@@ -21,22 +23,21 @@ import model.bean.TableUsuario;
  * @author Usuário
  */
 public class CarrinhoDAO {
+
     public boolean adicionar(TableCarrinho c) {
         try {
 
             Connection conexao = Conexao.conectar();
-            
-            if(produtoAddCarrinho(c.getProduto_FK(), TableUsuario.getId_usuarioStatic())){
+
+            if (produtoAddCarrinho(c.getProduto_FK().getId_produto(), TableUsuario.getId_usuarioStatic())) {
                 return false;
             }
-            
-            PreparedStatement stmt = conexao.prepareStatement("INSERT INTO carrinho (produto_FK, usuario_FK, quantidade,) values (?,?,?)");         
-            
-            
-            stmt.setInt(1, c.getProduto_FK());
-            stmt.setInt(2, c.getQuantidade());
-            stmt.setInt(3, TableUsuario.getId_usuarioStatic());
 
+            PreparedStatement stmt = conexao.prepareStatement("INSERT INTO carrinho (produto_FK, usuario_FK, quantidade) values (?,?,?)");
+
+            stmt.setInt(1, c.getProduto_FK().getId_produto());
+            stmt.setInt(2, TableUsuario.getId_usuarioStatic());
+            stmt.setInt(3, c.getQuantidade());
             stmt.executeUpdate();
 
             stmt.close();
@@ -56,9 +57,9 @@ public class CarrinhoDAO {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement(
-                    "SELECT c.id_carrinho ,p.imagem AS imagem_produto, p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
+                    "SELECT c.idCarrinho ,p.imagem AS imagem_produto, p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
                     + "FROM carrinho c\n"
-                    + "INNER JOIN produto p ON c.produto = p.id_produto\n"
+                    + "INNER JOIN produto p ON c.produto = p.idProduto\n"
                     + "WHERE c.usuario = ?;");
 
             stmt.setInt(1, TableUsuario.getId_usuarioStatic());
@@ -69,7 +70,7 @@ public class CarrinhoDAO {
 
                 TableCarrinho carrinho = new TableCarrinho();
 
-                carrinho.setId_carrinho(rs.getInt("id_carrinho"));
+                carrinho.setId_carrinho(rs.getInt("idCarrinho"));
 
                 Blob imagemBlob = rs.getBlob("imagem_produto");
                 if (imagemBlob != null) {
@@ -88,7 +89,9 @@ public class CarrinhoDAO {
                 carrinho.setValorProduto(precoProduto - promocaoProduto);
                 carrinho.setQuantidade(quantidade);
                 carrinho.setSubProduto(subProduto);
-                carrinho.setUsuario(Usuario.getIdUsuario());
+                TableUsuario u = new TableUsuario();
+                u.setId_usuario(TableUsuario.getId_usuarioStatic());
+                carrinho.setUsuario_FK(u);
 
                 carrinhos.add(carrinho);
             }
@@ -150,49 +153,49 @@ public class CarrinhoDAO {
 
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement("UPDATE carrinho SET quantidade = ? WHERE idCarrinho = ?");
-            
+
             stmt.setInt(1, quantidade);
             stmt.setInt(2, idCarrinho);
-            
+
             stmt.executeUpdate();
-            
+
             stmt.close();
             conexao.close();
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
-    
-    private boolean produtoAddCarrinho(int idProduto, int idUsuario){
-        
+
+    private boolean produtoAddCarrinho(int idProduto, int idUsuario) {
+
         boolean produtoAdd = false;
-        
-        try{
+
+        try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement("SELECT COUNT(*) FROM carrinho WHERE produto_FK = ? AND usuario_FK = ?");
-            
+
             stmt.setInt(1, idProduto);
             stmt.setInt(2, idUsuario);
-            
+
             ResultSet rs = stmt.executeQuery();
-            
-            if(rs.next() && rs.getInt(1) > 0){
+
+            if (rs.next() && rs.getInt(1) > 0) {
                 produtoAdd = true;
             }
-            
+
             rs.close();
             stmt.close();
-            conexao.close();            
-            
-        }catch (SQLException e) {
+            conexao.close();
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return produtoAdd;
     }
-    
+
     public boolean validaCarrinho(int idProduto) {
         boolean retorno = false;
         try {

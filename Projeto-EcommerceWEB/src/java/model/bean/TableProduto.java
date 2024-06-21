@@ -16,10 +16,11 @@ public class TableProduto {
     private String imagemBase64;
     private float valor;
 
+    private int quantidade;
     public TableProduto() {
     }
 
-    public TableProduto(int id_produto, int categoria_FK, String nome, String descricao, byte[] imagemBytes, String imagemBase64, float valor) {
+    public TableProduto(int id_produto, int categoria_FK, String nome, String descricao, byte[] imagemBytes, String imagemBase64, float valor, int quantidade) {
         this.id_produto = id_produto;
         this.categoria_FK = categoria_FK;
         this.nome = nome;
@@ -27,7 +28,18 @@ public class TableProduto {
         this.imagemBytes = imagemBytes;
         this.imagemBase64 = imagemBase64;
         this.valor = valor;
+        this.quantidade = quantidade;
     }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+   
 
     public int getId_produto() {
         return id_produto;
