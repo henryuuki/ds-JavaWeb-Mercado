@@ -21,7 +21,7 @@
 
                         <div class="c-info-nomes">
                             <p>Item</p>
-                            <p>Descrição</p>
+                            <p>Descrições</p>
                             <p>Preço</p>
                             <p>Quantidade</p>
                         </div>
@@ -43,7 +43,7 @@
 
                         </div>
                         <div class="c-info-total">
-                            <p>Total</p>
+                            <p>Total: </p>
                         </div>
 
                     </div>
@@ -55,7 +55,15 @@
                             <span>Calculo Frete</span>
                         </div>
                         <div class="preco-frete">
-
+                            <h3>Resumo Pedido</h3>
+                            <div class="calculo">
+                                <p>Produto(s):</p>
+                                <p>Frete:</p>
+                                <p class="preco-total">Total:</p>
+                            </div>
+                        </div>
+                        <div class="box-info-baixo">
+                            <button class="button-ss">Finalizar</button>
                         </div>
                     </div>
                 </div>

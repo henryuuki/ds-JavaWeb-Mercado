@@ -67,7 +67,7 @@
                                     </c:forEach>
 
                                 </select>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Confirmar</button>
                             </div>
 
                             <div class="img-cad-prod">

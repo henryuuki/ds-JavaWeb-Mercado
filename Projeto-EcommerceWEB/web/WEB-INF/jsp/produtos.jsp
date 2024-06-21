@@ -14,7 +14,7 @@
 
         <main>
             <div class="caminho">
-                <p>caminho</p>
+                <!-- <p>caminho</p> -->
             </div>
             <div class="content-products">
                 <div class="categoria-lista">

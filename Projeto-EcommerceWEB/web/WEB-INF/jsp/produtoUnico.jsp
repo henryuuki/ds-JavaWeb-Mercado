@@ -30,7 +30,7 @@
                                 <p class="p-preco">$${produto.valor}</p>
                             </div>
                             <div class="box-info-baixo">
-                                <button class="button">Comprar</button>
+                                <button class="button-ss">Comprar</button>
                             </div>
                         </div>
 
