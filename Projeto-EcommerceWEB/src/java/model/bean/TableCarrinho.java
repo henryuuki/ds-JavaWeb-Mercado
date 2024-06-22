@@ -14,8 +14,8 @@ import java.sql.Blob;
 public class TableCarrinho {
 
     private int id_carrinho;
-    private TableUsuario usuario_FK;
-    private TableProduto produto_FK;
+    private int usuario_FK;
+    private int produto_FK;
     private int quantidade;
     private float subProduto;
     private float subTotal;
@@ -28,7 +28,7 @@ public class TableCarrinho {
     public TableCarrinho() {
     }
 
-    public TableCarrinho(int id_carrinho, TableUsuario usuario_FK, TableProduto produto_FK, int quantidade, float subProduto, float subTotal, String descricao, String nomeProduto, Float valorProduto, byte[] imagemBytes, String imagemBase64) {
+    public TableCarrinho(int id_carrinho, int usuario_FK, int produto_FK, int quantidade, float subProduto, float subTotal, String descricao, String nomeProduto, Float valorProduto, byte[] imagemBytes, String imagemBase64) {
         this.id_carrinho = id_carrinho;
         this.usuario_FK = usuario_FK;
         this.produto_FK = produto_FK;
@@ -50,19 +50,19 @@ public class TableCarrinho {
         this.id_carrinho = id_carrinho;
     }
 
-    public TableUsuario getUsuario_FK() {
+    public int getUsuario_FK() {
         return usuario_FK;
     }
 
-    public void setUsuario_FK(TableUsuario usuario_FK) {
+    public void setUsuario_FK(int usuario_FK) {
         this.usuario_FK = usuario_FK;
     }
 
-    public TableProduto getProduto_FK() {
+    public int getProduto_FK() {
         return produto_FK;
     }
 
-    public void setProduto_FK(TableProduto produto_FK) {
+    public void setProduto_FK(int produto_FK) {
         this.produto_FK = produto_FK;
     }
 

@@ -40,8 +40,9 @@
                                             </div>
                                             <div class="p-card-infos">
                                                 <span><a href="#">${produto.nome}</a></span>
-                                                <span class="p-descricao">${produto.descricao}</span>
+                                                <span class="p-descricao">Clique para mais informações</span>
                                                 <p>$${produto.valor}</p>
+                                                <span class="p-descricao">Até 6x de R$${produto.valor / 6}</span>
                                             </div>
                                         </div>
                                     </button>

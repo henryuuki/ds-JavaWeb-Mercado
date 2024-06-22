@@ -47,10 +47,10 @@ id_produto INT auto_increment primary key,
 categoria_FK INT,
 setor_FK INT,
 nome VARCHAR(255) NOT NULL,
-descricao VARCHAR(255) NOT NULL,
+descricao VARCHAR(500) NOT NULL,
 setor VARCHAR(255),
 imagem LONGBLOB,
-valor FLOAT(8,2),
+valor FLOAT(10,2),
 FOREIGN KEY (categoria_FK) REFERENCES categoria(id_categoria),
 FOREIGN KEY (setor_FK) REFERENCES setor(id_setor)
 );

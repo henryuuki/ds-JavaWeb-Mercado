@@ -94,7 +94,9 @@ public class ProdutoUnicoController extends HttpServlet {
             
             CarrinhoDAO dao = new CarrinhoDAO();
             TableCarrinho c = new TableCarrinho();
-            c.setNomeProduto(url);
+            c.setProduto_FK(idProduto);
+            c.setQuantidade(quantidade);
+            dao.adicionar(c);
             
             response.sendRedirect("./home");
             

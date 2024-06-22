@@ -23,7 +23,7 @@
                     <div class="logo-content">
                         <a href="./home"><img class="logo" src="assets/Logo SoundSpace.png" alt="" /></a>
                         <img class="logo-sing" src="assets/Sound Space Sing.png" alt="" />
-                        <a href="./admin-panel">admin</a>
+                        <!-- <a href="./admin-panel">admin</a> -->
                     </div>
 
                     <div class="input-contanier">

@@ -70,7 +70,7 @@ main{
 
 .content-products .cards-categorias .products-cards .p-cards{
     width: 300px;
-    height: 440px;
+    height: 470px;
     border: solid 1px #c3c3c3;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
     color: black;
@@ -117,3 +117,4 @@ main{
     cursor: pointer;
     background: none;
 }
+

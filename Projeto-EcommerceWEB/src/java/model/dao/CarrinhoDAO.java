@@ -29,15 +29,16 @@ public class CarrinhoDAO {
 
             Connection conexao = Conexao.conectar();
 
-            if (produtoAddCarrinho(c.getProduto_FK().getId_produto(), TableUsuario.getId_usuarioStatic())) {
+            if (produtoAddCarrinho(c.getProduto_FK(), TableUsuario.getId_usuarioStatic())) {
                 return false;
             }
 
-            PreparedStatement stmt = conexao.prepareStatement("INSERT INTO carrinho (produto_FK, usuario_FK, quantidade) values (?,?,?)");
+            PreparedStatement stmt = conexao.prepareStatement("INSERT INTO carrinho (produto_FK, quantidade, usuario_FK) values (?,?,?)");
 
-            stmt.setInt(1, c.getProduto_FK().getId_produto());
-            stmt.setInt(2, TableUsuario.getId_usuarioStatic());
-            stmt.setInt(3, c.getQuantidade());
+            stmt.setInt(1, c.getProduto_FK());
+            stmt.setInt(2, c.getQuantidade());
+            stmt.setInt(3, TableUsuario.getId_usuarioStatic());
+
             stmt.executeUpdate();
 
             stmt.close();
@@ -57,10 +58,18 @@ public class CarrinhoDAO {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = conexao.prepareStatement(
-                    "SELECT c.idCarrinho ,p.imagem AS imagem_produto, p.nome AS nome_produto, p.promocao AS promocao_produto, p.valor AS preco_produto, c.quantidade AS quantidade_pedido\n"
-                    + "FROM carrinho c\n"
-                    + "INNER JOIN produto p ON c.produto = p.idProduto\n"
-                    + "WHERE c.usuario = ?;");
+                    "SELECT \n"
+                    + "    c.id_carrinho ,\n"
+                    + "    p.imagem AS imagem_produto,\n"
+                    + "    p.nome AS nome_produto,\n"
+                    + "    p.valor AS preco_produto,\n"
+                    + "    c.quantidade AS quantidade_pedido\n"
+                    + "FROM \n"
+                    + "    carrinho c\n"
+                    + "INNER JOIN \n"
+                    + "    produto p ON c.produto_FK = p.id_produto\n"
+                    + "WHERE \n"
+                    + "    c.usuario_FK = ?;");
 
             stmt.setInt(1, TableUsuario.getId_usuarioStatic());
 
@@ -70,7 +79,7 @@ public class CarrinhoDAO {
 
                 TableCarrinho carrinho = new TableCarrinho();
 
-                carrinho.setId_carrinho(rs.getInt("idCarrinho"));
+                carrinho.setId_carrinho(rs.getInt("id_carrinho"));
 
                 Blob imagemBlob = rs.getBlob("imagem_produto");
                 if (imagemBlob != null) {
@@ -79,19 +88,9 @@ public class CarrinhoDAO {
                 }
                 carrinho.setNomeProduto(rs.getString("nome_produto"));
                 float precoProduto = rs.getFloat("preco_produto");
-                float promocaoProduto = rs.getFloat("promocao_produto");
                 int quantidade = rs.getInt("quantidade_pedido");
 
-                // Calculando o subtotal
-                float subProduto = (precoProduto - promocaoProduto) * quantidade;
-
-                // Definindo os valores no objeto Carrinho
-                carrinho.setValorProduto(precoProduto - promocaoProduto);
-                carrinho.setQuantidade(quantidade);
-                carrinho.setSubProduto(subProduto);
-                TableUsuario u = new TableUsuario();
-                u.setId_usuario(TableUsuario.getId_usuarioStatic());
-                carrinho.setUsuario_FK(u);
+                carrinho.setUsuario_FK(TableUsuario.getId_usuarioStatic());
 
                 carrinhos.add(carrinho);
             }
@@ -107,14 +106,14 @@ public class CarrinhoDAO {
         return carrinhos;
     }
 
-    public void excluirProdutoUnico(int idCarrinho) {
+    public void excluirProdutoUnico(int id_carrinho) {
 
         try {
 
             Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE idCarrinho = ?");
+            PreparedStatement stmt = conexao.prepareStatement("DELETE FROM carrinho WHERE id_carrinho = ?");
 
-            stmt.setInt(1, idCarrinho);
+            stmt.setInt(1, id_carrinho);
 
             stmt.executeUpdate();
 
@@ -147,15 +146,15 @@ public class CarrinhoDAO {
 
     }
 
-    public void mudarQuantidade(int quantidade, int idCarrinho) {
+    public void mudarQuantidade(int quantidade, int id_carrinho) {
 
         try {
 
             Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = conexao.prepareStatement("UPDATE carrinho SET quantidade = ? WHERE idCarrinho = ?");
+            PreparedStatement stmt = conexao.prepareStatement("UPDATE carrinho SET quantidade = ? WHERE id_carrinho = ?");
 
             stmt.setInt(1, quantidade);
-            stmt.setInt(2, idCarrinho);
+            stmt.setInt(2, id_carrinho);
 
             stmt.executeUpdate();
 
