@@ -15,98 +15,100 @@
 
             <main>
 
-                <section class="contanier-carrinho-ss">
-                    <div class="content-carrinho-ss">
-                        <div class="infos-carrinho">
+                <!-- <section class="contanier-carrinho-ss"> -->
+                <div class="content-carrinho-ss">
+                    <div class="infos-carrinho">
 
-                            <div class="c-info-nomes">
-                                <p>Item</p>
-                                <p>Descrições</p>
-                                <p>Preço</p>
-                                <p>Quantidade</p>
-                            </div>
-                            <c:choose>
-                                <c:when test="${empty usuario}">
-                                    <p>usuario nao logado</p>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:choose>
-                                        <c:when test="${empty carrinhos}">
+                        <div class="c-info-nomes">
+                            <p>Item</p>
+                            <p>Descrições</p>
+                            <p>Preço</p>
+                            <p>Quantidade</p>
+                        </div>
+                        <c:choose>
+                            <c:when test="${empty usuario}">
+                                <div class="aviso-vazio">
+                                    <p>Usuario não logado</p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${empty carrinhos}">
+                                        <div class="aviso-vazio">
                                             <p>Seu carrinho esta vazio</p>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:forEach items="${carrinhos}" var="carrinho">
-                                                <div class="c-info-img">
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach items="${carrinhos}" var="carrinho">
+                                            <div class="c-info-img">
 
-                                                    <input type="hidden" id="idUsuario" name="idUsuario"
-                                                        value="carrinho.id_carrinho">
-                                                    <div class="c-card-item">
-                                                        <img class="img-card"
-                                                            src="data:image/jpeg;base64,${carrinho.imagemBase64}"
-                                                            alt="">
-                                                    </div>
-                                                    <div class="c-text">
-                                                        <p>${carrinho.nomeProduto}</p>
-                                                        <p class="c-descricao">${produto.descricao}</p>
-                                                    </div>
-                                                    <div class="c-preco">
-                                                        <p>$${carrinho.valorProduto}</p>
-                                                    </div>
-                                                    <div class="c-qtd-items">
+                                                <input type="hidden" id="idUsuario" name="idUsuario"
+                                                    value="carrinho.id_carrinho">
+                                                <div class="c-card-item">
+                                                    <img class="img-card"
+                                                        src="data:image/jpeg;base64,${carrinho.imagemBase64}" alt="">
+                                                </div>
+                                                <div class="c-text">
+                                                    <p>${carrinho.nomeProduto}</p>
+                                                </div>
+                                                <div class="c-preco">
+                                                    <p>$${carrinho.subProduto}</p>
+                                                </div>
+                                                <div class="c-qtd-items">
 
-                                                        <div class="buttons">
-                                                            <form action="aumentarQTD" method="post"></form>
+                                                    <div class="buttons-carrinho">
+                                                        <form action="aumentarQTD" method="post">
                                                             <button id="aumentar">+</button>
-                                                            <input type="hidden" name="id_carrinho" id="id_carrinho"
-                                                                value="${carrinho.id_carrinho}">
+                                                            <input type="hidden" name="id_carrinho_add"
+                                                                id="id_carrinho_add" value="${carrinho.id_carrinho}">
                                                             <input type="hidden" name="quantidade" id="quantidade"
                                                                 value="${carrinho.quantidade + 1}">
-                                                            </form>
-                                                            <p>${carrinho.quantidade}</p>
-                                                            <form action="diminuirQTD" method="post">
-                                                                <button id="aumentar">-</button>
-                                                                <input type="hidden" name="id_carrinho" id="id_carrinho"
-                                                                    value="${carrinho.id_carrinho}">
-                                                                <input type="hidden" name="quantidade" id="quantidade"
-                                                                    value="${carrinho.quantidade - 1}">
-                                                            </form>
-                                                        </div>
-
+                                                        </form>
+                                                        <p>${carrinho.quantidade}</p>
+                                                        <form action="diminuirQTD" method="post">
+                                                            <button id="aumentar">-</button>
+                                                            <input type="hidden" name="id_carrinho_remove"
+                                                                id="id_carrinho_remove" value="${carrinho.id_carrinho}">
+                                                            <input type="hidden" name="quantidade" id="quantidade"
+                                                                value="${carrinho.quantidade - 1}">
+                                                        </form>
                                                     </div>
 
                                                 </div>
-                                            </c:forEach>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:otherwise>
-                            </c:choose>
+
+                                            </div>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:otherwise>
+                        </c:choose>
 
 
-                            <div class="c-info-total">
-                                <p>Total: ${total} </p>
-                            </div>
-
+                        <div class="c-info-total">
+                            <p>Total: ${total} </p>
                         </div>
 
-                        <div class="separador"> </div>
+                    </div>
 
-                        <div class="info-frete">
-                            <div class="frete-text">
-                                <span>Calculo Frete</span>
+                    <div class="separador"> </div>
+
+                    <div class="info-frete">
+                        <div class="frete-text">
+                            <span>Calculo Frete</span>
+                        </div>
+                        <div class="preco-frete">
+                            <h3>Resumo Pedido</h3>
+                            <div class="calculo">
+                                <p>Produto(s): ${total}</p>
+                                <p>Frete:</p>
+                                <p class="preco-total">Total: ${total}</p>
                             </div>
-                            <div class="preco-frete">
-                                <h3>Resumo Pedido</h3>
-                                <div class="calculo">
-                                    <p>Produto(s):</p>
-                                    <p>Frete:</p>
-                                    <p class="preco-total">Total:</p>
-                                </div>
-                            </div>
-                            <div class="box-info-baixo">
-                                <button class="button-ss">Finalizar</button>
-                            </div>
+                        </div>
+                        <div class="box-info-baixo">
+                            <a href="./checkout"><button class="button-ss">Finalizar</button></a>
                         </div>
                     </div>
+                </div>
 
                 </section>
 

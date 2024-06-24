@@ -88,9 +88,7 @@ public class ProdutoUnicoController extends HttpServlet {
         if(url.equals("/addCarrinho")){
             
             int idProduto = Integer.parseInt(request.getParameter("idProduto"));
-            int quantidade = 1;
-            
-            
+            int quantidade = 1;            
             
             CarrinhoDAO dao = new CarrinhoDAO();
             TableCarrinho c = new TableCarrinho();

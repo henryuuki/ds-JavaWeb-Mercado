@@ -7,27 +7,22 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.bean.TableCarrinho;
 import model.bean.TableCategoria;
-import model.bean.TableProduto;
 import model.bean.TableUsuario;
-import model.dao.CarrinhoDAO;
 import model.dao.CategoriaDAO;
-import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
 
 /**
  *
  * @author Usuário
  */
-public class CarrinhoController extends HttpServlet {
+public class CheckoutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,46 +35,20 @@ public class CarrinhoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPag = "/WEB-INF/jsp/carrinho.jsp";
+        String nextPage = "/WEB-INF/jsp/checkout.jsp";
+        
         if (TableUsuario.getId_usuarioStatic() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
             List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
             request.setAttribute("usuario", usuarios);
         }
         
-        CarrinhoDAO cd = new CarrinhoDAO();
-        List<TableCarrinho> carrinho = cd.visualizarCarrinho();
-        for (int i = 0; i < carrinho.size(); i++) {
-            System.out.println("Id carrinho = " + carrinho.get(i).getId_carrinho());
-            if (carrinho.get(i).getImagemBytes() != null) {
-                String imagemBase64 = Base64.getEncoder().encodeToString(carrinho.get(i).getImagemBytes());
-                carrinho.get(i).setImagemBase64(imagemBase64);
-            }
-            
-        }
-        request.setAttribute("carrinhos", carrinho);
-        
-        float total = 0;
-
-        for (TableCarrinho c : carrinho) {
-            total += c.getSubProduto();
-        }
-        
-        request.setAttribute("total", total);
-        
-        System.out.println("Total = " + total);
-
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
 
-        CarrinhoDAO daoP = new CarrinhoDAO();
-        List<TableCarrinho> produtos = daoP.visualizarCarrinho();
-        
-        
-       
-        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPag);
-        d.forward(request, response);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -108,37 +77,7 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = request.getServletPath();
-        if (url.equals("/aumentarQTD")) {
-            
-            int id_carrinho = Integer.parseInt(request.getParameter("id_carrinho_add"));
-            int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-
-            CarrinhoDAO cdd = new CarrinhoDAO();
-            cdd.mudarQuantidade(quantidade, id_carrinho);
-
-            response.sendRedirect("./carrinho");
-            TableCarrinho carrinho = new TableCarrinho();
-            System.out.println("Quantidade " + carrinho.getQuantidade());
-            System.out.println("Aumentar - id_carrinho: " + id_carrinho + ", quantidade: " + quantidade);
-        } else if (url.equals("/diminuirQTD")) {
-
-            int id_carrinho = Integer.parseInt(request.getParameter("id_carrinho_remove"));
-            int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-
-            CarrinhoDAO dao = new CarrinhoDAO();
-
-            if (quantidade <= 0) {
-
-                dao.excluirProdutoUnico(id_carrinho);
-                response.sendRedirect("./carrinho");
-
-            } else {
-                dao.mudarQuantidade(quantidade, id_carrinho);
-                response.sendRedirect("./carrinho");
-            }
-            System.out.println("Diminuir - id_carrinho: " + id_carrinho + ", quantidade: " + quantidade);
-        }
+        processRequest(request, response);
     }
 
     /**

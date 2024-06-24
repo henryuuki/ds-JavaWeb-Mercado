@@ -91,9 +91,9 @@ public class ProdutoController extends HttpServlet {
             request.setAttribute("categorias", listaCategorias);
 
             ProdutoDAO daoP = new ProdutoDAO();
-            
+
             List<TableProduto> produtosInput = new ArrayList<>();
-            
+
             String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
             if (busca.equals("")) {
                 String categoria = request.getParameter("cat");
@@ -109,6 +109,12 @@ public class ProdutoController extends HttpServlet {
                     String imagemBase64 = Base64.getEncoder().encodeToString(produtosInput.get(i).getImagemBytes());
                     produtosInput.get(i).setImagemBase64(imagemBase64);
                 }
+            }
+
+            if (TableUsuario.getId_usuarioStatic() != 0) {
+                UsuarioDAO dao = new UsuarioDAO();
+                List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
+                request.setAttribute("usuario", usuarios);
             }
             request.setAttribute("produtos", produtosInput);
 
