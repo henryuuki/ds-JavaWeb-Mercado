@@ -4,24 +4,20 @@ body{
     width: 100%;
 }
 
-.contanier-admin{
+.contanier-cadastro{
     border: 1px solid rgba(185, 185, 185, 0.781);
     border-radius: 20px;
     width: 1200px;
-    height: 700px;
-    display: flex;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
     align-items: center;
     margin-top: 10%;
 }
 
-.contanier-admin h1{
+.contanier-cadastro h1{
     text-align: center;
-}
-
-
-.formulario{
-    width: 600px;
 }
 
 .btn-primary{
@@ -29,15 +25,6 @@ body{
     width: 100%;
 }
 
-.contanier-admin .grid-prod-form{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.contanier-admin .grid-prod-form .inputs-cad-prod{
-    margin: 40px;
-}
-
-.contanier-admin .grid-prod-form .img-cad-prod{
+.inputs-cad-prod{
     margin: 40px;
 }

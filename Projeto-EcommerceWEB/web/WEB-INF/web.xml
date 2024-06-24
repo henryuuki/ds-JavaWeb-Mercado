@@ -109,6 +109,14 @@
         <url-pattern>/cadastro-categoria</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>CadastroCatController</servlet-name>
+        <url-pattern>/cadastrar-categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroCatController</servlet-name>
+        <url-pattern>/cadastrar-setor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CarrinhoController</servlet-name>
         <url-pattern>/carrinho</url-pattern>
     </servlet-mapping>

@@ -31,7 +31,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:choose>
-                                        <c:when test="${empty carrinho}">
+                                        <c:when test="${empty carrinhos}">
                                             <p>Seu carrinho esta vazio</p>
                                         </c:when>
                                         <c:otherwise>
@@ -43,14 +43,14 @@
                                                     <div class="c-card-item">
                                                         <img class="img-card"
                                                             src="data:image/jpeg;base64,${carrinho.imagemBase64}"
-                                                            alt="${carrinho.nomeProduto}">
+                                                            alt="">
                                                     </div>
                                                     <div class="c-text">
                                                         <p>${carrinho.nomeProduto}</p>
                                                         <p class="c-descricao">${produto.descricao}</p>
                                                     </div>
                                                     <div class="c-preco">
-                                                        <p>$${produto.valor}</p>
+                                                        <p>$${carrinho.valorProduto}</p>
                                                     </div>
                                                     <div class="c-qtd-items">
 
@@ -83,7 +83,7 @@
 
 
                             <div class="c-info-total">
-                                <p>Total:${total} </p>
+                                <p>Total: ${total} </p>
                             </div>
 
                         </div>

@@ -89,7 +89,11 @@ public class CarrinhoDAO {
                 carrinho.setNomeProduto(rs.getString("nome_produto"));
                 float precoProduto = rs.getFloat("preco_produto");
                 int quantidade = rs.getInt("quantidade_pedido");
-
+                
+                
+                float subProduto = (precoProduto * quantidade);
+                carrinho.setValorProduto(precoProduto);
+                carrinho.setSubProduto(subProduto);
                 carrinho.setUsuario_FK(TableUsuario.getId_usuarioStatic());
 
                 carrinhos.add(carrinho);

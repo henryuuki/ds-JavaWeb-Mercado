@@ -41,22 +41,33 @@ public class CarrinhoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPag = "/WEB-INF/jsp/carrinho.jsp";
-
         if (TableUsuario.getId_usuarioStatic() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
             List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
             request.setAttribute("usuario", usuarios);
         }
-
+        
         CarrinhoDAO cd = new CarrinhoDAO();
         List<TableCarrinho> carrinho = cd.visualizarCarrinho();
         for (int i = 0; i < carrinho.size(); i++) {
+            System.out.println("Id carrinho = " + carrinho.get(i).getId_carrinho());
             if (carrinho.get(i).getImagemBytes() != null) {
                 String imagemBase64 = Base64.getEncoder().encodeToString(carrinho.get(i).getImagemBytes());
                 carrinho.get(i).setImagemBase64(imagemBase64);
             }
+            
         }
         request.setAttribute("carrinhos", carrinho);
+        
+        float total = 0;
+
+        for (TableCarrinho c : carrinho) {
+            total += c.getSubProduto();
+        }
+        
+        request.setAttribute("total", total);
+        
+        System.out.println("Total = " + total);
 
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
@@ -64,6 +75,8 @@ public class CarrinhoController extends HttpServlet {
 
         CarrinhoDAO daoP = new CarrinhoDAO();
         List<TableCarrinho> produtos = daoP.visualizarCarrinho();
+        
+        
        
         RequestDispatcher d = getServletContext().getRequestDispatcher(nextPag);
         d.forward(request, response);

@@ -5,13 +5,24 @@
  */
 package controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.TableCategoria;
+import model.bean.TableProduto;
+import model.dao.CategoriaDAO;
+import model.dao.ProdutoDAO;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -31,7 +42,7 @@ public class CadastroCatController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/cadastroCategoria.jsp";
-        
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
     }
@@ -62,7 +73,44 @@ public class CadastroCatController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        if (url.equals("/cadastrar-categoria")) {
+            String errorMessage = "";
+            String nome = request.getParameter("nomeCat");
+
+            if (nome == null || nome.trim().isEmpty()) {
+                System.out.println("Entra erro");
+                errorMessage = "Preencha o campo.";
+            } else {
+
+                TableCategoria categoria = new TableCategoria();
+                categoria.setNome(nome);
+
+                CategoriaDAO dao = new CategoriaDAO();
+
+                boolean success = dao.create(categoria);
+                System.out.println("Entra certo");
+                if (success) {
+                    redirectToSuccessPage(request, response);
+                } else {
+                    redirectToErrorPage(request, response);
+                }
+            }
+        } else {
+            processRequest(request, response);
+        }
+    }
+
+    private void redirectToSuccessPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(request.getContextPath() + "/admin-panel");
+    }
+
+    private void redirectToErrorPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(request.getContextPath() + "/cadastro-categoria");
+    }
+
+    private void redirectToIndexPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 
     /**

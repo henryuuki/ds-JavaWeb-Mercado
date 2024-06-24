@@ -88,7 +88,6 @@ public class AdminController extends HttpServlet {
         // Verifica se a requisição é do tipo multipart (upload de arquivo)
         String url = request.getServletPath();
         if (url.equals("/cadastrar-produto")) {
-            System.out.println("E");
             try {
                 // Parseia a requisição para obter os itens do formulário
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -156,17 +155,14 @@ public class AdminController extends HttpServlet {
         }
     }
     private void redirectToSuccessPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Redireciona para a página de produtos
         response.sendRedirect(request.getContextPath() + "/admin-panel");
     }
 
     private void redirectToErrorPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Redireciona para a página de erro
         response.sendRedirect(request.getContextPath() + "/admin-panel");
     }
 
     private void redirectToIndexPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Redireciona para a página inicial
         response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 

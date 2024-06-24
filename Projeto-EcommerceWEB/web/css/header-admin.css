@@ -1,0 +1,95 @@
+header{
+    width: auto;
+    height: 120px;
+    background-color: rgb(34, 34, 34);
+    display: flex;
+    align-items: center;
+}
+
+main{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+}
+
+.logo-sing{
+    width: 100px;
+    height: 100px;
+}
+
+.menu{
+    display: flex;
+    text-align: center;
+    gap: 20px;
+}
+
+.menu-links{
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+}
+
+.menu-links::after{
+    content:  " ";
+    width: 0%;
+    height: 3px;
+    background-color: rgb(0, 79, 182);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.menu-links:hover::after{
+    width: 100%;
+}
+
+.icone-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: white;
+}
+
+.form-logout{
+    margin-left: 10%;
+    margin-right: 2%;
+}
+
+.icone-content button{
+    color: white;
+}
+
+.icone-btn{
+    background: none;
+    border: none;
+    cursor: pointer;    
+    color: white;
+}
+
+.icone-btn i{
+    font-size: 35px;
+    transition: .5s;
+}
+
+.icone-btn i:hover{
+    color: rgb(0, 79, 182);
+}
