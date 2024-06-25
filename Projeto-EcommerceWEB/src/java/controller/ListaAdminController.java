@@ -14,20 +14,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.bean.TableCarrinho;
 import model.bean.TableCategoria;
 import model.bean.TableProduto;
 import model.bean.TableUsuario;
-import model.dao.CarrinhoDAO;
 import model.dao.CategoriaDAO;
 import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
 
 /**
  *
- * @author Senai
+ * @author Usuário
  */
-public class ProdutoUnicoController extends HttpServlet {
+public class ListaAdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,34 +38,42 @@ public class ProdutoUnicoController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/produtoUnico.jsp";
-
+        String nextPage = "/WEB-INF/jsp/listaAdmin.jsp";
+        
         if (TableUsuario.getId_usuarioStatic() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
             List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
             request.setAttribute("usuario", usuarios);
-
         }
-
+        
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
-
+        
         ProdutoDAO daoP = new ProdutoDAO();
-        TableProduto produtos = daoP.readById(TableProduto.getIdStaticProduto());
+        List<TableProduto> produtos = daoP.listarTodosProdutos();
 
-        if (produtos.getImagemBytes() != null) {
-            String imagemBase64 = Base64.getEncoder().encodeToString(produtos.getImagemBytes());
-            produtos.setImagemBase64(imagemBase64);
-
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImagemBytes());
+                produtos.get(i).setImagemBase64(imagemBase64);
+            }
         }
-
-        request.setAttribute("produto", produtos);
+        request.setAttribute("produtos", produtos);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,32 +91,7 @@ public class ProdutoUnicoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = request.getServletPath();
-        String errorMessage = "";
-
-        if (url.equals("/addCarrinho")) {
-            if (TableUsuario.getId_usuarioStatic() == 0 || !errorMessage.isEmpty()) {
-                response.sendRedirect("./produto-unico");
-                if (!errorMessage.isEmpty()) {
-                    request.setAttribute("errorMessage", errorMessage);
-                }
-            } else {
-                System.out.println("Entra aq 3 " + TableUsuario.getId_usuarioStatic());
-                int idProduto = Integer.parseInt(request.getParameter("idProduto"));
-                int quantidade = 1;
-
-                CarrinhoDAO dao = new CarrinhoDAO();
-                TableCarrinho c = new TableCarrinho();
-                c.setProduto_FK(idProduto);
-                c.setQuantidade(quantidade);
-                dao.adicionar(c);
-
-                response.sendRedirect("./home");
-            }
-        } else {
-            processRequest(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**

@@ -310,7 +310,45 @@ public class ProdutoDAO {
 
         return produtos;
     }
+    
+    public List<TableProduto> listarTodosProdutos() {
+        List<TableProduto> produtos = new ArrayList<>();
+        Connection conexao = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
+        try {
+            conexao = Conexao.conectar();
+            stmt = conexao.prepareStatement("SELECT * FROM produtos");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                TableProduto p = new TableProduto();
+                p.setId_produto(rs.getInt("id_produto"));
+                p.setNome(rs.getString("nome"));
+                p.setCategoria_FK(rs.getInt("categoria_FK"));
+                p.setValor(rs.getFloat("valor"));
+                p.setDescricao(rs.getString("descricao"));
+
+                Blob imagemBlob = rs.getBlob("imagem");
+                if (imagemBlob != null) {
+                    byte[] imagemBytes = imagemBlob.getBytes(1, (int) imagemBlob.length());
+                    p.setImagemBytes(imagemBytes);
+                }
+                
+                produtos.add(p);
+            }
+            
+            rs.close();
+            stmt.close();
+            conexao.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return produtos;
+    }
+    
     public void update(TableProduto p) {
 
         try {

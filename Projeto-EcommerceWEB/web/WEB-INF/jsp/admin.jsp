@@ -21,7 +21,7 @@
                         <img class="logo-sing" src="assets/Sound Space Sing V2.png" alt="" />
                     </div>
                     <div class="menu">
-                        <a class="menu-links" href="#under">Lista Produtos</a>
+                        <a class="menu-links" href="./lista-admin">Lista Produtos</a>
                         <a class="menu-links" href="./admin-panel"> Cadastro Produtos</a>
                         <a class="menu-links" href="./cadastro-categoria"> Cadastro Categorias</a>
                     </div>

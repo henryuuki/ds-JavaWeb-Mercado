@@ -74,22 +74,21 @@ public class CadastroCatController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getServletPath();
+        
         if (url.equals("/cadastrar-categoria")) {
             String errorMessage = "";
-            String nome = request.getParameter("nomeCat");
+            String nome = request.getParameter("nome");
 
             if (nome == null || nome.trim().isEmpty()) {
-                System.out.println("Entra erro");
                 errorMessage = "Preencha o campo.";
+                request.setAttribute("errorMessage", errorMessage);
+                request.getRequestDispatcher("/WEB-INF/jsp/cadastroCategoria.jsp").forward(request, response);
             } else {
-
                 TableCategoria categoria = new TableCategoria();
                 categoria.setNome(nome);
 
                 CategoriaDAO dao = new CategoriaDAO();
-
                 boolean success = dao.create(categoria);
-                System.out.println("Entra certo");
                 if (success) {
                     redirectToSuccessPage(request, response);
                 } else {
@@ -107,10 +106,6 @@ public class CadastroCatController extends HttpServlet {
 
     private void redirectToErrorPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect(request.getContextPath() + "/cadastro-categoria");
-    }
-
-    private void redirectToIndexPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 
     /**

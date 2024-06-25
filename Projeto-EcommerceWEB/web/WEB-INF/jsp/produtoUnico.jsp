@@ -6,13 +6,24 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <link href="css/produto-unico.css" rel="stylesheet" type="text/css" />
-            <title>Produto Page</title>
+            <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+            <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+            <title>Produto - Page</title>
         </head>
 
         <body>
             <jsp:include page="header.jsp"></jsp:include>
-
+            <c:if test="${not empty errorMessage}">
+                <div class="alert alert-danger" role="alert">
+                    ${errorMessage}
+                </div>
+            </c:if>
             <main>
+
+
+
                 <div class="contanier-pu">
                     <div class="box">
 
@@ -24,10 +35,10 @@
                         </div>
                         <div class="p-card-infos">
                             <div>
-                                <h6>Novo | +10mil vendidos</h6>
+                                <h6 class="h6-notboots">Novo | +10mil vendidos</h6>
                                 <span>${produto.nome}</span>
                                 <p class="p-descricao">${produto.descricao}</p>
-                                <p class="p-preco">$${produto.valor}</p>
+                                <p class="p-preco" id="produto-valor">${produto.valor}</p>
                             </div>
                             <form action="addCarrinho" method="post" class="box-info-baixo">
                                 <input type="hidden" value="${produto.id_produto}" id="idProduto" name="idProduto">
@@ -41,5 +52,6 @@
 
             <jsp:include page="footer.jsp"></jsp:include>
         </body>
+        <script src="js/infos-mask.js" type="text/javascript"></script>
 
         </html>
