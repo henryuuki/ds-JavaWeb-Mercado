@@ -13,8 +13,16 @@
         <main>
             <div class="contanier-checkout">
                 <section class="content-checkout">
-                    
+                    <div class="pagamento">
+                        <h1>Endereço</h1>
+                    </div>
+                    <div class="endereco">
+                        <h1>Pagamento</h1>
+                    </div>
                 </section>
+                <div class="btn-check-finalizar">
+                    <h1>FINALIZA</h1>
+                </div>
             </div>
         </main>
 

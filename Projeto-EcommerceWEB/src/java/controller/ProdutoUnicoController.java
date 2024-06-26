@@ -86,16 +86,14 @@ public class ProdutoUnicoController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getServletPath();
-        String errorMessage = "";
 
         if (url.equals("/addCarrinho")) {
-            if (TableUsuario.getId_usuarioStatic() == 0 || !errorMessage.isEmpty()) {
+
+            if (TableUsuario.getId_usuarioStatic() == 0) {             
+                request.getSession().setAttribute("errorProdMessage", "Usuário não está logado");
                 response.sendRedirect("./produto-unico");
-                if (!errorMessage.isEmpty()) {
-                    request.setAttribute("errorMessage", errorMessage);
-                }
             } else {
-                System.out.println("Entra aq 3 " + TableUsuario.getId_usuarioStatic());
+
                 int idProduto = Integer.parseInt(request.getParameter("idProduto"));
                 int quantidade = 1;
 

@@ -34,15 +34,15 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nextPage = "/WEB-INF/jsp/login.jsp";
-        
+
         if (TableUsuario.getId_usuarioStatic() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
             List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
             request.setAttribute("usuario", usuarios);
         }
-        
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-        dispatcher.forward(request, response);  
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,59 +60,49 @@ public class LoginController extends HttpServlet {
         processRequest(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getServletPath();
         String nextPage = "/WEB-INF/jsp/index.jsp";
-        
-        if(url.equals("/logar")){
-            TableUsuario u = new TableUsuario();
-            UsuarioDAO dao =  new UsuarioDAO();
-            
-            u.setEmail(request.getParameter("email"));
-            u.setSenha(request.getParameter("password"));
-            try{
-                int login = dao.validlogin(request.getParameter("email"),request.getParameter("password") );
-                
-                if(login != 0){
-                    if(login == 1){
-                        int idUsuario = dao.getId(request.getParameter("email"));
+
+        if (url.equals("/logar")) {
+            UsuarioDAO dao = new UsuarioDAO();
+
+            try {
+                int login = dao.validlogin(request.getParameter("email"), request.getParameter("password"));
+
+                if (login != 0) {
+                    int idUsuario = dao.getId(request.getParameter("email"));
+                    if (login == 1) {
+                        request.getSession().removeAttribute("errorMessage");
                         response.sendRedirect(request.getContextPath() + "/admin-panel");
-                        return;
-                    }
-                    else if(login == 2){
-                        int idUsuario = dao.getId(request.getParameter("email"));
-                        response.sendRedirect(request.getContextPath() + "/home");
-                        return;
-                    }
-                    else{
+                    } else if (login == 2) {
+                        request.getSession().removeAttribute("errorMessage");
+                        String referer = request.getHeader("referer");
+                        response.sendRedirect(referer != null ? referer : request.getContextPath() + "/home");
+                    } else {
+                        request.getSession().removeAttribute("errorMessage");
                         response.sendRedirect(request.getContextPath() + "/cadastro.jsp");
-                        return;
                     }
-                }
-                
-                else {
-                    
-                    request.setAttribute("errorMessage", "Usuário ou senha inválidos");
-                    response.sendRedirect(request.getContextPath() + "/cadastrar");
+                    return;
+                } else {
+                    request.getSession().setAttribute("errorLoginMessage", "Usuário ou senha inválidos");
+                    String referer = request.getHeader("referer");
+                    response.sendRedirect(referer != null ? referer : request.getContextPath() + "/home");
                     return;
                 }
-                
-            }catch (Exception e){
-                request.setAttribute("errorMessage", "Usuário ou senha inválidos");
-                System.out.println("Catch");
+            } catch (Exception e) {
+                request.getSession().setAttribute("errorLoginMessage", "Ocorreu um erro ao tentar fazer login");
+                String referer = request.getHeader("referer");
+                response.sendRedirect(referer != null ? referer : request.getContextPath() + "/home");
+                return;
             }
-            
         }
-        TableUsuario user = new TableUsuario();
-        user.setId_usuario(TableUsuario.getId_usuarioStatic());
-        request.setAttribute("usuario", user);
-        
-        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPage);
-        d.forward(request, response);
-    
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+        dispatcher.forward(request, response);
+
     }
 
     /**

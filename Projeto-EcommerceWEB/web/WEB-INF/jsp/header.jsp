@@ -8,17 +8,28 @@
             <link href="css/header.css" rel="stylesheet" type="text/css" />
             <link href="css/cards.css" rel="stylesheet" type="text/css" />
             <link href="css/form.css" rel="stylesheet" type="text/css" />
+            <link href="css/alert.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet"
                 href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"
                 integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
             <script src="https://kit.fontawesome.com/4f2931e92d.js" crossorigin="anonymous"></script>
             <title>Header</title>
         </head>
 
         <body>
             <header>
+                <c:if test="${not empty sessionScope.errorLoginMessage}">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Erro: </strong> ${sessionScope.errorLoginMessage}
+                        <c:remove var="errorLoginMessage" scope="session" />
+                    </div>
+                </c:if>
                 <nav>
                     <div class="logo-content">
                         <a href="./home"><img class="logo" src="assets/Logo SoundSpace.png" alt="" /></a>
@@ -78,8 +89,8 @@
                                     <input class="form-input" type="password" name="password" id="password"
                                         placeholder="Enter password">
 
-                                    <input class="form-checkbox" type="checkbox" id="remember-me">
-                                    <label class="title" for="remember-me">Lembrar de mim</label>
+                                    <!-- <input class="form-checkbox" type="checkbox" id="remember-me">
+                                    <label class="title" for="remember-me">Lembrar de mim</label> -->
 
                                     <button class="form-btn-confirm" type="submit">Logar</button>
 
@@ -129,5 +140,5 @@
         </body>
         <script src="js/searchBox.js" type="text/javascript"></script>
         <script src="js/popup-form.js" type="text/javascript"></script>
-
+        <script src="js/errorAlert.js" type="text/javascript"></script>
         </html>

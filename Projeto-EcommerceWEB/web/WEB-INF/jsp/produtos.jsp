@@ -17,7 +17,7 @@
                 <!-- <p>caminho</p> -->
             </div>
             <div class="content-products">
-                <div class="categoria-lista">
+                <!-- <div class="categoria-lista">
                     <div class="cat-lis-links">
                         <h1>Categorias</h1>
                         <a href="">Caixas de Som</a>
@@ -25,7 +25,7 @@
                         <a href="">Para TVs</a>
                         <a href="">Para Computadores</a>
                     </div>
-                </div>
+                </div> -->
                 <div class="cards-categorias">
                     <section class="products-cards">
 

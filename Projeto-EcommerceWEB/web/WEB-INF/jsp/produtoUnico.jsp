@@ -6,6 +6,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <link href="css/produto-unico.css" rel="stylesheet" type="text/css" />
+            <link href="css/alert.css" rel="stylesheet" type="text/css" />
             <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
             <script type="text/javascript"
                 src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
@@ -15,14 +16,18 @@
 
         <body>
             <jsp:include page="header.jsp"></jsp:include>
-            <c:if test="${not empty errorMessage}">
-                <div class="alert alert-danger" role="alert">
-                    ${errorMessage}
-                </div>
-            </c:if>
+
             <main>
 
-
+                <c:if test="${not empty sessionScope.errorProdMessage}">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>Erro: </strong> ${sessionScope.errorProdMessage}
+                        <c:remove var="errorProdMessage" scope="session" />
+                    </div>
+                </c:if>
 
                 <div class="contanier-pu">
                     <div class="box">
@@ -43,6 +48,7 @@
                             <form action="addCarrinho" method="post" class="box-info-baixo">
                                 <input type="hidden" value="${produto.id_produto}" id="idProduto" name="idProduto">
                                 <button class="button-ss">Comprar</button>
+                                
                             </form>
                         </div>
 
@@ -53,5 +59,5 @@
             <jsp:include page="footer.jsp"></jsp:include>
         </body>
         <script src="js/infos-mask.js" type="text/javascript"></script>
-
+        <script src="js/errorAlert.js" type="text/javascript"></script>
         </html>

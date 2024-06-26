@@ -319,7 +319,7 @@ public class ProdutoDAO {
 
         try {
             conexao = Conexao.conectar();
-            stmt = conexao.prepareStatement("SELECT * FROM produtos");
+            stmt = conexao.prepareStatement("SELECT * FROM produto");
             rs = stmt.executeQuery();
 
             while (rs.next()) {

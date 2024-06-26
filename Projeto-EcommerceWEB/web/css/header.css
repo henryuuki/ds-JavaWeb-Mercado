@@ -24,6 +24,11 @@ header nav{
     margin-left: 10%;
 }
 
+.logo-content a{
+    width: 100px;
+    height: 100px;
+}
+
 .logo{
     width: 100px;
     height: 100px;
