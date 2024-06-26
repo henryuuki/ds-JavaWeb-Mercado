@@ -203,7 +203,7 @@ public class CarrinhoDAO {
         boolean retorno = false;
         try {
             Connection conexao = Conexao.conectar();
-            PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM carrinho where usuario = ? and produto = ?");
+            PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM carrinho where usuario_FK = ? and produto_FK = ?");
             stmt.setInt(1, TableUsuario.getId_usuarioStatic());
             stmt.setInt(2, idProduto);
             ResultSet rs = stmt.executeQuery();

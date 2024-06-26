@@ -17,8 +17,11 @@ create table endereço(
 id_endereco INT auto_increment primary key,
 rua VARCHAR(255) NOT NULL,
 numero INT NOT NULL,
-cep CHAR(9) NOT NULL,
-complemento VARCHAR(255) NOT NULL
+cep CHAR(14) NOT NULL,
+complemento VARCHAR(255) NOT NULL,
+endereco_padrao boolean,
+usuario_FK INT,
+FOREIGN KEY (usuario_FK) REFERENCES usuario (id_usuario)
 );
 
 create table pedido(

@@ -50,7 +50,7 @@
                                 </form>
                             </div>
 
-                            <div class="btn-close">
+                            <div class="btn-fechar">
                                 <i class="bi bi-x-lg"></i>
                             </div>
 
@@ -66,10 +66,10 @@
                     <c:choose>
                         <c:when test="${empty usuario}">
 
-                            <div class="icons-content">
-                                <button class="icon-btn" type="submit" id="perfil-btn2"><i
+                            <div class="icones-content">
+                                <button class="icone-btn" type="submit" id="perfil-btn2"><i
                                         class="fa-solid fa-cart-shopping"></i></button>
-                                <button class="icon-btn" type="submit" id="perfil-btn1"><i
+                                <button class="icone-btn" type="submit" id="perfil-btn1"><i
                                         class="bi bi-person-circle"></i></button>
                             </div>
 
@@ -99,13 +99,13 @@
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <div class="icons-content">
-                                <a href="./carrinho"><button class="icon-btn"><i
+                            <div class="icones-content">
+                                <a href="./carrinho"><button class="icone-btn"><i
                                             class="fa-solid fa-cart-shopping"></i></button></a>
-                                <button class="icon-btn" type="submit" id="perfil-btn1"><i
+                                <button class="icone-btn" type="submit" id="perfil-btn1"><i
                                         class="bi bi-person-circle"></i></button>
                                 <form class="form-logout" method="post" action="sair">
-                                    <button class="icon-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
+                                    <button class="icone-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
                                 </form>
                             </div>
 

@@ -250,4 +250,37 @@ public class UsuarioDAO {
         }
         return id;
     }
+    
+    public TableUsuario checkout(){
+
+        TableUsuario u = new TableUsuario();
+
+        try{
+
+
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT email, nome, telefone FROM usuario WHERE id_usuario = ?");
+            ResultSet rs = null;
+
+            stmt.setInt(1, TableUsuario.getId_usuarioStatic());
+
+            rs=stmt.executeQuery();
+
+            while(rs.next()){
+                u.setEmail(rs.getString("email"));
+                u.setNome(rs.getString("nome"));
+                u.setTelefone(rs.getString("telefone"));
+            }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        }catch(SQLException e){
+
+            e.printStackTrace();
+        }
+
+        return u;
+    }
 }

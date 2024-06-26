@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.bean.TableEndereco;
+import model.bean.TableUsuario;
 
 public class EnderecoDAO {
     public List<TableEndereco> read() {
@@ -27,7 +28,7 @@ public class EnderecoDAO {
                 en.setId_endereco(rs.getInt("id_endereco"));
                 en.setRua(rs.getString("rua"));
                 en.setNumero(rs.getInt("numero"));
-                en.setCep(rs.getInt("cep"));
+                en.setCep(rs.getString("cep"));
                 en.setComplemento(rs.getString("complemento"));
                 enderecos.add(en);
             }
@@ -51,7 +52,7 @@ public class EnderecoDAO {
             stmt = conexao.prepareStatement("INSERT INTO endereço (rua, numero, cep, complemento) VALUES (?,?,?,?)");
             stmt.setString(1, en.getRua());
             stmt.setInt(2, en.getNumero());
-            stmt.setInt(3, en.getCep());
+            stmt.setString(3, en.getCep());
             stmt.setString(4, en.getComplemento());
           
             stmt.executeUpdate();
@@ -74,7 +75,7 @@ public class EnderecoDAO {
             stmt = conexao.prepareStatement("UPDATE endereço SET rua = ?, numero = ?, cep = ?, complemento = ?, WHERE id_endereco = ?");
             stmt.setString(1, en.getRua());
             stmt.setInt(2, en.getNumero());
-            stmt.setInt(3, en.getCep());
+            stmt.setString(3, en.getCep());
             stmt.setString(4, en.getComplemento());
             stmt.setInt(5, en.getId_endereco());
             
@@ -104,5 +105,69 @@ public class EnderecoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public TableEndereco mostrarCheckout(){
+
+        TableEndereco e = new TableEndereco();
+
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT rua, cep, id_endereco FROM endereco WHERE usuario = ? AND endereco_padrao = true");
+            ResultSet rs = null;
+
+            stmt.setInt(1, TableUsuario.getId_usuarioStatic());
+
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                e.setRua(rs.getString("rua"));
+                e.setCep(rs.getString("cep"));
+                TableEndereco.setId_enderecoStatic(rs.getInt("id_endereco"));
+            }
+
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+            }catch(SQLException ed){
+                ed.printStackTrace();
+
+        }
+
+        return e;
+    }
+    
+    public List<TableEndereco> visualizarEnderecos(){
+
+        List<TableEndereco> e = new ArrayList();
+
+        try{
+
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = conexao.prepareStatement("SELECT * FROM endereco WHERE usuario = ?");
+            ResultSet rs = null;
+
+            stmt.setInt(1,TableUsuario.getId_usuarioStatic());
+
+            rs = stmt.executeQuery();
+
+            while(rs.next()){
+                TableEndereco endereco = new TableEndereco();
+
+                endereco.setId_endereco(rs.getInt("id_endereco"));
+                endereco.setRua(rs.getString("rua"));
+                endereco.setCep(rs.getString("cep"));
+                e.add(endereco);
+
+            }
+            rs.close();
+            stmt.close();
+            conexao.close();
+
+        }catch(SQLException ed){
+            ed.printStackTrace();
+        }
+        return e;
     }
 }
