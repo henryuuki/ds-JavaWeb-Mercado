@@ -8,22 +8,20 @@ public class TableEndereco {
     private int id_endereco;
     private static int id_enderecoStatic;
     private String rua;
-    private int numero;
+    private String numero;
     private String cep;
     private String complemento;
-    private boolean endereco_atual;
     private int usuario_FK;
 
     public TableEndereco() {
     }
 
-    public TableEndereco(int id_endereco, String rua, int numero, String cep, String complemento, boolean endereco_atual, int usuario_FK) {
+    public TableEndereco(int id_endereco, String rua, String numero, String cep, String complemento, int usuario_FK) {
         this.id_endereco = id_endereco;
         this.rua = rua;
         this.numero = numero;
         this.cep = cep;
         this.complemento = complemento;
-        this.endereco_atual = endereco_atual;
         this.usuario_FK = usuario_FK;
     }
 
@@ -51,11 +49,11 @@ public class TableEndereco {
         this.rua = rua;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -75,14 +73,6 @@ public class TableEndereco {
         this.complemento = complemento;
     }
 
-    public boolean isEndereco_atual() {
-        return endereco_atual;
-    }
-
-    public void setEndereco_atual(boolean endereco_atual) {
-        this.endereco_atual = endereco_atual;
-    }
-
     public int getUsuario_FK() {
         return usuario_FK;
     }
@@ -91,5 +81,6 @@ public class TableEndereco {
         this.usuario_FK = usuario_FK;
     }
 
+    
     
 }

@@ -13,13 +13,12 @@ data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 acesso VARCHAR(30) DEFAULT 'cliente'
 );
 
-create table endereço(
+create table endereco(
 id_endereco INT auto_increment primary key,
 rua VARCHAR(255) NOT NULL,
-numero INT NOT NULL,
+numero VARCHAR(255) NOT NULL,
 cep CHAR(14) NOT NULL,
-complemento VARCHAR(255) NOT NULL,
-endereco_padrao boolean,
+complemento VARCHAR(255),
 usuario_FK INT,
 FOREIGN KEY (usuario_FK) REFERENCES usuario (id_usuario)
 );
@@ -32,7 +31,7 @@ metodo_pagamento ENUM('Crédito, Débito, Pix, Boleto'),
 valor_total INT NOT NULL,
 data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (usuario_FK) REFERENCES usuario (id_usuario),
-FOREIGN KEY (endereco_FK) REFERENCES endereço (id_endereco)
+FOREIGN KEY (endereco_FK) REFERENCES endereco (id_endereco)
 );
 
 create table categoria(

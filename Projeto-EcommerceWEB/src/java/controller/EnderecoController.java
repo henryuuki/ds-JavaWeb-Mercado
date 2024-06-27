@@ -14,21 +14,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.bean.TableCarrinho;
 import model.bean.TableCategoria;
 import model.bean.TableEndereco;
-import model.bean.TablePedido;
+import model.bean.TableProduto;
 import model.bean.TableUsuario;
-import model.dao.CarrinhoDAO;
 import model.dao.CategoriaDAO;
 import model.dao.EnderecoDAO;
+import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
 
 /**
  *
  * @author Usuário
  */
-public class CheckoutController extends HttpServlet {
+public class EnderecoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,60 +38,20 @@ public class CheckoutController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    float total = 0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/checkout.jsp";
-        
+        String nextPage = "/WEB-INF/jsp/endereco.jsp";
+
         if (TableUsuario.getId_usuarioStatic() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
             List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
             request.setAttribute("usuario", usuarios);
         }
         
-        CarrinhoDAO cd = new CarrinhoDAO();
-        List<TableCarrinho> carrinho = cd.visualizarCarrinho();
-        
-        for (int i = 0; i < carrinho.size(); i++) {
-            if (carrinho.get(i).getImagemBytes() != null) {
-                String imagemBase64 = Base64.getEncoder().encodeToString(carrinho.get(i).getImagemBytes());
-                carrinho.get(i).setImagemBase64(imagemBase64);
-            }
-        }
-
-        request.setAttribute("carrinhos", carrinho);
-        
-        EnderecoDAO dao = new EnderecoDAO();
-        List<TableEndereco> enderecos = dao.visualizarEnderecos();
-
-        request.setAttribute("enderecos", enderecos);
-        
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
-
-        UsuarioDAO ud = new UsuarioDAO();
-        TableUsuario u = ud.checkout();
-        request.setAttribute("usuarios", u);
-
-        EnderecoDAO ed = new EnderecoDAO();
-        TableEndereco e = ed.mostrarCheckout();
-        request.setAttribute("endereco", e);
-
-        TablePedido p = new TablePedido();
-
-        for (TableCarrinho c : carrinho) {
-            total += c.getSubProduto();
-        }
-        request.setAttribute("total", total);
-
-        List<TableEndereco> end = ed.visualizarEnderecos();
-        request.setAttribute("enderecos", end);
-
-        if (end.isEmpty()) {
-            request.setAttribute("errorMessage", "Você precisa adicionar um endereço antes de fazer um pedido.");
-        }
-
+        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
     }
@@ -123,7 +82,57 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String nextPag = "/WEB-INF/jsp/endereco.jsp";
+        
+        if (TableUsuario.getId_usuarioStatic() != 0) {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<TableUsuario> usuarios = dao.getUsuarioById(TableUsuario.getId_usuarioStatic());
+            request.setAttribute("usuario", usuarios);
+        }
+        
+        CategoriaDAO daoC = new CategoriaDAO();
+        List<TableCategoria> listaCategorias = daoC.listarTodosC();
+        request.setAttribute("categorias", listaCategorias);
+        
+        EnderecoDAO dao = new EnderecoDAO();
+
+        String errorMessage = "";
+
+        String rua = request.getParameter("rua");
+        String numero = request.getParameter("numero");
+        String cep = request.getParameter("cep");
+        String complemento = request.getParameter("complemento");
+        int usuarioId = TableUsuario.getId_usuarioStatic();
+
+        if (rua == null || rua.trim().isEmpty()
+                || numero == null || numero.trim().isEmpty()
+                || cep == null || cep.trim().isEmpty()) {
+            errorMessage = "Todos os campos são obrigatórios.";
+
+        } else if (cep.length() != 9) {
+            errorMessage = "Digite o CEP corretamente";
+            
+        } else {
+            
+            TableEndereco en = new TableEndereco();
+            en.setRua(rua);
+            en.setNumero(numero);
+            en.setCep(cep);
+            en.setComplemento(complemento);
+            en.setUsuario_FK(usuarioId);
+            System.out.println("Aqqqqqq");
+            dao.create(en);
+
+            request.setAttribute("successMessage", "Cadastro realizado com sucesso!");
+            nextPag = "/checkout";
+        }
+
+        if (!errorMessage.isEmpty()) {
+            request.setAttribute("errorMessage", errorMessage);
+        }
+
+        RequestDispatcher d = getServletContext().getRequestDispatcher(nextPag);
+        d.forward(request, response);
     }
 
     /**

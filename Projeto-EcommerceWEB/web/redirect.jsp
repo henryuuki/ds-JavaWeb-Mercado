@@ -7,3 +7,4 @@ servlet but should be the only JSP outside of WEB-INF.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% response.sendRedirect("./home"); %>
+<a href="WEB-INF/jsp/finalizado.jsp"></a>

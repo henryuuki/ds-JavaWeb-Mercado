@@ -56,6 +56,14 @@
         <servlet-name>ListaAdminController</servlet-name>
         <servlet-class>controller.ListaAdminController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EnderecoController</servlet-name>
+        <servlet-class>controller.EnderecoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FinalController</servlet-name>
+        <servlet-class>controller.FinalController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -143,6 +151,18 @@
     <servlet-mapping>
         <servlet-name>ListaAdminController</servlet-name>
         <url-pattern>/lista-admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EnderecoController</servlet-name>
+        <url-pattern>/endereco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EnderecoController</servlet-name>
+        <url-pattern>/cadastrar-endereco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinalController</servlet-name>
+        <url-pattern>/finalizado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

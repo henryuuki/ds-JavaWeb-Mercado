@@ -14,21 +14,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.bean.TableCarrinho;
 import model.bean.TableCategoria;
-import model.bean.TableEndereco;
-import model.bean.TablePedido;
+import model.bean.TableProduto;
 import model.bean.TableUsuario;
-import model.dao.CarrinhoDAO;
 import model.dao.CategoriaDAO;
-import model.dao.EnderecoDAO;
+import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
 
 /**
  *
  * @author Usuário
  */
-public class CheckoutController extends HttpServlet {
+public class FinalController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +36,9 @@ public class CheckoutController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    float total = 0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/checkout.jsp";
+        String nextPage = "/WEB-INF/jsp/finalizado.jsp";
         
         if (TableUsuario.getId_usuarioStatic() != 0) {
             UsuarioDAO dao = new UsuarioDAO();
@@ -50,48 +46,20 @@ public class CheckoutController extends HttpServlet {
             request.setAttribute("usuario", usuarios);
         }
         
-        CarrinhoDAO cd = new CarrinhoDAO();
-        List<TableCarrinho> carrinho = cd.visualizarCarrinho();
-        
-        for (int i = 0; i < carrinho.size(); i++) {
-            if (carrinho.get(i).getImagemBytes() != null) {
-                String imagemBase64 = Base64.getEncoder().encodeToString(carrinho.get(i).getImagemBytes());
-                carrinho.get(i).setImagemBase64(imagemBase64);
-            }
-        }
-
-        request.setAttribute("carrinhos", carrinho);
-        
-        EnderecoDAO dao = new EnderecoDAO();
-        List<TableEndereco> enderecos = dao.visualizarEnderecos();
-
-        request.setAttribute("enderecos", enderecos);
-        
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
+        
+        ProdutoDAO daoP = new ProdutoDAO();
+        List<TableProduto> produtos = daoP.listarTodosProdutos();
 
-        UsuarioDAO ud = new UsuarioDAO();
-        TableUsuario u = ud.checkout();
-        request.setAttribute("usuarios", u);
-
-        EnderecoDAO ed = new EnderecoDAO();
-        TableEndereco e = ed.mostrarCheckout();
-        request.setAttribute("endereco", e);
-
-        TablePedido p = new TablePedido();
-
-        for (TableCarrinho c : carrinho) {
-            total += c.getSubProduto();
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(produtos.get(i).getImagemBytes());
+                produtos.get(i).setImagemBase64(imagemBase64);
+            }
         }
-        request.setAttribute("total", total);
-
-        List<TableEndereco> end = ed.visualizarEnderecos();
-        request.setAttribute("enderecos", end);
-
-        if (end.isEmpty()) {
-            request.setAttribute("errorMessage", "Você precisa adicionar um endereço antes de fazer um pedido.");
-        }
+        request.setAttribute("produtos", produtos);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);

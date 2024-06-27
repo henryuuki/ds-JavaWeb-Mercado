@@ -44,14 +44,25 @@
                     </div>
 
                     <div class="prod-view">
-                        <p class="title-ladm">Lista Produtos</p>
-                        <div>
-                            <c:forEach items="${produtos}" var="produto">
-
-                                <span>${produto.nome}</span>
-                                <p>$${produto.valor}</p>
-
-                            </c:forEach>
+                        <div class="prod-view-content">
+                            <p class="title-ladm">Lista Produtos</p>
+                            <div class="r-cards-content">
+                                <c:forEach items="${produtos}" var="produto">
+                                    <div class="btn-rec-product">
+                                        <input type="hidden" id="idProduto" name="idProduto"
+                                            value="${produto.id_produto}">
+                                        <div class="r-img">
+                                            <img class="img-card" src="data:image/jpeg;base64,${produto.imagemBase64}"
+                                                alt="${produto.nome}">
+                                        </div>
+                                        <div class="r-infos">
+                                            <span><a href="#">${produto.nome}</a></span>
+                                            <span class="r-descricao">Clique para mais informações</span>
+                                            <p>$${produto.valor}</p>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
                     </div>
                 </section>

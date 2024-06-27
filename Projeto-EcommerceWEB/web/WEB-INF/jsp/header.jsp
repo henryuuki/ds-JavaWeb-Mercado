@@ -77,7 +77,7 @@
 
                                 <div class="close-form"><i class="bi bi-x"></i></div>
                                 <form class="form" method="post" action="logar">
-                                    <h2>Log in</h2>
+                                    <h2>Login</h2>
 
                                     <i class="bi bi-person-fill"></i>
                                     <label class="title" for="email">Email</label>
@@ -102,21 +102,12 @@
                             <div class="icones-content">
                                 <a href="./carrinho"><button class="icone-btn"><i
                                             class="fa-solid fa-cart-shopping"></i></button></a>
-                                <button class="icone-btn" type="submit" id="perfil-btn1"><i
-                                        class="bi bi-person-circle"></i></button>
+                                <a href=""><button class="icone-btn" type="submit"><i class="bi bi-person-circle"></i></button></a>
                                 <form class="form-logout" method="post" action="sair">
                                     <button class="icone-btn"><i class="fa-solid fa-right-from-bracket"></i></button>
                                 </form>
                             </div>
 
-                            <div class="popup">
-
-                                <div class="close-form"><i class="bi bi-x"></i></div>
-                                <form class="form" method="post" action="logar">
-                                    <h2>Log in</h2>
-                                    <a class="form-link" href="./cadastrar">Não tem conta? Crie uma</a>
-                                </form>
-                            </div>
                         </c:otherwise>
                     </c:choose>
 
@@ -141,4 +132,5 @@
         <script src="js/searchBox.js" type="text/javascript"></script>
         <script src="js/popup-form.js" type="text/javascript"></script>
         <script src="js/errorAlert.js" type="text/javascript"></script>
+
         </html>

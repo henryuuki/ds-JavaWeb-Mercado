@@ -1,82 +1,262 @@
-h1{
-    display: flex;
-    justify-content: center;
-    font-size: 35px;
-    font-family: Arial, Helvetica, sans-serif;
+@media (min-width: 1231px) and (max-width: 1920px) {
+
+    h1 {
+        display: flex;
+        justify-content: center;
+        font-size: 35px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .cards {
+        display: flex;
+        justify-content: center;
+        transform-style: preserve-3d;
+    }
+
+    .contanier-3dcards{
+        display: flex;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 40px;
+    }
+
+    .card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 200px;
+        height: 380px;
+        padding: 20px;
+        border: solid 1px #c3c3c3;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
+        border-radius: 10px;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transform-style: preserve-3d;
+
+    }
+
+    .produto {
+        width: 240px;
+        height: 280px;
+        transform-style: preserve-3d;
+        transition: .5s;
+    }
+
+    .card:hover .produto,
+    .card:hover button {
+        transform: translate3d(0, 0, 100px);
+    }
+
+    .cards .button {
+        padding: 10px 40px;
+        background-color: #00b938;
+        border: 0;
+        border-radius: 20px;
+        color: white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .cards div.card1,
+    div.card2,
+    div.card3,
+    div.card4 {
+        background: linear-gradient(45deg, rgb(1, 1, 180), rgb(50, 0, 78));
+    }
+
+
+
+
+    .r-cards-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin: 0px 50px 20px 50px;
+        gap: 30px;
+    }
+
+    .form-rec-prods {
+        display: flex;
+        justify-content: center;
+    }
+
+    .r-infos {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 3%;
+        font-size: 20px;
+        font-weight: 500;
+        gap: 20px;
+    }
+
+    .r-infos .r-descricao {
+        font-size: 15px;
+        color: #c3c3c3;
+    }
+
+    .r-infos span a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .btn-rec-product {
+        width: 260px;
+        height: 450px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+        background-color: white;
+    }
+
+    .r-img {
+        height: 50%;
+        border-bottom: 1px solid black;
+        overflow: hidden;
+    }
+
+    .r-img .img-card {
+        width: 100%;
+        height: 100%;
+    }
 }
 
-.cards{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    transform-style: preserve-3d;
-}
+@media (min-width: 300px) and (max-width: 1230px) {
 
-.card{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 200px;
-    height: 380px;
-    padding: 20px;
-    border: solid 1px #c3c3c3;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
-    border-radius: 10px;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transform-style: preserve-3d;
+    h1 {
+        display: flex;
+        justify-content: center;
+        font-size: 35px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-}
+    .cards {
+        display: flex;
+        justify-content: center;
+        transform-style: preserve-3d;
+    }
 
-.produto{
-    width: 240px;
-    height: 280px;
-    transform-style: preserve-3d;
-    transition: .5s;
-}
-
-.card:hover .produto, .card:hover button{
-    transform: translate3d(0, 0,100px);
-}
-
-.cards .button{
-    padding: 10px 40px;
-    background-color: #00b938;
-    border: 0;
-    border-radius: 20px;
-    color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    cursor: pointer;
-    transition: .5s;
-}
-
-.cards div.card1, div.card2, div.card3, div.card4{
-    background: linear-gradient(45deg, rgb(1, 1, 180), rgb(50, 0, 78));
-}
+    .contanier-3dcards{
+        display: flex;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
 
 
-.r-cards1, .r-cards2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 3%;
-}
+    .card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 200px;
+        height: 380px;
+        padding: 20px;
+        border: solid 1px #c3c3c3;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
+        border-radius: 10px;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transform-style: preserve-3d;
 
-.r-card{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 190px;
-    height: 330px;
-    padding: 20px;
-    border: solid 1px #c3c3c3;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.300);
-    border-radius: 10px;
-    color: black;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .produto {
+        width: 240px;
+        height: 280px;
+        transform-style: preserve-3d;
+        transition: .5s;
+    }
+
+    .card:hover .produto,
+    .card:hover button {
+        transform: translate3d(0, 0, 100px);
+    }
+
+    .cards .button {
+        padding: 10px 40px;
+        background-color: #00b938;
+        border: 0;
+        border-radius: 20px;
+        color: white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 20px;
+        cursor: pointer;
+        transition: .5s;
+    }
+
+    .cards div.card1,
+    div.card2,
+    div.card3,
+    div.card4 {
+        background: linear-gradient(45deg, rgb(1, 1, 180), rgb(50, 0, 78));
+    }
+
+
+
+
+    .r-cards-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 0px 50px 20px 50px;
+        gap: 30px;
+    }
+
+    .form-rec-prods {
+        display: flex;
+        justify-content: center;
+    }
+
+    .r-infos {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+        text-decoration: none;
+        text-align: center;
+        margin-top: 3%;
+        font-size: 20px;
+        font-weight: 500;
+        gap: 20px;
+    }
+
+    .r-infos .r-descricao {
+        font-size: 15px;
+        color: #c3c3c3;
+    }
+
+    .r-infos span a {
+        text-decoration: none;
+        color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .btn-rec-product {
+        width: 260px;
+        height: 450px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+        background-color: white;
+    }
+
+    .r-img {
+        height: 50%;
+        border-bottom: 1px solid black;
+        overflow: hidden;
+    }
+
+    .r-img .img-card {
+        width: 100%;
+        height: 100%;
+    }
 }

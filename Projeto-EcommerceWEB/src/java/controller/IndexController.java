@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.bean.TableCategoria;
+import model.bean.TableProduto;
 import model.bean.TableUsuario;
 import model.dao.CategoriaDAO;
+import model.dao.ProdutoDAO;
 import model.dao.UsuarioDAO;
 
 /**
@@ -46,6 +49,19 @@ public class IndexController extends HttpServlet {
         CategoriaDAO daoC = new CategoriaDAO();
         List<TableCategoria> listaCategorias = daoC.listarTodosC();
         request.setAttribute("categorias", listaCategorias);
+        
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        List<TableProduto> produtosRec = produtoDAO.listarProdutosRecomendados();
+        
+        request.setAttribute("produtosRec", produtosRec);
+
+        for (int i = 0; i < produtosRec.size(); i++) {
+            if (produtosRec.get(i).getImagemBytes() != null) {
+                String imagemBase64 = Base64.getEncoder().encodeToString(produtosRec.get(i).getImagemBytes());
+                produtosRec.get(i).setImagemBase64(imagemBase64);
+            }
+        }
+        request.setAttribute("produtosRec", produtosRec);
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);

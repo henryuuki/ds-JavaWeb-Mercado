@@ -1,0 +1,47 @@
+body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background: linear-gradient(#3b3b3b, #5c5c5f);
+}
+
+main{
+    width: 100%;
+    height: auto;
+
+}
+
+.final{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.final img{
+    
+    margin-top: 5%;
+    width: 80px;
+    height: 80px;
+}
+
+.final button{
+    padding: 10px 40px;
+    background-color: #00b938;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.final p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    width: 50%;
+    text-align: center;
+}

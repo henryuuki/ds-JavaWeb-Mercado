@@ -39,16 +39,22 @@ footer{
 .title-ft{
     color: rgb(255, 255, 255);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 25px;
     margin: 0;
     margin-bottom: 5%;
     margin-top: 5%;
 }
 
+
 .contato p{
     display: flex;
-    justify-content: left;
-    margin-left: 22%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-ft p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .info{
